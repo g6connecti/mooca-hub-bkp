@@ -1,6 +1,6 @@
 <h2>Clínicas e Hospitais Veterinários na Mooca</h2>
 
-<!-- CSS interno para padronizar cores e botões -->
+<!-- CSS interno para padronizar cores -->
 <style>
   #conteudo, body {
     background: #2a2a2a;
@@ -10,8 +10,8 @@
     color: #e0e0e0;
   }
   .lista-estabelecimentos button {
-    background: #00ffff; /* verde-água */
-    color: #121212; /* todo texto dentro do botão PRETO */
+    background: #00ffff;
+    color: #000000 !important; /* texto PRETO dentro do botão */
     box-shadow: 0 0 8px #00ffff;
     margin: 8px 0;
     padding: 12px;
@@ -27,9 +27,12 @@
     box-shadow: 0 0 15px #00ffff;
     transform: translateY(-2px);
   }
+  .lista-estabelecimentos button small {
+    color: #111111 !important; /* pequeno ainda mais escuro para contraste */
+  }
   .close-btn {
     background: #00ffff;
-    color: #121212;
+    color: #000000 !important; /* texto PRETO */
     box-shadow: 0 0 10px #00ffff;
     margin-top: 20px;
     padding: 10px 20px;
