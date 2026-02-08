@@ -1,5 +1,50 @@
 <h2>Lojas de Pets e Serviços na Mooca</h2>
 
+<!-- CSS interno para padronizar cores e botões -->
+<style>
+  #conteudo, body {
+    background: #2a2a2a; /* fundo escuro consistente */
+    color: #e0e0e0; /* texto cinza claro legível */
+  }
+  p, small, h2, h3 {
+    color: #e0e0e0;
+  }
+  .lista-estabelecimentos button {
+    background: #00ffff; /* verde-água padrão */
+    color: #121212;
+    box-shadow: 0 0 8px #00ffff;
+    margin: 8px 0;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+    font-size: 1em;
+    transition: all 0.3s;
+  }
+  .lista-estabelecimentos button:hover {
+    background: #00e6e6; /* hover sutil */
+    box-shadow: 0 0 15px #00ffff;
+    transform: translateY(-2px);
+  }
+  .close-btn {
+    background: #00ffff;
+    color: #121212;
+    box-shadow: 0 0 10px #00ffff;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s;
+  }
+  .close-btn:hover {
+    background: #00e6e6;
+    box-shadow: 0 0 20px #00ffff;
+  }
+</style>
+
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchLojas" placeholder="Pesquisar loja..." 
@@ -16,7 +61,6 @@
 </p>
 
 <div class="lista-estabelecimentos">
-
   <button class="seguranca-btn" onclick="window.open('https://www.petz.com.br/loja/petz-mooca', '_blank')">
     Petz Mooca<br>
     <small>Mooca Plaza Shopping (R. Cap. Pacheco e Chaves, 313)</small><br>
@@ -53,20 +97,17 @@
     <small>Destaque: Loja boutique com estética animal e acessórios premium.</small>
   </button>
 
-  <button class="seguranca-btn" onclick="window.open('https://www.instagram.com/mooacabelopethouse/', '_blank')">
+  <button class="seguranca-btn" onclick="window.open('https://maps.app.goo.gl/3FWRGvVgZ32V4hx86', '_blank')">
     Mooca Bello Pethouse<br>
     <small>Rua Domingos de Oliveira, 50</small><br>
     <small>Destaque: Creche (day care), hotelaria e adestramento.</small>
   </button>
 
-  <button class="seguranca-btn" onclick="window.open('https://www.instagram.com/mooacapet/', '_blank')">
+  <button class="seguranca-btn" onclick="window.open('https://maps.app.goo.gl/pes9LBV1jwxyhS7d9', '_blank')">
     Mooca Pet<br>
     <small>Rua da Mooca, 3184</small><br>
     <small>Destaque: Tradição no bairro com atendimento personalizado e produtos de alta qualidade.</small>
   </button>
-
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
-
-
