@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mooca Hub - Tudo do Bairro na Palma da Mão</title>
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#FF5722" />
+  <!-- Seu CSS atual aqui (pode manter inline ou linkar um style.css externo) -->
+  <style>
+    /* Seu CSS completo aqui ou <link rel="stylesheet" href="style.css"> */
+    body { ... }
+    .grid { ... }
+    .card { ... }
+    #conteudo { min-height: 60vh; }
+    /* etc. */
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mooca Hub - Tudo do Bairro na Palma da Mão</h1>
+    <p>Informações rápidas e úteis do bairro da Mooca - SP</p>
+  </header>
+
+  <div class="grid">
+    <div class="card" data-modulo="seguranca"><div class="emoji">🚨</div><h2>Segurança</h2></div>
+    <div class="card" data-modulo="prontoatendimento"><div class="emoji">🏥</div><h2>Pronto Atendimento</h2></div>
+    <div class="card" data-modulo="tempo"><div class="emoji">☀️</div><h2>Previsão do Tempo</h2></div>
+    <div class="card" data-modulo="transito"><div class="emoji">🚗</div><h2>Trânsito na Mooca</h2></div>
+    <div class="card" data-modulo="radares"><div class="emoji">🚦</div><h2>Radares na Mooca</h2></div>
+    <div class="card" data-modulo="noticias"><div class="emoji">📰</div><h2>Notícias & Eventos</h2></div>
+    <div class="card" data-modulo="estabelecimentos"><div class="emoji">🏪</div><h2>Estabelecimentos<br>Comerciais</h2></div>
+    <div class="card" data-modulo="wifi"><div class="emoji">📡</div><h2>Wi-Fi Disponíveis</h2></div>
+    <div class="card" data-modulo="lazer"><div class="emoji">🌳</div><h2>Lazer</h2></div>
+    <div class="card" data-modulo="patrocinadores"><div class="emoji">🤝</div><h2>Nossos Apoiadores</h2></div>
+    <div class="card" data-modulo="sugestoes"><div class="emoji">📩</div><h2>Pedidos /<br>Sugestões</h2></div>
+  </div>
+
+  <div id="conteudo">
+    <!-- Aqui vai carregar o conteúdo dos módulos -->
+    <p style="text-align:center; color:#00ffff; margin-top:40px;">Clique em uma opção acima para ver o conteúdo.</p>
+  </div>
+
+  <script>
+    // Listener para todos os cards
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', async () => {
+        const modulo = card.getAttribute('data-modulo');
+        if (!modulo) return;
+
+        const conteudo = document.getElementById('conteudo');
+        conteudo.innerHTML = '<p style="text-align:center;">Carregando...</p>';
+
+        try {
+          const response = await fetch(`modulos/${modulo}.html`);
+          if (!response.ok) throw new Error('Módulo não encontrado');
+
+          const html = await response.text();
+          conteudo.innerHTML = html;
+
+          // Scroll suave para o conteúdo
+          conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          conteudo.innerHTML = `<p style="color:#ff4444; text-align:center;">Erro ao carregar ${modulo}.html<br>${err.message}</p>`;
+        }
+      });
+    });
+  </script>
+
+  <!-- Registro do service worker (se você já tiver) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    }
+  </script>
+</body>
+</html>

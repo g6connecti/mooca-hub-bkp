@@ -1,2 +1,2 @@
 # mooca-hub-bkp
-Contem os arquivos para desenvolvimente antes de enviar para o mooca-hub
+Repositorio para bkp do projeto Mooca Hub.

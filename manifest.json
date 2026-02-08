@@ -1,0 +1,67 @@
+{
+  "name": "Mooca Hub",
+  "short_name": "Mooca Hub",
+  "description": "Tudo do bairro da Mooca na palma da mão: estabelecimentos comerciais, lazer, serviços 24h, trânsito, segurança, wi-fi, notícias, eventos e muito mais!",
+  "start_url": "/mooca-hub/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#00ffff",
+  "orientation": "any",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/mooca-hub/",
+  "id": "mooca-hub",
+  "categories": [
+    "lifestyle",
+    "travel",
+    "utilities",
+    "news"
+  ],
+  "icons": [
+    {
+      "src": "/mooca-hub/imagens/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/mooca-hub/imagens/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pets na Mooca",
+      "short_name": "Pets",
+      "description": "Lojas e clínicas veterinárias",
+      "url": "/mooca-hub/petshop.html"
+    },
+    {
+      "name": "Estabelecimentos Comerciais",
+      "short_name": "Comércio",
+      "description": "Açougues, padarias, farmácias e mais",
+      "url": "/mooca-hub/estabelecimentos.html"
+    },
+    {
+      "name": "Segurança",
+      "short_name": "Segurança",
+      "description": "Alertas e serviços de segurança",
+      "url": "/mooca-hub/seguranca.html"
+    }
+  ],
+  "share_target": {
+    "action": "/compartilhar",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "iarc_rating_id": "3",
+  "prefer_related_applications": false,
+  "related_applications": []
+}

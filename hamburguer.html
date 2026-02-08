@@ -1,0 +1,62 @@
+<h2>Hamburguerias da Mooca</h2>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Hamburguerias..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+  <button class="hamburguer-btn" onclick="window.open('instagram://user?username=bombeefburgers', '_blank')">
+    Bom Beef Burgers (Netão)<br><small>Rua Cap. Pacheco e Chaves, 313 (Shopping Mooca Plaza)</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://burmooca-lanches-ltda.menuintegrado.com.br/', '_blank')">
+    Burmooca<br><small>Rua Visconde de Laguna, 193</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://cadillacburger.com/', '_blank')">
+    Cadillac Burger<br><small>Rua Juventus, 296</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://www.ifood.com.br/delivery/sao-paulo-sp/johns-burguer-mooca-alto-da-mooca/212e7c7f-9e7a-4ff1-ab06-d2878ef95315?utm_medium=share', '_blank')">
+    John's Burguer<br><small>Rua Leme da Silva, 297</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://labrasaburgermooca.saipos.com/home?fbclid=IwY2xjawP1iLZleHRuA2FlbQIxMABicmlkETFJa0Z6ejBFSHVNZ25yVUpuc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpB_jzbarspb4eXWW3F__-BGFCWTgPYdhLkbOA7l_8u0YWgoCXqi8JgjqbsP_aem_-ZkgqDZvUT7Kup1E2DHp-g', '_blank')">
+    La Brasa Burger<br><small>Rua Cassandoca, 555</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://maneburger.com.br/', '_blank')">
+    Mané Burger<br><small>Rua Madre de Deus, 526</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://www.ifood.com.br/delivery/sao-paulo-sp/novo-hamburger-mooca-mooca/073ea159-35bd-4726-ac06-3fc350a8e2a1', '_blank')">
+    Novo Hamburger<br><small>Rua Jumana, 334</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://linkr.es/SixBurgers', '_blank')">
+    Six Burgers<br><small>Rua Fernando Falcão, 1024</small>
+  </button>
+
+  <button class="hamburguer-btn" onclick="window.open('https://www.standardburgeroficial.com.br/', '_blank')">
+    Standard Burger<br><small>Av. Paes de Barros, 1999</small>
+  </button>
+</div>
+
+<p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
+  Mais hamburguerias artesanais sendo adicionadas em breve!
+</p>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>

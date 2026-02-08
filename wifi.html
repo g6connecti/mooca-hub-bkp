@@ -1,0 +1,28 @@
+<h2>Wi-Fi Disponíveis na Mooca e Região</h2>
+
+<p>Pontos de Wi-Fi gratuito (WiFi Livre SP e outros). Clique nos pins para detalhes.</p>
+
+<div id="map"></div>
+
+<p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
+  Fonte: Prefeitura SP. Conecte-se à rede "WiFi Livre SP". Informações sujeitas a alterações.
+</p>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<script>
+  // Mapa aparece quando o módulo é carregado
+  setTimeout(() => {
+    var map = L.map('map').setView([-23.558, -46.595], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([-23.562, -46.592]).addTo(map).bindPopup('Praça Ciro Pontes - Mooca<br>WiFi Livre SP');
+    L.marker([-23.548, -46.588]).addTo(map).bindPopup('Praça General Humberto de Sousa Mello - Belém<br>WiFi Livre SP');
+    L.marker([-23.545, -46.608]).addTo(map).bindPopup('Largo da Concórdia - Brás<br>WiFi Livre SP');
+    L.marker([-23.560, -46.579]).addTo(map).bindPopup('Praça São Luis do Curu - Água Rasa<br>WiFi Livre SP');
+    L.marker([-23.539, -46.610]).addTo(map).bindPopup('Praça Kantuta - Pari<br>WiFi Livre SP');
+    L.marker([-23.540, -46.583]).addTo(map).bindPopup('Praça Silvio Romero - Tatuapé<br>WiFi Livre SP');
+  }, 100);
+</script>

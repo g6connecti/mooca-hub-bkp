@@ -1,0 +1,117 @@
+<h2>Restaurantes da Mooca</h2>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar restaurante..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+
+  <p class="section-separator">Italiana (Cantinas e Massas)</p>
+  <button class="restaurante-btn" onclick="window.open('https://dicunto.com.br', '_blank')">
+    Di Cunto (Restaurante e Confeitaria)<br><small>Rua Borges de Figueiredo, 61</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/doncarlinimooca/', '_blank')">
+    Don Carlini<br><small>Rua Dona Ana Neri, 265</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/borgomooca', '_blank')">
+    Borgo Mooca<br><small>Rua Comendador Roberto Ugolini, 129</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/mizzicafamiglia/', '_blank')">
+    Mizzica Famiglia<br><small>Rua Guaimbé, 277</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/cantinadirene/', '_blank')">
+    Cantina D'Irene<br><small>Rua Pascoal Moreira, 516</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/florisbelarestaurante/', '_blank')">
+    Florisbela<br><small>R. Dr. João Batista de Lacerda, 796</small>
+  </button>
+
+  <p class="section-separator">Churrascarias</p>
+  <button class="restaurante-btn" onclick="window.open('https://nocarvao.com.br/', '_blank')">
+    Churrascaria No Carvão<br><small>Av. Paes de Barros, 2193</small>
+  </button>
+
+  <p class="section-separator">Argentinas</p>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/moocaires/', '_blank')">
+    Moocaires Restobar<br><small>Rua da Mooca, 3593</small>
+  </button>
+  
+  <p class="section-separator">Árabes</p>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/arabianorestaurante/', '_blank')">
+    Arabiano<br><small>Av. Paes de Barros, 2057</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/sabordolibano/', '_blank')">
+    Sabor do Líbano<br><small>Praça Visconde de Sousa Fontes, 178</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://eleganciaarabe.com.br/', '_blank')">
+    Elegância Árabe<br><small>Rua Teresina, 365</small>
+  </button>
+
+  <p class="section-separator">Mexicanas</p>
+  <button class="restaurante-btn" onclick="window.open('https://balacotaco.com.br/', '_blank')">
+    Balacotaco Mexican Food<br><small>Rua Guaimbé, 110</small>
+  </button>
+
+  <p class="section-separator">Peruanas</p>
+  <button class="restaurante-btn" onclick="window.open('https://ranchodosperuanos.com.br/', '_blank')">
+    Rancho dos Peruanos<br><small>Rua da Mooca, 3475</small>
+  </button>
+
+  <p class="section-separator">Espanholas e Portuguesas</p>
+  <button class="restaurante-btn" onclick="window.open('https://paellaspepe.com.br/', '_blank')">
+    Paellas Pepe<br><small>Rua Dona Ana Neri, 761</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/explore/locations/116388169028369/taberna-sagres/')">
+    Taberna Sagres<br><small>Rua Natal 931 </small>
+  </button>
+
+  <p class="section-separator">Japonesas</p>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/kenichisushi/', '_blank')">
+    Kenichi Sushi<br><small>Av. Paes de Barros, 906</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/hojiromooca/', '_blank')">
+    Hojiro Mooca<br><small>Rua Juventus, 230</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/masakosushi/', '_blank')">
+    Masako Sushi<br><small>Rua Fernando Falcão, 58</small>
+  </button>
+  <button class="restaurante-btn" onclick="window.open('https://www.tripadvisor.com.br/Restaurant_Review-g303631-d23456789-Reviews-Sukiya-Sao_Paulo_State_of_Sao_Paulo.html', '_blank')">
+    Sukiya<br><small>Rua da Mooca, 2558</small>
+  </button>
+
+  <p class="section-separator">Self-Service / Buffet</p>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/machadomooca/', '_blank')">
+    Machado Mooca Restaurante <br><small>R. Rui Martins, 453</small>
+  </button>
+
+  <p class="section-separator">Diversos</p>
+  <button class="restaurante-btn" onclick="window.open('https://www.instagram.com/chicorestaurante_/?hl=pt-br', '_blank')">
+    Chico Restaurante (Cozinha Contemporânea)<br><small>Rua Fernando Falcão, 1011</small>
+  </button>
+</div>
+
+<p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
+  Restaurantes variados da região. Reserve com antecedência nos fins de semana!
+</p>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+
+
+
+
+

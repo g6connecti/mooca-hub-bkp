@@ -1,0 +1,55 @@
+<h2>Mercados e Supermercados da Mooca</h2>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Mercados..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Assaí+Atacadista+Mooca+Pari', '_blank')">
+    Assaí Atacadista (Mooca/Pari)<br><small>Av. Alcântara Machado, 3350</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Bella+Mooca+Supermercado', '_blank')">
+    Bella Mooca Supermercado<br><small>Rua Juventus, 203</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Chama+Supermercados+Alto+da+Mooca', '_blank')">
+    Chama Supermercados (Alto da Mooca)<br><small>Rua do Oratório, 1166</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/DIA+Supermercado+Rua+da+Mooca', '_blank')">
+    DIA Supermercado (Rua da Mooca)<br><small>Rua da Mooca, 4444</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Hirota+Food+Supermercados+Mooca', '_blank')">
+    Hirota Food Supermercados (Mooca)<br><small>Rua do Oratório, 1632</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Joanin+Supermercados+Mooca', '_blank')">
+    Joanin Supermercados (Loja 26 - Mooca)<br><small>Rua dos Trilhos, 1422</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Mercado+Ipanema+Mooca', '_blank')">
+    Mercado Ipanema Mooca<br><small>Rua da Mooca, 4287</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Roldão+Atacadista+Mooca', '_blank')">
+    Roldão Atacadista (Mooca)<br><small>Av. Alcântara Machado, 1010</small>
+  </button>
+  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Supermercado+Yamauchi+Mooca', '_blank')">
+    Supermercado Yamauchi<br><small>Rua Juventus, 235</small>
+  </button>
+</div>
+
+<p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
+  Supermercados e mercados tradicionais da região. Verifique horários de funcionamento.
+</p>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>

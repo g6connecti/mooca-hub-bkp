@@ -1,0 +1,132 @@
+<h2>Padarias na Mooca</h2>
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Padarias..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+<div class="lista-estabelecimentos">
+  <!-- Carillo -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://padariacarillo.com.br/cardapio/', '_blank')">
+      Padaria Carillo <span class="promo-tag">Promoção</span>
+    </button>
+    <p class="promo-texto">
+      Menu del Giorno seg-sex: almoço completo (entrada + principal + acompanhamento) R$ 35,00
+    </p>
+  </div>
+  
+  <button class="padaria-btn" onclick="window.open('https://montelibanopaes.com', '_blank')">
+    Panificadora Monte Líbano
+  </button>
+  
+  <button class="padaria-btn" onclick="window.open('https://dicunto.com.br', '_blank')">
+    Di Cunto
+  </button>
+  
+  <button class="padaria-btn" onclick="window.open('https://www.instagram.com/granomooca/', '_blank')">
+    Grano Mooca
+  </button>
+  
+  <!-- Santa Branca -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://padariasantabranca.com.br', '_blank')">
+      Padaria Santa Branca <span class="promo-tag">Promoção</span>
+    </button>
+    <p class="promo-texto">
+      Diversas ofertas diárias em pães e lanches – verifique no local ou Instagram
+    </p>
+  </div>
+
+  <button class="padaria-btn" onclick="window.open('https://www.instagram.com/panetteria_77/', '_blank')">
+    Panetteria 77
+  </button>
+  
+  <button class="padaria-btn" onclick="window.open('https://www.instagram.com/padariaestoril/', '_blank')">
+    Padaria Estoril
+  </button>
+  
+  <button class="padaria-btn" onclick="window.open('https://www.padariapanrico.com.br/', '_blank')">
+    Padaria Panrico
+  </button>
+  
+  <button class="padaria-btn" onclick="window.open('https://www.instagram.com/padariaromaria/', '_blank')">
+    Padaria Romaria
+  </button>
+
+  <button class="padaria-btn" onclick="window.open('https://padariafalcao.shop', '_blank')">
+    Padaria Falcão<br
+  </button>
+  
+  <button class="padaria-btn" onclick="window.open('https://linktr.ee/padaria.vianadocastelo', '_blank')">
+    Padaria Viana do Castelo
+  </button>
+</div>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* verde-água mais bonito e sutil */
+    border: 1px solid #00d4ff; /* borda verde-água elegante */
+    color: #ffffff; /* texto branco para legibilidade */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15); /* um pouco mais visível no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  .promo-tag {
+    background: #ff9800;
+    color: #121212;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: bold;
+    margin-left: 10px;
+    vertical-align: middle;
+    box-shadow: 0 1px 6px rgba(255, 152, 0, 0.5);
+    display: inline-block;
+  }
+
+  .padaria-btn:hover .promo-tag {
+    background: #ffb74d;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+  }
+
+  .promo-texto {
+    font-size: 0.85em;
+    color: #ff9800;
+    margin: 6px 0 0 15px;
+    line-height: 1.4;
+  }
+</style>
+
+
+
+
