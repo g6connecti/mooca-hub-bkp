@@ -1,17 +1,17 @@
 <h2>Lojas de Pets e Serviços na Mooca</h2>
 
-<!-- CSS interno para padronizar cores e botões -->
+<!-- CSS interno para padronizar cores -->
 <style>
   #conteudo, body {
-    background: #2a2a2a; /* fundo escuro consistente */
-    color: #e0e0e0; /* texto cinza claro legível */
+    background: #2a2a2a;
+    color: #e0e0e0;
   }
   p, small, h2, h3 {
     color: #e0e0e0;
   }
   .lista-estabelecimentos button {
-    background: #00ffff; /* verde-água padrão */
-    color: #121212;
+    background: #00ffff; /* verde-água */
+    color: #000000 !important; /* texto PRETO dentro do botão */
     box-shadow: 0 0 8px #00ffff;
     margin: 8px 0;
     padding: 12px;
@@ -23,13 +23,16 @@
     transition: all 0.3s;
   }
   .lista-estabelecimentos button:hover {
-    background: #00e6e6; /* hover sutil */
+    background: #00e6e6;
     box-shadow: 0 0 15px #00ffff;
     transform: translateY(-2px);
   }
+  .lista-estabelecimentos button small {
+    color: #111111 !important; /* pequeno ainda mais escuro para contraste */
+  }
   .close-btn {
     background: #00ffff;
-    color: #121212;
+    color: #000000 !important; /* texto PRETO */
     box-shadow: 0 0 10px #00ffff;
     margin-top: 20px;
     padding: 10px 20px;
@@ -57,50 +60,57 @@
 </p>
 
 <p style="text-align:center; margin-bottom:20px; font-size:1.1em; color:#00ffff;">
-  Pet shops, Rações, Acessórios, Banho e Tosa na Região!
+  Pet shops, rações, acessórios, banho e tosa na região!
 </p>
 
 <div class="lista-estabelecimentos">
   <button class="seguranca-btn" onclick="window.open('https://www.petz.com.br/loja/petz-mooca', '_blank')">
     Petz Mooca<br>
     <small>Mooca Plaza Shopping (R. Cap. Pacheco e Chaves, 313)</small><br>
+    <small>Destaque: Grande rede com ampla variedade de produtos, farmácia e serviços.</small>
   </button>
 
   <button class="seguranca-btn" onclick="window.open('https://maps.app.goo.gl/uB3yQ7rtxChcFaJw5', '_blank')">
     Megapet Mooca<br>
     <small>Rua dos Trilhos, 1943</small><br>
+    <small>Destaque: Clínica veterinária completa com internação 24h, laboratório e banho/tosa.</small>
   </button>
 
   <button class="seguranca-btn" onclick="window.open('https://bemlocaopet.com.br', '_blank')">
     Pet Shop Bem Locão<br>
     <small>Rua do Oratório, 1130</small><br>
+    <small>Destaque: Variedade em rações e acessórios com foco em entrega rápida.</small>
   </button>
 
   <button class="seguranca-btn" onclick="window.open('https://petzeppelin.com.br', '_blank')">
     Pet Zeppelin<br>
     <small>Avenida Cassandoca, 437</small><br>
+    <small>Destaque: Centro de mimos com estética, consultas e táxi-dog.</small>
   </button>
 
   <button class="seguranca-btn" onclick="window.open('https://carinitos.com.br', '_blank')">
     Carinitos Banho e Tosa<br>
     <small>Rua Madre de Deus, 1474 - Loja 01</small><br>
+    <small>Destaque: Focado em banho e tosa de excelência em ambiente climatizado.</small>
   </button>
 
   <button class="seguranca-btn" onclick="window.open('https://crystalpetstore.com.br', '_blank')">
     Crystal Pet Spa e Boutique<br>
     <small>Mooca Plaza Shopping (L1)</small><br>
+    <small>Destaque: Loja boutique com estética animal e acessórios premium.</small>
   </button>
 
-  <button class="seguranca-btn" onclick="window.open('https://maps.app.goo.gl/3FWRGvVgZ32V4hx86', '_blank')">
+  <button class="seguranca-btn" onclick="window.open('https://www.instagram.com/mooacabelopethouse/', '_blank')">
     Mooca Bello Pethouse<br>
     <small>Rua Domingos de Oliveira, 50</small><br>
+    <small>Destaque: Creche (day care), hotelaria e adestramento.</small>
   </button>
 
-  <button class="seguranca-btn" onclick="window.open('https://maps.app.goo.gl/pes9LBV1jwxyhS7d9', '_blank')">
+  <button class="seguranca-btn" onclick="window.open('https://www.instagram.com/mooacapet/', '_blank')">
     Mooca Pet<br>
     <small>Rua da Mooca, 3184</small><br>
+    <small>Destaque: Tradição no bairro com atendimento personalizado e produtos de alta qualidade.</small>
   </button>
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
-
