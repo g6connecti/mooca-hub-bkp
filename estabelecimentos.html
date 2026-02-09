@@ -1,7 +1,7 @@
 <h2>Estabelecimentos Comerciais da Mooca</h2>
 
 <p style="text-align:center; margin-bottom:25px; font-size:1.1em; color:#00ffff;">
-  Escolha a Categoria para ver a Lista Completa de Estabelecimentos
+  Escolha a Categoria para ver a lista completa de estabelecimentos
 </p>
 
 <div class="estabelecimentos-grid">
@@ -36,7 +36,8 @@
     <h2>Mercados</h2>
   </div>
 
-  <div class="estabelecimento-card" data-submodulo="padarias">
+  <!-- Card Padarias com onclick direto para tocar o áudio -->
+  <div class="estabelecimento-card" data-submodulo="padarias" onclick="tocarPromoPadaria()">
     <div class="emoji">🥖</div>
     <h2>Padarias</h2>
   </div>
@@ -51,7 +52,6 @@
     <h2>Pizzarias</h2>
   </div>
 
-  <!-- Novo card: Pets -->
   <div class="estabelecimento-card" data-submodulo="Petshop">
     <div class="emoji">🐶</div>
     <h2>Pets</h2>
@@ -66,38 +66,35 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
-<!-- Script para tocar o áudio apenas no clique do card Padarias -->
+<!-- Áudio específico para Padarias (no mesmo estilo do index.html) -->
+<audio id="promoPadariaAudio" src="promo-padaria.mp3" preload="auto"></audio>
+
 <script>
-// Aguarda o DOM carregar
+// Função idêntica ao padrão que funciona no index.html (tocarBemVindo)
+function tocarPromoPadaria() {
+  const audio = document.getElementById('promoPadariaAudio');
+  if (audio) {
+    audio.volume = 0.5;          // mesmo volume usado no bem-vindo
+    audio.currentTime = 0;
+    audio.play()
+      .then(() => {
+        console.log('promo-padaria.mp3 tocando com sucesso!');
+      })
+      .catch(e => {
+        console.log('Erro ao tocar promo-padaria.mp3:', e);
+      });
+  } else {
+    console.error('Elemento #promoPadariaAudio não encontrado');
+  }
+}
+
+// Opcional: se quiser manter o carregamento do módulo via JS (sem depender só do onclick),
+// pode adicionar isso para reforçar (mas o onclick já deve bastar):
 document.addEventListener('DOMContentLoaded', function() {
   const padariasCard = document.querySelector('.estabelecimento-card[data-submodulo="padarias"]');
-  
   if (padariasCard) {
-    console.log("✅ Card de Padarias encontrado. Evento de clique adicionado.");
-    
-    padariasCard.addEventListener('click', function() {
-      console.log("Clique no card Padarias detectado. Iniciando reprodução...");
-      
-      // Cria uma nova instância de áudio a cada clique (mais confiável)
-      const audio = new Audio('promo-padaria.mp3');
-      audio.volume = 0.7; // volume confortável (0.0 a 1.0)
-      
-      // Opcional: pequeno delay para garantir que o contexto de interação ainda exista
-      // setTimeout(() => {
-        audio.play()
-          .then(() => {
-            console.log("🎵 Áudio promo-padaria.mp3 começou a tocar com sucesso!");
-          })
-          .catch(erro => {
-            console.error("❌ Falha ao reproduzir o áudio:");
-            console.error("Nome do erro:", erro.name);
-            console.error("Mensagem:", erro.message);
-            console.error("Objeto completo:", erro);
-          });
-      // }, 100); // descomente se necessário (delay de 100ms)
-    });
-  } else {
-    console.warn("❗ Card de Padarias NÃO foi encontrado no DOM.");
+    padariasCard.addEventListener('click', tocarPromoPadaria);
+    console.log('Evento reforçado adicionado ao card Padarias');
   }
 });
 </script>
