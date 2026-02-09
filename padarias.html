@@ -1,4 +1,5 @@
 <h2>Padarias na Mooca</h2>
+
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchInput" placeholder="Pesquisar Padarias..." 
@@ -16,10 +17,12 @@
     });
   });
 </script>
+
 <div class="lista-estabelecimentos">
-  <!-- Carillo -->
-  <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://padariacarillo.com.br/cardapio/', '_blank')">
+  <!-- Carillo - com destaque premium: borda pulsante + selo dourado -->
+  <div class="padaria-bloco destaque">
+    <button class="padaria-btn destaque" onclick="window.open('https://padariacarillo.com.br/cardapio/', '_blank')">
+      <span class="selo-dourado">★ Destaque</span>
       Padaria Carillo <span class="promo-tag">Promoção</span>
     </button>
     <p class="promo-texto">
@@ -66,7 +69,7 @@
   </button>
 
   <button class="padaria-btn" onclick="window.open('https://padariafalcao.shop', '_blank')">
-    Padaria Falcão<br
+    Padaria Falcão
   </button>
   
   <button class="padaria-btn" onclick="window.open('https://linktr.ee/padaria.vianadocastelo', '_blank')">
@@ -79,6 +82,7 @@
 <style>
   .padaria-bloco {
     margin-bottom: 20px;
+    position: relative; /* necessário para posicionar o selo */
   }
 
   .padaria-btn {
@@ -86,16 +90,17 @@
     text-align: left;
     padding: 15px 20px;
     border-radius: 10px;
-    background: rgba(0, 212, 255, 0.08); /* verde-água mais bonito e sutil */
-    border: 1px solid #00d4ff; /* borda verde-água elegante */
-    color: #ffffff; /* texto branco para legibilidade */
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid #00d4ff;
+    color: #ffffff;
     transition: all 0.3s ease;
     cursor: pointer;
     font-size: 1em;
+    position: relative; /* para o selo ficar sobre o botão */
   }
 
   .padaria-btn:hover {
-    background: rgba(0, 212, 255, 0.15); /* um pouco mais visível no hover */
+    background: rgba(0, 212, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
   }
@@ -125,9 +130,53 @@
     margin: 6px 0 0 15px;
     line-height: 1.4;
   }
+
+  /* === Destaque Premium para Padaria Carillo === */
+
+  .padaria-bloco.destaque {
+    border: 3px solid #00d4ff;
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    animation: pulse-borda 2.5s infinite ease-in-out;
+  }
+
+  @keyframes pulse-borda {
+    0% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+    50% { box-shadow: 0 0 35px rgba(0, 212, 255, 0.85); }
+    100% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+  }
+
+  .padaria-btn.destaque {
+    background: rgba(0, 212, 255, 0.12) !important;
+    border: 2px solid #00d4ff !important;
+  }
+
+  .padaria-btn.destaque:hover {
+    background: rgba(0, 212, 255, 0.22) !important;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.7) !important;
+  }
+
+  /* Selo dourado no canto superior direito */
+  .selo-dourado {
+    position: absolute;
+    top: -14px;
+    right: 12px;
+    background: linear-gradient(135deg, #ffd700, #ffeb3b);
+    color: #1a1a1a;
+    font-weight: bold;
+    font-size: 0.85em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 3px 12px rgba(255, 215, 0, 0.7);
+    transform: rotate(8deg);
+    z-index: 10;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+  }
+
+  /* Ajuste no hover do selo (opcional, fica mais vivo) */
+  .padaria-bloco.destaque:hover .selo-dourado {
+    transform: rotate(8deg) scale(1.08);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.9);
+  }
 </style>
-
-
-
-
-
