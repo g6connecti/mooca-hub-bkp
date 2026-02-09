@@ -1,5 +1,4 @@
-<h2>Padarias na Mooca v-1</h2>
-
+<h2>Padarias na Mooca< v-2/h2>
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchInput" placeholder="Pesquisar Padarias..." 
@@ -17,9 +16,8 @@
     });
   });
 </script>
-
 <div class="lista-estabelecimentos">
-  <!-- Carillo - com destaque premium: borda pulsante + selo dourado -->
+  <!-- Carillo -->
   <div class="padaria-bloco destaque">
     <button class="padaria-btn destaque" onclick="window.open('https://padariacarillo.com.br/cardapio/', '_blank')">
       <span class="selo-dourado">★ Destaque</span>
@@ -82,7 +80,7 @@
 <style>
   .padaria-bloco {
     margin-bottom: 20px;
-    position: relative; /* necessário para posicionar o selo */
+    position: relative; /* necessário para o selo */
   }
 
   .padaria-btn {
@@ -90,9 +88,9 @@
     text-align: left;
     padding: 15px 20px;
     border-radius: 10px;
-    background: rgba(0, 212, 255, 0.08);
-    border: 1px solid #00d4ff;
-    color: #ffffff;
+    background: rgba(0, 212, 255, 0.08); /* verde-água mais bonito e sutil */
+    border: 1px solid #00d4ff; /* borda verde-água elegante */
+    color: #ffffff; /* texto branco para legibilidade */
     transition: all 0.3s ease;
     cursor: pointer;
     font-size: 1em;
@@ -100,7 +98,7 @@
   }
 
   .padaria-btn:hover {
-    background: rgba(0, 212, 255, 0.15);
+    background: rgba(0, 212, 255, 0.15); /* um pouco mais visível no hover */
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
   }
@@ -131,21 +129,53 @@
     line-height: 1.4;
   }
 
-  /* === Destaque Premium para Padaria Carillo === */
+  /* === Destaque Premium corrigido para Padaria Carillo === */
 
+  /* Borda pulsante apenas no bloco inteiro (sem sobrepor) */
   .padaria-bloco.destaque {
     border: 3px solid #00d4ff;
     border-radius: 14px;
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-    animation: pulse-borda 2.5s infinite ease-in-out;
+    animation: pulse-borda 2.8s infinite ease-in-out;
+    padding: 2px; /* pequeno espaço interno para não colar o botão na borda */
+    position: relative; /* necessário para o selo */
+    overflow: visible; /* permite que o selo saia do bloco */
   }
 
+  /* Animação da borda pulsante */
   @keyframes pulse-borda {
     0% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
     50% { box-shadow: 0 0 35px rgba(0, 212, 255, 0.85); }
     100% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
   }
 
+  /* Selo dourado agora posicionado FORA da borda (acima e à direita) */
+  .selo-dourado {
+    position: absolute;
+    top: -28px;               /* mais alto para ficar acima da borda */
+    right: -10px;             /* um pouco para fora à direita */
+    background: linear-gradient(135deg, #ffd700, #ffeb3b);
+    color: #1a1a1a;
+    font-weight: bold;
+    font-size: 0.95em;
+    padding: 6px 16px;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(255, 215, 0, 0.7);
+    transform: rotate(10deg);
+    z-index: 20;              /* fica acima de tudo */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  /* Efeito hover no selo (mais chamativo) */
+  .padaria-bloco.destaque:hover .selo-dourado {
+    transform: rotate(10deg) scale(1.12);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 1);
+    top: -30px; /* sobe um pouquinho no hover */
+  }
+
+  /* Reforço no botão destaque (para combinar com a borda) */
   .padaria-btn.destaque {
     background: rgba(0, 212, 255, 0.12) !important;
     border: 2px solid #00d4ff !important;
@@ -154,29 +184,5 @@
   .padaria-btn.destaque:hover {
     background: rgba(0, 212, 255, 0.22) !important;
     box-shadow: 0 0 25px rgba(0, 212, 255, 0.7) !important;
-  }
-
-  /* Selo dourado no canto superior direito */
-  .selo-dourado {
-    position: absolute;
-    top: -14px;
-    right: 12px;
-    background: linear-gradient(135deg, #ffd700, #ffeb3b);
-    color: #1a1a1a;
-    font-weight: bold;
-    font-size: 0.85em;
-    padding: 4px 12px;
-    border-radius: 20px;
-    box-shadow: 0 3px 12px rgba(255, 215, 0, 0.7);
-    transform: rotate(8deg);
-    z-index: 10;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    letter-spacing: 0.5px;
-  }
-
-  /* Ajuste no hover do selo (opcional, fica mais vivo) */
-  .padaria-bloco.destaque:hover .selo-dourado {
-    transform: rotate(8deg) scale(1.08);
-    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.9);
   }
 </style>
