@@ -391,7 +391,7 @@
       }
     }
 
-    /* Botão Sair do Aplicativo - verde-água, texto preto, tamanho reduzido */
+    /* Botão Sair do Aplicativo */
     .exit-btn {
       background: #00ffff !important;
       color: #000000 !important;
@@ -415,7 +415,7 @@
       transform: scale(1.03);
     }
 
-    /* Botões de Segurança (Vigia Mooca, Alertas Cidade, Emergências) */
+    /* Botões de Segurança */
     .seguranca-btn, .vigia-btn, .emergencia-btn {
       background: #00ffff !important;
       color: #000000 !important;
@@ -499,7 +499,7 @@
     </div>
   </div>
 
-  <!-- Conteúdo principal (escondido inicialmente) -->
+  <!-- Conteúdo principal -->
   <div id="conteudo-principal" style="display:none;">
     <header>
       <h1>Mooca Hub - Tudo do Bairro na Palma da Mão</h1>
@@ -531,7 +531,6 @@
 
       <div class="card" data-modulo="noticias"><div class="emoji">📰</div><h2>Notícias & Eventos</h2></div>
 
-      <!-- Card Padarias (certifique-se de que data-modulo="padarias") -->
       <div class="card" data-modulo="padarias">
         <div class="emoji">🥖</div>
         <h2>Padarias</h2>
@@ -542,7 +541,6 @@
       <!-- Aqui carregam os módulos -->
     </div>
 
-    <!-- Botão Sair -->
     <button class="exit-btn" onclick="sairDoApp()">Sair do Aplicativo</button>
   </div>
 
@@ -551,6 +549,7 @@
   <audio id="promocoesAudio" src="Promocoes.mp3" preload="auto"></audio>
 
   <script>
+    // Função para tocar áudio de boas-vindas
     function tocarBemVindo() {
       const audio = document.getElementById('bemVindoAudio');
       if (audio) {
@@ -560,14 +559,15 @@
       }
     }
 
+    // Função para tocar áudio de promoções ao entrar em Padarias
     function tocarPromocoes() {
       const audio = document.getElementById('promocoesAudio');
-      if (audio && !audio.dataset.played) { // toca só uma vez por sessão
+      if (audio && !audio.dataset.played) {
         audio.volume = 0.5;
         audio.currentTime = 0;
         audio.play().then(() => {
           console.log('Promocoes.mp3 tocando');
-          audio.dataset.played = 'true'; // evita repetição
+          audio.dataset.played = 'true';
         }).catch(e => console.log('Autoplay bloqueado:', e));
       }
     }
@@ -596,10 +596,6 @@
       const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
       const hoje = new Date().getDay();
       return dias[hoje];
-    }
-
-    function redirectToPizzarias() {
-      window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank');
     }
 
     function fetchWeather() {
@@ -688,47 +684,44 @@
       }
     }
 
+    // Evento de clique nos cards - versão corrigida e funcional
     document.querySelectorAll('.card[data-modulo]').forEach(card => {
-      card.addEventListener('click', async () => {
-        const modulo = card.getAttribute('data-modulo');
-        console.log('Card principal clicado:', modulo);
+      card.addEventListener('click', async function() {
+        const modulo = this.getAttribute('data-modulo');
+        console.log('Card clicado:', modulo);
 
         const conteudo = document.getElementById('conteudo');
+        if (!conteudo) {
+          console.error('Elemento #conteudo não encontrado');
+          return;
+        }
+
         conteudo.innerHTML = '<p style="text-align:center; color:#00ffff; font-size:1.2em;">Carregando...</p>';
         conteudo.style.display = 'block';
 
         try {
           const url = `${modulo}.html`;
-          console.log('Iniciando fetch para módulo principal:', url);
+          console.log('Buscando módulo:', url);
 
           const response = await fetch(url);
-          console.log('Fetch concluído. Status:', response.status);
-
           if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
 
           const html = await response.text();
-          console.log('HTML recebido. Tamanho:', html.length);
-
           conteudo.innerHTML = html;
-          console.log('HTML inserido no #conteudo');
 
-          // Toca o áudio Promocoes.mp3 quando o card "Padarias" for clicado
+          // Toca áudio se for Padarias
           if (modulo === 'padarias') {
             tocarPromocoes();
           }
 
-          if (modulo === 'tempo') fetchWeather();
-
-          setTimeout(initMap, 600);
+          // Funções adicionais (se existirem)
+          if (modulo === 'tempo' && typeof fetchWeather === 'function') fetchWeather();
+          if (typeof initMap === 'function') setTimeout(initMap, 600);
 
           conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } catch (err) {
-          console.error('Erro no módulo principal:', err);
-          conteudo.innerHTML = `
-            <p style="color:#ff4444; text-align:center; font-size:1.2em; padding:20px;">
-              Erro ao carregar "${modulo}"<br>${err.message}
-            </p>
-          `;
+          console.error('Erro ao carregar módulo:', err);
+          conteudo.innerHTML = `<p style="color:#ff4444; text-align:center; font-size:1.2em;">Erro ao carregar ${modulo}<br>${err.message}</p>`;
         }
       });
     });
@@ -744,19 +737,15 @@
 
     function tocarPromocoes() {
       const audio = document.getElementById('promocoesAudio');
-      if (audio && !audio.dataset.played) { // evita tocar repetidamente na mesma sessão
+      if (audio && !audio.dataset.played) {
         audio.volume = 0.5;
         audio.currentTime = 0;
         audio.play().then(() => {
           console.log('Promocoes.mp3 tocando');
-          audio.dataset.played = 'true'; // marca como tocado
+          audio.dataset.played = 'true';
         }).catch(e => console.log('Autoplay bloqueado:', e));
       }
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.continuar-btn').addEventListener('click', tocarBemVindo);
-    });
 
     function sairDoApp() {
       if (navigator.app && navigator.app.exitApp) {
@@ -774,11 +763,7 @@
       conteudo.style.display = 'none';
     }
 
-    // ... (todo o resto do seu script original continua aqui: getDiaSemana, fetchWeather, initMap, busca global, alerta de alagamento, override window.open, etc.) ...
-
     // Script GLOBAL de busca
-    console.log('Script GLOBAL de busca iniciado no index.html');
-
     const conteudo = document.getElementById('conteudo');
 
     if (conteudo) {
