@@ -559,16 +559,35 @@
       }
     }
 
-    // Função para tocar áudio de promoções ao entrar em Padarias
+    // Função corrigida para tocar Promocoes.mp3 com tentativa dupla (melhor para mobile)
     function tocarPromocoes() {
       const audio = document.getElementById('promocoesAudio');
-      if (audio && !audio.dataset.played) {
-        audio.volume = 0.5;
-        audio.currentTime = 0;
-        audio.play().then(() => {
-          console.log('Promocoes.mp3 tocando');
-          audio.dataset.played = 'true';
-        }).catch(e => console.log('Autoplay bloqueado:', e));
+      if (!audio) {
+        console.error('Elemento #promocoesAudio não encontrado');
+        return;
+      }
+
+      audio.volume = 0.5;
+      audio.currentTime = 0;
+
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('Promocoes.mp3 tocou com sucesso');
+        }).catch(error => {
+          console.warn('Tentativa 1 falhou (autoplay bloqueado?):', error.message);
+
+          // Tenta novamente com delay curto - resolve muitos casos no mobile
+          setTimeout(() => {
+            audio.play().then(() => {
+              console.log('Promocoes.mp3 tocou na tentativa 2');
+            }).catch(e => {
+              console.error('Falha definitiva ao tocar Promocoes.mp3:', e.message);
+              console.log('Dica: No celular, tente tocar na tela antes ou clique em outro lugar primeiro.');
+            });
+          }, 300);
+        });
       }
     }
 
@@ -709,12 +728,11 @@
           const html = await response.text();
           conteudo.innerHTML = html;
 
-          // Toca áudio se for Padarias
+          // Toca o áudio se for Padarias
           if (modulo === 'padarias') {
             tocarPromocoes();
           }
 
-          // Funções adicionais (se existirem)
           if (modulo === 'tempo' && typeof fetchWeather === 'function') fetchWeather();
           if (typeof initMap === 'function') setTimeout(initMap, 600);
 
@@ -725,43 +743,6 @@
         }
       });
     });
-
-    function tocarBemVindo() {
-      const audio = document.getElementById('bemVindoAudio');
-      if (audio) {
-        audio.volume = 0.5;
-        audio.currentTime = 0;
-        audio.play().then(() => console.log('BemVindo.mp3 tocando')).catch(e => console.log('Autoplay bloqueado:', e));
-      }
-    }
-
-    function tocarPromocoes() {
-      const audio = document.getElementById('promocoesAudio');
-      if (audio && !audio.dataset.played) {
-        audio.volume = 0.5;
-        audio.currentTime = 0;
-        audio.play().then(() => {
-          console.log('Promocoes.mp3 tocando');
-          audio.dataset.played = 'true';
-        }).catch(e => console.log('Autoplay bloqueado:', e));
-      }
-    }
-
-    function sairDoApp() {
-      if (navigator.app && navigator.app.exitApp) {
-        navigator.app.exitApp();
-      } else if (window.cordova && cordova.plugins && cordova.plugins.exit) {
-        cordova.plugins.exit();
-      } else {
-        window.close();
-      }
-    }
-
-    function fecharModulo() {
-      const conteudo = document.getElementById('conteudo');
-      conteudo.innerHTML = '';
-      conteudo.style.display = 'none';
-    }
 
     // Script GLOBAL de busca
     const conteudo = document.getElementById('conteudo');
