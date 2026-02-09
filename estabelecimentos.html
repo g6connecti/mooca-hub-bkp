@@ -1,7 +1,7 @@
 <h2>Estabelecimentos Comerciais da Mooca</h2>
 
 <p style="text-align:center; margin-bottom:25px; font-size:1.1em; color:#00ffff;">
-  Escolha a Categoria para ver a lista Completa de Estabelecimentos
+  Escolha a Categoria para ver a Lista Completa de Estabelecimentos
 </p>
 
 <div class="estabelecimentos-grid">
@@ -66,40 +66,38 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
-<!-- Áudio de promoção – nome corrigido -->
-<audio id="promoAudio" preload="auto">
-  <source src="promo-padaria.mp3" type="audio/mpeg">
-  Seu navegador não suporta o elemento de áudio.
-</audio>
-
+<!-- Script para tocar o áudio apenas no clique do card Padarias -->
 <script>
-// Script para tocar o áudio apenas ao clicar no card de Padarias
+// Aguarda o DOM carregar
 document.addEventListener('DOMContentLoaded', function() {
   const padariasCard = document.querySelector('.estabelecimento-card[data-submodulo="padarias"]');
   
   if (padariasCard) {
-    console.log("Card de Padarias encontrado! Evento de clique adicionado.");
+    console.log("✅ Card de Padarias encontrado. Evento de clique adicionado.");
     
     padariasCard.addEventListener('click', function() {
-      const audio = document.getElementById('promoAudio');
+      console.log("Clique no card Padarias detectado. Iniciando reprodução...");
       
-      audio.currentTime = 0;   // reinicia o áudio
-      audio.volume = 0.7;      // volume confortável
+      // Cria uma nova instância de áudio a cada clique (mais confiável)
+      const audio = new Audio('promo-padaria.mp3');
+      audio.volume = 0.7; // volume confortável (0.0 a 1.0)
       
-      audio.play()
-        .then(() => {
-          console.log("🎵 Áudio promo-padaria.mp3 tocando com sucesso!");
-        })
-        .catch(erro => {
-          console.error("Erro ao tentar tocar o áudio:", erro.message);
-          console.error("Detalhes do erro:", erro);
-        });
+      // Opcional: pequeno delay para garantir que o contexto de interação ainda exista
+      // setTimeout(() => {
+        audio.play()
+          .then(() => {
+            console.log("🎵 Áudio promo-padaria.mp3 começou a tocar com sucesso!");
+          })
+          .catch(erro => {
+            console.error("❌ Falha ao reproduzir o áudio:");
+            console.error("Nome do erro:", erro.name);
+            console.error("Mensagem:", erro.message);
+            console.error("Objeto completo:", erro);
+          });
+      // }, 100); // descomente se necessário (delay de 100ms)
     });
   } else {
-    console.warn("Card de Padarias NÃO foi encontrado no DOM!");
+    console.warn("❗ Card de Padarias NÃO foi encontrado no DOM.");
   }
 });
 </script>
-
-
-
