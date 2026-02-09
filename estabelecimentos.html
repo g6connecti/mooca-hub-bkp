@@ -1,95 +1,114 @@
 <h2>Estabelecimentos Comerciais da Mooca</h2>
 
 <p style="text-align:center; margin-bottom:25px; font-size:1.1em; color:#00ffff;">
-  Escolha a Categoria para ver a LISTA Completa de Estabelecimentos
+  Escolha a Categoria para ver a Lista Completa de Estabelecimentos
 </p>
+
+<!-- Forçando emojis visíveis -->
+<style>
+  .emoji {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Symbol", sans-serif !important;
+    font-size: 3.5em !important;
+    line-height: 1 !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+  }
+  .estabelecimento-card {
+    min-height: 160px !important; /* garante espaço para emoji grande */
+  }
+</style>
 
 <div class="estabelecimentos-grid">
 
   <div class="estabelecimento-card" data-submodulo="acougues">
-    <div class="emoji"></div>
+    <div class="emoji">🥩</div>
     <h2>Açougues</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="emporios">
-    <div class="emoji"></div>
+    <div class="emoji">🧀</div>
     <h2>Empórios</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="farmacias">
-    <div class="emoji"></div>
+    <div class="emoji">💊</div>
     <h2>Farmácias</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="feiras">
-    <div class="emoji"></div>
+    <div class="emoji">🥕</div>
     <h2>Feiras Livres</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="hamburguer">
-    <div class="emoji"></div>
+    <div class="emoji">🍔</div>
     <h2>Hamburguer</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="mercados">
-    <div class="emoji"></div>
+    <div class="emoji">🛒</div>
     <h2>Mercados</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="padarias">
-    <div class="emoji"></div>
+    <div class="emoji">🥖</div>
     <h2>Padarias</h2>
   </div>
 
   <div class="estabelecimento-card" data-submodulo="restaurantes">
-    <div class="emoji"></div>
+    <div class="emoji">🍽️</div>
     <h2>Restaurantes</h2>
   </div>
 
   <div class="estabelecimento-card" onclick="window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank')">
-    <div class="emoji"></div>
+    <div class="emoji">🍕</div>
     <h2>Pizzarias</h2>
   </div>
 
-  <!-- Novo card: Pets -->
   <div class="estabelecimento-card" data-submodulo="Petshop">
-    <div class="emoji"></div>
+    <div class="emoji">🐶</div>
     <h2>Pets</h2>
   </div>
 
 </div>
 
 <p style="margin-top:25px; font-size:0.9em; text-align:center; color:#ff9800;">
-  Clique em uma categoria para ver os estabelecimentos cadastrados.
-
+  Clique em uma categoria para ver os estabelecimentos cadastrados.<br>
   Pizzarias abre o buscador externo completo.
 </p>
 
-<button class="close-btn" onclick="fecharModulo()">Fechar</button><!-- Áudio com URL absoluta (evita problemas de caminho relativo) -->
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<!-- Áudio com URL absoluta -->
 <audio id="promoPadariaAudio" preload="auto">
   <source src="https://g6connecti.github.io/mooca-hub-bkp/promo-padaria.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
 </audio>
 
 <script>
-// Função simples, igual ao que funciona no index.html
+// Função para tocar (padrão que funciona no index.html)
 function tocarPromoPadaria() {
+  console.log('Tentando tocar promo-padaria.mp3...');
   const audio = document.getElementById('promoPadariaAudio');
   if (audio) {
     audio.volume = 0.5;
     audio.currentTime = 0;
     audio.play()
-      .then(() => console.log('promo-padaria.mp3 tocou OK!'))
-      .catch(e => console.error('Erro play Padaria:', e.message));
+      .then(() => console.log('✅ promo-padaria.mp3 TOCOU!'))
+      .catch(err => console.error('❌ Erro ao tocar áudio:', err.name, err.message));
+  } else {
+    console.error('Elemento audio não encontrado!');
   }
 }
 
-// Adiciona o evento ao card (mais seguro que onclick direto)
-document.addEventListener('DOMContentLoaded', () => {
-  const cardPadarias = document.querySelector('[data-submodulo="padarias"]');
-  if (cardPadarias) {
-    cardPadarias.addEventListener('click', tocarPromoPadaria);
-    console.log('Evento adicionado ao card Padarias');
+// Adiciona o evento ao card Padarias
+document.addEventListener('DOMContentLoaded', function() {
+  const card = document.querySelector('.estabelecimento-card[data-submodulo="padarias"]');
+  if (card) {
+    card.addEventListener('click', tocarPromoPadaria);
+    console.log('Evento de clique adicionado ao card Padarias');
+  } else {
+    console.warn('Card Padarias não encontrado no DOM');
   }
 });
 </script>
-
