@@ -9,6 +9,7 @@
   <script src="cordova.js"></script>
   <link rel="manifest" href="/manifest.json">
   <style>
+    /* Seu CSS original inteiro aqui – não alterei nada */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('campo-juventos.png');
@@ -530,7 +531,6 @@
       </div>
 
       <div class="card" data-modulo="noticias"><div class="emoji">📰</div><h2>Notícias & Eventos</h2></div>
-      <!-- NÃO TEM MAIS O CARD "PADARIAS" AQUI -->
     </div>
 
     <div id="conteudo" style="display: none;">
@@ -540,7 +540,7 @@
     <button class="exit-btn" onclick="sairDoApp()">Sair do Aplicativo</button>
   </div>
 
-  <!-- Áudios -->
+  <!-- Áudios fixos do index -->
   <audio id="bemVindoAudio" src="BemVindo.mp3" preload="auto"></audio>
   <audio id="promocoesAudio" src="Promocoes.mp3" preload="auto"></audio>
 
@@ -737,7 +737,7 @@
       });
     });
 
-    // Bloco de sub-cards (já existente no seu código original)
+    // Bloco de sub-cards (já existente)
     document.body.addEventListener('click', async function(e) {
       const subCard = e.target.closest('.estabelecimento-card[data-submodulo]');
       if (subCard) {
@@ -763,9 +763,6 @@
 
           conteudo.innerHTML = html;
           console.log('HTML sub-módulo inserido');
-
-          // Aqui você pode adicionar o áudio se quiser para outros sub-cards no futuro
-          // Por enquanto, o áudio está sendo chamado diretamente no onclick do sub-card Padarias em estabelecimentos.html
 
           if (submodulo === 'feiras') {
             console.log('=== BLOCO FEIRAS EXECUTANDO ===');
@@ -983,6 +980,50 @@
         console.log('InAppBrowser ativado - links externos serão abertos no navegador do celular');
       }
     }, false);
+
+    // === NOVA IMPLEMENTAÇÃO: ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS ===
+    document.body.addEventListener('click', function(e) {
+      // Detecta clique no card Padarias (ou qualquer filho dele)
+      if (e.target.closest('.estabelecimento-card[data-submodulo="padarias"]')) {
+        console.log('Clique detectado no card PADARIAS - iniciando áudio de promoção');
+
+        let audio = document.getElementById('promoPadariaAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Padarias');
+          audio = document.createElement('audio');
+          audio.id = 'promoPadariaAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/promo-padaria.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio); // fica no body, não some com o módulo
+        }
+
+        audio.volume = 0.5;
+        audio.currentTime = 0;
+
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              setTimeout(() => {
+                audio.play()
+                  .then(() => console.log('✅ Áudio tocou na tentativa 2'))
+                  .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
+              }, 100);
+            });
+        }
+      }
+    });
   </script>
 
 </body>
