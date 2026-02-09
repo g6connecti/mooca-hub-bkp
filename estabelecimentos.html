@@ -66,37 +66,37 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
-<!-- Áudio de promoção (escondido) -->
+<!-- Áudio de promoção – nome corrigido -->
 <audio id="promoAudio" preload="auto">
   <source src="Promoções.mp3" type="audio/mpeg">
   Seu navegador não suporta o elemento de áudio.
 </audio>
 
 <script>
-// Espera o DOM estar totalmente carregado
+// Script para tocar o áudio apenas ao clicar no card de Padarias
 document.addEventListener('DOMContentLoaded', function() {
-  // Seleciona o card de Padarias
   const padariasCard = document.querySelector('.estabelecimento-card[data-submodulo="padarias"]');
   
   if (padariasCard) {
+    console.log("Card de Padarias encontrado! Evento de clique adicionado.");
+    
     padariasCard.addEventListener('click', function() {
       const audio = document.getElementById('promoAudio');
       
-      // Reinicia do início e toca
-      audio.currentTime = 0;
-      audio.volume = 0.7; // volume moderado (ajuste se quiser)
+      audio.currentTime = 0;   // reinicia o áudio
+      audio.volume = 0.7;      // volume confortável
       
       audio.play()
         .then(() => {
-          console.log("🎵 Promoção das padarias tocando!");
+          console.log("🎵 Áudio Promoções.mp3 tocando com sucesso!");
         })
         .catch(erro => {
-          console.error("Erro ao reproduzir áudio:", erro);
+          console.error("Erro ao tentar tocar o áudio:", erro.message);
+          console.error("Detalhes do erro:", erro);
         });
     });
   } else {
-    console.warn("Card de Padarias não encontrado!");
+    console.warn("Card de Padarias NÃO foi encontrado no DOM!");
   }
 });
 </script>
-
