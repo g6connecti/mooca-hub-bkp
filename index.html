@@ -549,7 +549,6 @@
   <audio id="promocoesAudio" src="Promocoes.mp3" preload="auto"></audio>
 
   <script>
-    // Função para tocar áudio de boas-vindas
     function tocarBemVindo() {
       const audio = document.getElementById('bemVindoAudio');
       if (audio) {
@@ -559,7 +558,6 @@
       }
     }
 
-    // Função corrigida para tocar Promocoes.mp3 com tentativa dupla (melhor para mobile)
     function tocarPromocoes() {
       const audio = document.getElementById('promocoesAudio');
       if (!audio) {
@@ -577,14 +575,11 @@
           console.log('Promocoes.mp3 tocou com sucesso');
         }).catch(error => {
           console.warn('Tentativa 1 falhou (autoplay bloqueado?):', error.message);
-
-          // Tenta novamente com delay curto - resolve muitos casos no mobile
           setTimeout(() => {
             audio.play().then(() => {
               console.log('Promocoes.mp3 tocou na tentativa 2');
             }).catch(e => {
               console.error('Falha definitiva ao tocar Promocoes.mp3:', e.message);
-              console.log('Dica: No celular, tente tocar na tela antes ou clique em outro lugar primeiro.');
             });
           }, 300);
         });
@@ -705,8 +700,8 @@
 
     // Evento de clique nos cards - versão corrigida e funcional
     document.querySelectorAll('.card[data-modulo]').forEach(card => {
-      card.addEventListener('click', async function() {
-        const modulo = this.getAttribute('data-modulo');
+      card.addEventListener('click', async () => {
+        const modulo = card.getAttribute('data-modulo');
         console.log('Card clicado:', modulo);
 
         const conteudo = document.getElementById('conteudo');
@@ -720,15 +715,16 @@
 
         try {
           const url = `${modulo}.html`;
-          console.log('Buscando módulo:', url);
+          console.log('Buscando:', url);
 
           const response = await fetch(url);
-          if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`Erro HTTP ${response.status} - Módulo não encontrado`);
+          }
 
           const html = await response.text();
           conteudo.innerHTML = html;
 
-          // Toca o áudio se for Padarias
           if (modulo === 'padarias') {
             tocarPromocoes();
           }
@@ -738,13 +734,101 @@
 
           conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } catch (err) {
-          console.error('Erro ao carregar módulo:', err);
+          console.error('Erro ao carregar:', err.message);
           conteudo.innerHTML = `<p style="color:#ff4444; text-align:center; font-size:1.2em;">Erro ao carregar ${modulo}<br>${err.message}</p>`;
         }
       });
     });
 
+    // Bloco de sub-cards (mantido do seu código original)
+    document.body.addEventListener('click', async function(e) {
+      const subCard = e.target.closest('.estabelecimento-card[data-submodulo]');
+      if (subCard) {
+        e.preventDefault();
+        const submodulo = subCard.getAttribute('data-submodulo');
+        console.log('Sub-card clicado:', submodulo);
+
+        const conteudo = document.getElementById('conteudo');
+        conteudo.innerHTML = '<p style="text-align:center; color:#00ffff; font-size:1.2em;">Carregando...</p>';
+        conteudo.style.display = 'block';
+
+        try {
+          const url = `${submodulo}.html`;
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+
+          const html = await response.text();
+          conteudo.innerHTML = html;
+
+          if (submodulo === 'feiras') {
+            console.log('=== BLOCO FEIRAS EXECUTANDO ===');
+
+            const diaHoje = getDiaSemana();
+            console.log('Dia atual detectado:', diaHoje);
+
+            const feiras = [
+              { dia: 'Terça-feira', nome: 'Feira Moraes Barros', endereco: 'Rua Firmiano Pinto' },
+              { dia: 'Terça-feira', nome: 'Feira Parque da Mooca', endereco: 'Rua Conde de Prates' },
+              { dia: 'Terça-feira', nome: 'Feira Décio Abrahão', endereco: 'Rua Décio Ábramo, nº 412' },
+              { dia: 'Terça-feira', nome: 'Feira Pires de Campos', endereco: 'Rua Pires de Campos' },
+              { dia: 'Terça-feira', nome: 'Feira Dom Bosco', endereco: 'Rua Dom Bosco' },
+              { dia: 'Quarta-feira', nome: 'Feira Madre de Deus', endereco: 'Rua Madre de Deus, nº 604' },
+              { dia: 'Quarta-feira', nome: 'Feira Mooca Moderna', endereco: 'Rua dos Trilhos, nº 869' },
+              { dia: 'Quinta-feira', nome: 'Feira Alto da Mooca', endereco: 'Rua Itanhaém' },
+              { dia: 'Quinta-feira', nome: 'Feira Vila Oratório', endereco: 'Rua Silva Coutinho, S/N' },
+              { dia: 'Quinta-feira', nome: 'Feira Mãe do Céu', endereco: 'Rua Visconde de Itaboraí, nº 233' },
+              { dia: 'Quinta-feira', nome: 'Feira Machado Tolosa', endereco: 'Rua Machado Tolosa' },
+              { dia: 'Sexta-feira', nome: 'Feira Jaibarás', endereco: 'Rua Jaibarás' },
+              { dia: 'Sexta-feira', nome: 'Feira Bom Jesus', endereco: 'Rua Bom Jesus' },
+              { dia: 'Sábado', nome: 'Feira Mooca (Tabajaras)', endereco: 'Rua Tabajaras, entre 227 e 366' },
+              { dia: 'Sábado', nome: 'Feira Serra de Jairé', endereco: 'Rua Serra de Jairé, entre 760 e 908' },
+              { dia: 'Domingo', nome: 'Feira Mooca Moderna (Bresser)', endereco: 'Rua Bresser, nº 2701' }
+            ];
+
+            let tabelaHTML = '<table><thead><tr><th>Dia da Semana</th><th>Nome da Feira / Localização</th><th>Endereço</th></tr></thead><tbody>';
+
+            feiras.forEach(feira => {
+              const isHoje = feira.dia.includes(diaHoje);
+              const classeBolinha = isHoje ? 'bolinha ativa' : 'bolinha inativa';
+              tabelaHTML += `<tr><td><span class="${classeBolinha}"></span> ${feira.dia}</td><td>${feira.nome}</td><td>${feira.endereco}</td></tr>`;
+            });
+
+            tabelaHTML += '</tbody></table>';
+
+            const tabelaDiv = document.getElementById('feiras-tabela');
+            if (tabelaDiv) {
+              tabelaDiv.innerHTML = tabelaHTML;
+              console.log('Tabela de feiras inserida com sucesso');
+            } else {
+              console.error('ERRO: #feiras-tabela não encontrado');
+            }
+
+            const diaAtualEl = document.getElementById('dia-atual');
+            if (diaAtualEl) {
+              diaAtualEl.textContent = diaHoje;
+              console.log('Dia atual atualizado para:', diaHoje);
+            } else {
+              console.error('ERRO: #dia-atual não encontrado');
+            }
+          }
+
+          setTimeout(initMap, 600);
+
+          conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          console.error('Erro no sub-módulo:', err);
+          conteudo.innerHTML = `
+            <p style="color:#ff4444; text-align:center; font-size:1.2em; padding:20px;">
+              Erro ao carregar ${submodulo}.html<br>${err.message}
+            </p>
+          `;
+        }
+      }
+    });
+
     // Script GLOBAL de busca
+    console.log('Script GLOBAL de busca iniciado no index.html');
+
     const conteudo = document.getElementById('conteudo');
 
     if (conteudo) {
