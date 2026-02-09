@@ -58,6 +58,7 @@
   </div>
 
 </div>
+
 <p style="margin-top:25px; font-size:0.9em; text-align:center; color:#ff9800;">
   Clique em uma categoria para ver os estabelecimentos cadastrados.<br>
   Pizzarias abre o buscador externo completo.
@@ -65,10 +66,36 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<!-- Áudio de promoção (escondido) -->
+<audio id="promoAudio" preload="auto">
+  <source src="Promocao.mp3" type="audio/mpeg">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
 
-
-
-
-
-
-
+<script>
+// Espera o DOM estar totalmente carregado
+document.addEventListener('DOMContentLoaded', function() {
+  // Seleciona o card de Padarias
+  const padariasCard = document.querySelector('.estabelecimento-card[data-submodulo="padarias"]');
+  
+  if (padariasCard) {
+    padariasCard.addEventListener('click', function() {
+      const audio = document.getElementById('promoAudio');
+      
+      // Reinicia do início e toca
+      audio.currentTime = 0;
+      audio.volume = 0.7; // volume moderado (ajuste se quiser)
+      
+      audio.play()
+        .then(() => {
+          console.log("🎵 Promoção das padarias tocando!");
+        })
+        .catch(erro => {
+          console.error("Erro ao reproduzir áudio:", erro);
+        });
+    });
+  } else {
+    console.warn("Card de Padarias não encontrado!");
+  }
+});
+</script>
