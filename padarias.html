@@ -1,4 +1,4 @@
-<h2>Padarias na Mooca V-2a</h2>
+<h2>Padarias na Mooca V-2b</h2>
 
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
@@ -19,10 +19,9 @@
 </script>
 
 <div class="lista-estabelecimentos">
-  <!-- Carillo - com destaque -->
+  <!-- Carillo - com destaque sutil (apenas glow pulsante) -->
   <div class="padaria-bloco destaque">
     <button class="padaria-btn destaque" onclick="window.open('https://padariacarillo.com.br/cardapio/', '_blank')">
-      <span class="selo-dourado">★ Destaque</span>
       Padaria Carillo <span class="promo-tag">Promoção</span>
     </button>
     <p class="promo-texto">
@@ -131,55 +130,29 @@
     line-height: 1.4;
   }
 
-  /* Destaque corrigido - borda pulsante sem duplicação */
+  /* Destaque sutil para Padaria Carillo: apenas glow pulsante (sem borda sólida) */
   .padaria-bloco.destaque {
     border-radius: 14px;
-    background: rgba(0, 212, 255, 0.03); /* fundo sutil para destacar o bloco */
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-    animation: pulse-glow 3s infinite ease-in-out;
-    padding: 12px; /* espaço interno maior para evitar colisão */
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+    animation: glow-suave 4s infinite ease-in-out;
+    padding: 10px;
+    margin: -10px; /* compensa o padding para não mudar o espaçamento */
   }
 
-  @keyframes pulse-glow {
-    0% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
-    50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
-    100% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+  @keyframes glow-suave {
+    0% { box-shadow: 0 0 12px rgba(0, 212, 255, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+    100% { box-shadow: 0 0 12px rgba(0, 212, 255, 0.3); }
   }
 
-  /* Selo dourado posicionado FORA e ACIMA do bloco inteiro */
-  .selo-dourado {
-    position: absolute;
-    top: -36px;               /* bem acima da borda */
-    right: 20px;              /* afastado da direita */
-    background: linear-gradient(135deg, #ffd700, #ffeb3b);
-    color: #1a1a1a;
-    font-weight: bold;
-    font-size: 1em;
-    padding: 6px 18px;
-    border-radius: 30px;
-    box-shadow: 0 5px 18px rgba(255, 215, 0, 0.7);
-    transform: rotate(8deg);
-    z-index: 30;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    border: 1px solid #ffeb3b;
-  }
-
-  /* Hover no selo */
-  .padaria-bloco:hover .selo-dourado {
-    transform: rotate(8deg) scale(1.1);
-    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.9);
-    top: -38px;
-  }
-
-  /* Reforço no botão destaque */
+  /* Reforço no botão destaque (para combinar com o glow) */
   .padaria-btn.destaque {
-    background: rgba(0, 212, 255, 0.15) !important;
+    background: rgba(0, 212, 255, 0.12) !important;
     border: 2px solid #00d4ff !important;
   }
 
   .padaria-btn.destaque:hover {
-    background: rgba(0, 212, 255, 0.25) !important;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.7) !important;
+    background: rgba(0, 212, 255, 0.22) !important;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6) !important;
   }
 </style>
-
