@@ -1,1 +1,72 @@
 
+<h2>Serviços Automotivos na Mooca</h2>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Oficinas ou Serviços..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+  <!-- Oficina Mecânica High Torque Mooca -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.hightorque.com.br/', '_blank')">
+      Oficina Mecânica High Torque Mooca - Centro Automotivo <br>
+      <small style="font-size: 0.85em; color: #000000;">R. Dias Leme, 174 - Mooca</small>
+    </button>
+  </div>
+
+  <!-- C & N Mooca Centro Automotivo -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://centroautomotivomooca.com.br', '_blank')">
+      C & N Mooca Centro Automotivo <br>
+      <small style="font-size: 0.85em; color: #000000;">Rua da Mooca, 3655</small>
+    </button>
+  </div>
+
+  <!-- Únika Full Car Service -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://unikafullcar.com', '_blank')">
+      Únika Full Car Service <br>
+      <small style="font-size: 0.85em; color: #000000;">Rua do Oratório, 500</small>
+    </button>
+  </div>
+
+  <!-- Squadra Auto Center -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://squadraautocenter.com.br', '_blank')">
+      Squadra Auto Center <br>
+      <small style="font-size: 0.85em; color: #000000;">Rua Siqueira Bueno, 2125</small>
+    </button>
+  </div>
+
+  <!-- Automáticos Mooca -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://automaticosmooca.com.br', '_blank')">
+      Automáticos Mooca <br>
+      <small style="font-size: 0.85em; color: #000000;">Rua Almirante Brasil, 169</small>
+    </button>
+  </div>
+
+  <!-- Mecânica do Gato -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://mecanicadogato.com.br', '_blank')">
+      Mecânica do Gato <br>
+      <small style="font-size: 0.85em; color: #000000;">Rua Dr. João Batista de Lacerda, 417</small>
+    </button>
+  </div>
+</div>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
