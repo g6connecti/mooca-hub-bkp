@@ -981,7 +981,7 @@
       }
     }, false);
 
-    // === ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS ===
+    // === NOVA IMPLEMENTAÇÃO: ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS ===
     document.body.addEventListener('click', function(e) {
       if (e.target.closest('.estabelecimento-card[data-submodulo="padarias"]')) {
         console.log('Clique detectado no card PADARIAS - iniciando áudio de promoção');
@@ -999,35 +999,32 @@
           source.type = 'audio/mpeg';
           audio.appendChild(source);
 
-          document.body.appendChild(audio);
+          document.body.appendChild(audio); // fica no body, não some com o módulo
         }
 
         audio.volume = 0.5;
         audio.currentTime = 0;
 
-        audio.muted = true;
         const playPromise = audio.play();
 
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              setTimeout(() => {
-                audio.muted = false;
-                console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
-              }, 500);
+              console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
             })
             .catch(error => {
               console.warn('Tentativa 1 falhou:', error.message);
-              audio.muted = false;
-              audio.play()
-                .then(() => console.log('✅ Áudio promo-padaria.mp3 tocou na tentativa 2'))
-                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
+              setTimeout(() => {
+                audio.play()
+                  .then(() => console.log('✅ Áudio tocou na tentativa 2'))
+                  .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
+              }, 100);
             });
         }
       }
     });
 
-    // === ÁUDIO DE PATROCÍNIO AO CLICAR NO CARD SERVIÇOS AUTOMOTIVOS ===
+    // Áudio de patrocínio para o card Serviços Automotivos (delegação global)
     document.body.addEventListener('click', function(e) {
       if (e.target.closest('.estabelecimento-card[data-submodulo="servicos-automotivos"]')) {
         console.log('Clique detectado no card SERVIÇOS AUTOMOTIVOS - iniciando áudio Point Glass');
