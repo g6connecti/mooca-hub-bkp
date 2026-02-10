@@ -981,9 +981,8 @@
       }
     }, false);
 
-    // === NOVA IMPLEMENTAÇÃO: ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS ===
+    // === ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS ===
     document.body.addEventListener('click', function(e) {
-      // Detecta clique no card Padarias (ou qualquer filho dele)
       if (e.target.closest('.estabelecimento-card[data-submodulo="padarias"]')) {
         console.log('Clique detectado no card PADARIAS - iniciando áudio de promoção');
 
@@ -1000,26 +999,75 @@
           source.type = 'audio/mpeg';
           audio.appendChild(source);
 
-          document.body.appendChild(audio); // fica no body, não some com o módulo
+          document.body.appendChild(audio);
         }
 
         audio.volume = 0.5;
         audio.currentTime = 0;
 
+        audio.muted = true;
         const playPromise = audio.play();
 
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
+              }, 500);
             })
             .catch(error => {
               console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio promo-padaria.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
+            });
+        }
+      }
+    });
+
+    // === ÁUDIO DE PATROCÍNIO AO CLICAR NO CARD SERVIÇOS AUTOMOTIVOS ===
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="servicos-automotivos"]')) {
+        console.log('Clique detectado no card SERVIÇOS AUTOMOTIVOS - iniciando áudio Point Glass');
+
+        let audio = document.getElementById('pointGlassAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Point Glass');
+          audio = document.createElement('audio');
+          audio.id = 'pointGlassAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/pglass.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.4;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
               setTimeout(() => {
-                audio.play()
-                  .then(() => console.log('✅ Áudio tocou na tentativa 2'))
-                  .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
-              }, 100);
+                audio.muted = false;
+                console.log('✅ Áudio pglass.mp3 (Point Glass) tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio pglass.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Point Glass:', err.message));
             });
         }
       }
