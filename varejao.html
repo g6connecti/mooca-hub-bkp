@@ -1,1 +1,55 @@
+<h2>Varejões na Mooca</h2>
 
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Varejões..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+  <!-- Oba Hortifuti -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.obahortifruti.com.br/home-nova', '_blank')">
+      Oba Hortifuti - Alto da Mooca <br>
+      <small style="font-size: 0.85em; color: #000000;">R. Tobias Barreto, 735</small>
+    </button>
+  </div>
+
+  <!-- Sacolão Mooca -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.lojalocal.com/58811878000197', '_blank')">
+      Sacolão Mooca <br>
+      <small style="font-size: 0.85em; color: #000000;">Av. Cassandoca, 826</small>
+    </button>
+  </div>
+
+  <!-- Sacolão JG HORTFRUIT -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/4sSca8eVjyW0fmFYL', '_blank')">
+      Sacolão JG HORTFRUIT <br>
+      <small style="font-size: 0.85em; color: #000000;">R. do Oratório, 850 - Mooca</small>
+    </button>
+  </div>
+
+  <!-- Varejão Romera -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/LJJodVn1NHfM6g2es', '_blank')">
+      Varejão Romera <br>
+      <small style="font-size: 0.85em; color: #000000;">R. da Mooca, 621 - Mooca</small>
+    </button>
+  </div>
+</div>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
