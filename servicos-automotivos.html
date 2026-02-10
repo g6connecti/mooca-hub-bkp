@@ -7,8 +7,7 @@
          style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
   </a>
   <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
-    Esse Módulo é Patrocinado pela
-<strong>Point Glass Vidros Automotivos</strong>
+    Esse Módulo é Patrocinado pela<br><strong>Point Glass Vidros Automotivos</strong>
   </p>
 </div>
 
@@ -31,7 +30,9 @@
 </script>
 
 <!-- Áudio do patrocinador (toca ao carregar o módulo) -->
-<audio id="pointGlassAudio" src="poiintglass.mp3" preload="auto"></audio><script>
+<audio id="pointGlassAudio" src="poiintglass.mp3" preload="auto"></audio>
+
+<script>
   // Toca o áudio do patrocinador ao carregar o módulo
   window.addEventListener('load', function() {
     const audio = document.getElementById('pointGlassAudio');
@@ -60,59 +61,67 @@
   <!-- Oficina Mecânica High Torque Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://www.hightorque.com.br/', '_blank')">
-      Oficina Mecânica High Torque Mooca - Centro Automotivo 
-
-      <small style="font-size: 0.85em; color: #000000;">R. Dias Leme, 174 - Mooca</small>
+      Oficina Mecânica High Torque Mooca - Centro Automotivo
     </button>
+    <p class="promo-texto">
+      R. Dias Leme, 174 - Mooca
+    </p>
   </div>
 
   <!-- C & N Mooca Centro Automotivo -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://centroautomotivomooca.com.br', '_blank')">
-      C & N Mooca Centro Automotivo 
-
-      <small style="font-size: 0.85em; color: #000000;">Rua da Mooca, 3655</small>
+      C & N Mooca Centro Automotivo
     </button>
+    <p class="promo-texto">
+      Rua da Mooca, 3655
+    </p>
   </div>
 
   <!-- Únika Full Car Service -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://unikafullcar.com', '_blank')">
-      Únika Full Car Service 
-
-      <small style="font-size: 0.85em; color: #000000;">Rua do Oratório, 500</small>
+      Únika Full Car Service
     </button>
+    <p class="promo-texto">
+      Rua do Oratório, 500
+    </p>
   </div>
 
   <!-- Squadra Auto Center -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://squadraautocenter.com.br', '_blank')">
-      Squadra Auto Center 
-
-      <small style="font-size: 0.85em; color: #000000;">Rua Siqueira Bueno, 2125</small>
+      Squadra Auto Center
     </button>
+    <p class="promo-texto">
+      Rua Siqueira Bueno, 2125
+    </p>
   </div>
 
   <!-- Automáticos Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://automaticosmooca.com.br', '_blank')">
-      Automáticos Mooca 
-
-      <small style="font-size: 0.85em; color: #000000;">Rua Almirante Brasil, 169</small>
+      Automáticos Mooca
     </button>
+    <p class="promo-texto">
+      Rua Almirante Brasil, 169
+    </p>
   </div>
 
   <!-- Mecânica do Gato -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://mecanicadogato.com.br', '_blank')">
-      Mecânica do Gato 
-
-      <small style="font-size: 0.85em; color: #000000;">Rua Dr. João Batista de Lacerda, 417</small>
+      Mecânica do Gato
     </button>
+    <p class="promo-texto">
+      Rua Dr. João Batista de Lacerda, 417
+    </p>
   </div>
 </div>
 
-<button class="close-btn" onclick="fecharModulo()">Fechar</button><style>
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<style>
   .padaria-bloco {
     margin-bottom: 20px;
   }
@@ -122,44 +131,24 @@
     text-align: left;
     padding: 15px 20px;
     border-radius: 10px;
-    background: rgba(0, 212, 255, 0.08); /* verde-água mais bonito e sutil */
-    border: 1px solid #00d4ff; /* borda verde-água elegante */
-    color: #ffffff; /* texto branco para legibilidade */
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid #00d4ff;
+    color: #ffffff;
     transition: all 0.3s ease;
     cursor: pointer;
     font-size: 1em;
   }
 
   .padaria-btn:hover {
-    background: rgba(0, 212, 255, 0.15); /* um pouco mais visível no hover */
+    background: rgba(0, 212, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
   }
 
-  .promo-tag {
-    background: #ff9800;
-    color: #121212;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.78em;
-    font-weight: bold;
-    margin-left: 10px;
-    vertical-align: middle;
-    box-shadow: 0 1px 6px rgba(255, 152, 0, 0.5);
-    display: inline-block;
-  }
-
-  .padaria-btn:hover .promo-tag {
-    background: #ffb74d;
-    transform: scale(1.05);
-    transition: all 0.2s ease;
-  }
-
   .promo-texto {
     font-size: 0.85em;
-    color: #ff9800;
+    color: #ffffff; /* alterado para branco como pedido */
     margin: 6px 0 0 15px;
     line-height: 1.4;
   }
 </style>
-
