@@ -1,0 +1,234 @@
+<h2>Farmácias na Mooca</h2>
+
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="https://roselis.com.br/" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="farmacia-roselis160x50.png" alt="Farmácia de Manipulação Roselis" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>Farmácia de Manipulação Roselis</strong>
+  </p>
+</div>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Farmácias..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+  <p class="section-separator">Farmácias 24h</p>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.drogasil.com.br/nossas-lojas', '_blank')">
+      Drogasil - Mooca (24h)
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.drogaraia.com.br/nossas-lojas', '_blank')">
+      Droga Raia - Mooca (24h)
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.drogariasaopaulo.com.br', '_blank')">
+      Drogaria São Paulo - Mooca (24h)
+    </button>
+  </div>
+
+  <p class="section-separator">Farmácias comuns (não 24h)</p>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://farmaciaalcantaramachado.com.br', '_blank')">
+      Drogaria Alcantara Machado <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 1233
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.facebook.com/clinifar', '_blank')">
+      Drogaria Clinifar Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua dos Trilhos, 1493
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/WDmvsZn6gE2QTEvg9', '_blank')">
+      Drogaria Falcão <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3036
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.joanin.com.br', '_blank')">
+      Drogaria Joanin (Loja 26) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua dos Trilhos, 1422
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://moocaplaza.com.br', '_blank')">
+      Drogaria São Paulo (Mooca Plaza Shopping) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Cap. Pacheco e Chaves, 313
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.drogariasaopaulo.com.br', '_blank')">
+      Drogaria São Paulo (Rua da Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3691
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://unidades.franquiafarmelhor.com.br/farmelhor-belenzinho-sao-paulo-sp-73583', '_blank')">
+      Drogaria Siqueira Bueno / FarMelhor <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Siqueira Bueno, 2066
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://semprecuidando.com.br/farmacias/farma-d-popularr-siqueira-bueno-186217-304-162-0001-16011-2783-8180/', '_blank')">
+      Farma D+ Popular <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Siqueira Bueno, 1862
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://remediobarato.com', '_blank')">
+      Farmais Alto da Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 1944
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://promofarma.com.br', '_blank')">
+      PromoFarma Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 2697
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://ultrafarma.com.br', '_blank')">
+      Ultrafarma Popular <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 1312
+      </small>
+    </button>
+  </div>
+
+  <p class="section-separator" style="color: #d7b8ff !important; text-shadow: 0 0 5px #d7b8ff !important; border-bottom: 1px solid #d7b8ff !important;">
+    Farmácias de Manipulação e Homeopatia
+  </p>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://boticaaexotica.com.br', '_blank')">
+      Botica Aexótica <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 2736
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://cpdf.com.br', '_blank')">
+      Centro Paulista Farmácia <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 1352
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://manipulacao.drogasil.com.br', '_blank')">
+      Drogasil Manipulação <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Paes de Barros, 133
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://formula-ativa.com.br', '_blank')">
+      Fórmula Ativa <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Curupaite, 521
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/4EJbbP4SAEWxPfNDa', '_blank')">
+      MPH Farmácia de Manipulação <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 1491
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://pharmaplusmanipulacao.com.br', '_blank')">
+      Pharma Plus Manipulação <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Siqueira Bueno, 2212
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://pharmacare.com.br', '_blank')">
+      Pharma Care <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Bresser, 2901
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://roselis.com.br', '_blank')">
+      Rosélis Farmácia de Manipulação <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Terenas, 138
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://sinete.com.br', '_blank')">
+      Sinete Drogaria e Manipulação <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua dos Trilhos, 1435
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://unaformula.com.br', '_blank')">
+      Una Fórmula (Humana e Veterinária) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 1013
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://unipharmus.com.br', '_blank')">
+      Unipharmus <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 2707
+      </small>
+    </button>
+  </div>
+</div>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
