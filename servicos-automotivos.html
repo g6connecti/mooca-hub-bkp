@@ -1,4 +1,4 @@
-<h2>Serviços Automotivos na Mooca v-1</h2>
+<h2>Serviços Automotivos na Mooca</h2>
 
 <!-- Patrocínio no topo (logo à esquerda + texto) -->
 <div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
@@ -30,27 +30,31 @@
 </script>
 
 <!-- Áudio do patrocinador (toca ao carregar o módulo) -->
-<audio id="pointGlassAudio" src="pglass.mp3" preload="auto"></audio>
+<audio id="pointGlassAudio" src="poiintglass.mp3" preload="auto"></audio>
 
 <script>
-  // Toca o áudio do patrocinador ao carregar o módulo
+  // Tenta tocar o áudio ao carregar o módulo (com reforço mobile)
   window.addEventListener('load', function() {
     const audio = document.getElementById('pointGlassAudio');
     if (audio) {
-      audio.volume = 0.4; // volume baixo para não assustar
-      audio.muted = true; // workaround mobile
+      audio.volume = 0.4;
+      audio.muted = true;
       const playPromise = audio.play();
 
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            audio.muted = false; // desmuta após iniciar
-            console.log('Áudio Point Glass tocando');
+            setTimeout(() => {
+              audio.muted = false;
+              console.log('Áudio Point Glass tocando com sucesso');
+            }, 1000);
           })
-          .catch(() => {
-            // Segunda tentativa (comum no mobile)
+          .catch((err) => {
+            console.log('Primeira tentativa falhou:', err.message);
             audio.muted = false;
-            audio.play().catch(e => console.log('Áudio Point Glass falhou:', e.message));
+            audio.play()
+              .then(() => console.log('Áudio Point Glass tocou na segunda tentativa'))
+              .catch(e => console.log('Áudio Point Glass falhou na segunda tentativa:', e.message));
           });
       }
     }
@@ -61,61 +65,61 @@
   <!-- Oficina Mecânica High Torque Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://www.hightorque.com.br/', '_blank')">
-      Oficina Mecânica High Torque Mooca - Centro Automotivo
+      Oficina Mecânica High Torque Mooca - Centro Automotivo <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Dias Leme, 174 - Mooca
+      </small>
     </button>
-    <p class="promo-texto">
-      R. Dias Leme, 174 - Mooca
-    </p>
   </div>
 
   <!-- C & N Mooca Centro Automotivo -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://centroautomotivomooca.com.br', '_blank')">
-      C & N Mooca Centro Automotivo
+      C & N Mooca Centro Automotivo <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3655
+      </small>
     </button>
-    <p class="promo-texto">
-      Rua da Mooca, 3655
-    </p>
   </div>
 
   <!-- Únika Full Car Service -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://unikafullcar.com', '_blank')">
-      Únika Full Car Service
+      Únika Full Car Service <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 500
+      </small>
     </button>
-    <p class="promo-texto">
-      Rua do Oratório, 500
-    </p>
   </div>
 
   <!-- Squadra Auto Center -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://squadraautocenter.com.br', '_blank')">
-      Squadra Auto Center
+      Squadra Auto Center <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Siqueira Bueno, 2125
+      </small>
     </button>
-    <p class="promo-texto">
-      Rua Siqueira Bueno, 2125
-    </p>
   </div>
 
   <!-- Automáticos Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://automaticosmooca.com.br', '_blank')">
-      Automáticos Mooca
+      Automáticos Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Almirante Brasil, 169
+      </small>
     </button>
-    <p class="promo-texto">
-      Rua Almirante Brasil, 169
-    </p>
   </div>
 
   <!-- Mecânica do Gato -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://mecanicadogato.com.br', '_blank')">
-      Mecânica do Gato
+      Mecânica do Gato <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Dr. João Batista de Lacerda, 417
+      </small>
     </button>
-    <p class="promo-texto">
-      Rua Dr. João Batista de Lacerda, 417
-    </p>
   </div>
 </div>
 
@@ -143,12 +147,5 @@
     background: rgba(0, 212, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
-  }
-
-  .promo-texto {
-    font-size: 0.85em;
-    color: #ffffff; /* alterado para branco como pedido */
-    margin: 6px 0 0 15px;
-    line-height: 1.4;
   }
 </style>
