@@ -1,9 +1,20 @@
-
 <h2>Serviços Automotivos na Mooca</h2>
+
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="https://pointglass.com.br/" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="pointglass160x50.png" alt="Point Glass Vidros Automotivos" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela
+<strong>Point Glass Vidros Automotivos</strong>
+  </p>
+</div>
 
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
-  <input type="text" id="searchInput" placeholder="Pesquisar Oficinas ou Serviços..." 
+  <input type="text" id="searchInput" placeholder="Pesquisar Serviços Automotivos..." 
          style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
 </div>
 
@@ -19,11 +30,38 @@
   });
 </script>
 
+<!-- Áudio do patrocinador (toca ao carregar o módulo) -->
+<audio id="pointGlassAudio" src="poiintglass.mp3" preload="auto"></audio><script>
+  // Toca o áudio do patrocinador ao carregar o módulo
+  window.addEventListener('load', function() {
+    const audio = document.getElementById('pointGlassAudio');
+    if (audio) {
+      audio.volume = 0.4; // volume baixo para não assustar
+      audio.muted = true; // workaround mobile
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            audio.muted = false; // desmuta após iniciar
+            console.log('Áudio Point Glass tocando');
+          })
+          .catch(() => {
+            // Segunda tentativa (comum no mobile)
+            audio.muted = false;
+            audio.play().catch(e => console.log('Áudio Point Glass falhou:', e.message));
+          });
+      }
+    }
+  });
+</script>
+
 <div class="lista-estabelecimentos">
   <!-- Oficina Mecânica High Torque Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://www.hightorque.com.br/', '_blank')">
-      Oficina Mecânica High Torque Mooca - Centro Automotivo <br>
+      Oficina Mecânica High Torque Mooca - Centro Automotivo 
+
       <small style="font-size: 0.85em; color: #000000;">R. Dias Leme, 174 - Mooca</small>
     </button>
   </div>
@@ -31,7 +69,8 @@
   <!-- C & N Mooca Centro Automotivo -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://centroautomotivomooca.com.br', '_blank')">
-      C & N Mooca Centro Automotivo <br>
+      C & N Mooca Centro Automotivo 
+
       <small style="font-size: 0.85em; color: #000000;">Rua da Mooca, 3655</small>
     </button>
   </div>
@@ -39,7 +78,8 @@
   <!-- Únika Full Car Service -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://unikafullcar.com', '_blank')">
-      Únika Full Car Service <br>
+      Únika Full Car Service 
+
       <small style="font-size: 0.85em; color: #000000;">Rua do Oratório, 500</small>
     </button>
   </div>
@@ -47,7 +87,8 @@
   <!-- Squadra Auto Center -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://squadraautocenter.com.br', '_blank')">
-      Squadra Auto Center <br>
+      Squadra Auto Center 
+
       <small style="font-size: 0.85em; color: #000000;">Rua Siqueira Bueno, 2125</small>
     </button>
   </div>
@@ -55,7 +96,8 @@
   <!-- Automáticos Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://automaticosmooca.com.br', '_blank')">
-      Automáticos Mooca <br>
+      Automáticos Mooca 
+
       <small style="font-size: 0.85em; color: #000000;">Rua Almirante Brasil, 169</small>
     </button>
   </div>
@@ -63,10 +105,61 @@
   <!-- Mecânica do Gato -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://mecanicadogato.com.br', '_blank')">
-      Mecânica do Gato <br>
+      Mecânica do Gato 
+
       <small style="font-size: 0.85em; color: #000000;">Rua Dr. João Batista de Lacerda, 417</small>
     </button>
   </div>
 </div>
 
-<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+<button class="close-btn" onclick="fecharModulo()">Fechar</button><style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* verde-água mais bonito e sutil */
+    border: 1px solid #00d4ff; /* borda verde-água elegante */
+    color: #ffffff; /* texto branco para legibilidade */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15); /* um pouco mais visível no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  .promo-tag {
+    background: #ff9800;
+    color: #121212;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: bold;
+    margin-left: 10px;
+    vertical-align: middle;
+    box-shadow: 0 1px 6px rgba(255, 152, 0, 0.5);
+    display: inline-block;
+  }
+
+  .padaria-btn:hover .promo-tag {
+    background: #ffb74d;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+  }
+
+  .promo-texto {
+    font-size: 0.85em;
+    color: #ff9800;
+    margin: 6px 0 0 15px;
+    line-height: 1.4;
+  }
+</style>
+
