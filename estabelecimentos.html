@@ -76,6 +76,42 @@
     <h2>Varejões</h2>
   </div>
 
+  <!-- Novas 7 categorias adicionadas -->
+  <div class="estabelecimento-card" data-submodulo="servicos-automotivos">
+    <div class="emoji">🚗</div>
+    <h2>Serviços Automotivos</h2>
+  </div>
+
+  <div class="estabelecimento-card" data-submodulo="sorveterias">
+    <div class="emoji">🍦</div>
+    <h2>Sorveterias e Açaí</h2>
+  </div>
+
+  <div class="estabelecimento-card" data-submodulo="docerias">
+    <div class="emoji">🍰</div>
+    <h2>Docerias e Confeitarias</h2>
+  </div>
+
+  <div class="estabelecimento-card" data-submodulo="botecos">
+    <div class="emoji">🍻</div>
+    <h2>Botecos e Bares</h2>
+  </div>
+
+  <div class="estabelecimento-card" data-submodulo="lojas-roupas">
+    <div class="emoji">👗</div>
+    <h2>Lojas de Roupas e Acessórios</h2>
+  </div>
+
+  <div class="estabelecimento-card" data-submodulo="papelarias">
+    <div class="emoji">📚</div>
+    <h2>Papelarias e Livrarias</h2>
+  </div>
+
+  <div class="estabelecimento-card" data-submodulo="materiais-construcao">
+    <div class="emoji">🧱</div>
+    <h2>Materiais de Construção & Afins</h2>
+  </div>
+
 </div>
 
 <p style="margin-top:25px; font-size:0.9em; text-align:center; color:#ff9800;">
@@ -85,21 +121,23 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
-<!-- Ajuste para evitar textos longos estourando as bordas dos cards -->
+<!-- Ajuste para títulos longos não estourarem as bordas -->
 <style>
   .estabelecimento-card h2 {
-    font-size: 1.05em;          /* reduzido um pouco para caber melhor */
-    line-height: 1.2;           /* espaçamento entre linhas */
-    white-space: normal;        /* permite quebra de linha natural */
-    word-break: break-word;     /* quebra palavras longas se necessário */
+    font-size: 1.05em;
+    line-height: 1.2;
+    white-space: normal;
+    word-break: break-word;
     text-align: center;
-    margin: 8px 0 0;            /* mantém o espaçamento original */
-    padding: 0 4px;             /* pequeno padding lateral para evitar vazamento */
+    margin: 8px 0 0;
+    padding: 0 4px;
   }
 
-  /* Se quiser reduzir ainda mais só nesses dois cards específicos */
+  /* Redução extra para títulos mais longos */
   .estabelecimento-card[data-submodulo="restaurantes"] h2,
-  .estabelecimento-card[data-submodulo="lanchonetes"] h2 {
-    font-size: 0.95em;          /* ainda menor nesses dois para garantir */
+  .estabelecimento-card[data-submodulo="lanchonetes"] h2,
+  .estabelecimento-card[data-submodulo="barbearias-saloes"] h2,
+  .estabelecimento-card[data-submodulo="materiais-construcao"] h2 {
+    font-size: 0.95em;
   }
 </style>
