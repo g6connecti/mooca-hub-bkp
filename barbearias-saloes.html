@@ -1,5 +1,23 @@
 <h2>Barbearias e Salões de Beleza na Mooca</h2>
 
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Barbearias ou Salões..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
 <div class="lista-estabelecimentos">
   <!-- Barbearia Mr. Gump -->
   <div class="padaria-bloco">
@@ -9,8 +27,8 @@
     </button>
   </div>
 
-  <p class="section-separator">Salões de Beleza</p>
-
+  
+  
   <!-- Espaço Hi -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/tRZibwKUDucREMp88', '_blank')">
