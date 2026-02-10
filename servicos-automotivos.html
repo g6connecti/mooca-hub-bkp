@@ -29,97 +29,59 @@
   });
 </script>
 
-<!-- Áudio do patrocinador (toca ao carregar o módulo) -->
-<audio id="pointGlassAudio" src="poiintglass.mp3" preload="auto"></audio>
-
-<script>
-  // Tenta tocar o áudio ao carregar o módulo (com reforço mobile)
-  window.addEventListener('load', function() {
-    const audio = document.getElementById('pointGlassAudio');
-    if (audio) {
-      audio.volume = 0.4;
-      audio.muted = true;
-      const playPromise = audio.play();
-
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setTimeout(() => {
-              audio.muted = false;
-              console.log('Áudio Point Glass tocando com sucesso');
-            }, 1000);
-          })
-          .catch((err) => {
-            console.log('Primeira tentativa falhou:', err.message);
-            audio.muted = false;
-            audio.play()
-              .then(() => console.log('Áudio Point Glass tocou na segunda tentativa'))
-              .catch(e => console.log('Áudio Point Glass falhou na segunda tentativa:', e.message));
-          });
-      }
-    }
-  });
-</script>
-
 <div class="lista-estabelecimentos">
-  <!-- Oficina Mecânica High Torque Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://www.hightorque.com.br/', '_blank')">
-      Oficina Mecânica High Torque Mooca - Centro Automotivo <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        R. Dias Leme, 174 - Mooca
-      </small>
+      Oficina Mecânica High Torque Mooca - Centro Automotivo
     </button>
+    <p class="promo-texto" style="color: #ffffff;">
+      R. Dias Leme, 174 - Mooca
+    </p>
   </div>
 
-  <!-- C & N Mooca Centro Automotivo -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://centroautomotivomooca.com.br', '_blank')">
-      C & N Mooca Centro Automotivo <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        Rua da Mooca, 3655
-      </small>
+      C & N Mooca Centro Automotivo
     </button>
+    <p class="promo-texto" style="color: #ffffff;">
+      Rua da Mooca, 3655
+    </p>
   </div>
 
-  <!-- Únika Full Car Service -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://unikafullcar.com', '_blank')">
-      Únika Full Car Service <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        Rua do Oratório, 500
-      </small>
+      Únika Full Car Service
     </button>
+    <p class="promo-texto" style="color: #ffffff;">
+      Rua do Oratório, 500
+    </p>
   </div>
 
-  <!-- Squadra Auto Center -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://squadraautocenter.com.br', '_blank')">
-      Squadra Auto Center <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        Rua Siqueira Bueno, 2125
-      </small>
+      Squadra Auto Center
     </button>
+    <p class="promo-texto" style="color: #ffffff;">
+      Rua Siqueira Bueno, 2125
+    </p>
   </div>
 
-  <!-- Automáticos Mooca -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://automaticosmooca.com.br', '_blank')">
-      Automáticos Mooca <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        Rua Almirante Brasil, 169
-      </small>
+      Automáticos Mooca
     </button>
+    <p class="promo-texto" style="color: #ffffff;">
+      Rua Almirante Brasil, 169
+    </p>
   </div>
 
-  <!-- Mecânica do Gato -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://mecanicadogato.com.br', '_blank')">
-      Mecânica do Gato <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        Rua Dr. João Batista de Lacerda, 417
-      </small>
+      Mecânica do Gato
     </button>
+    <p class="promo-texto" style="color: #ffffff;">
+      Rua Dr. João Batista de Lacerda, 417
+    </p>
   </div>
 </div>
 
@@ -147,5 +109,12 @@
     background: rgba(0, 212, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  .promo-texto {
+    font-size: 0.85em;
+    color: #ffffff;
+    margin: 6px 0 0 15px;
+    line-height: 1.4;
   }
 </style>
