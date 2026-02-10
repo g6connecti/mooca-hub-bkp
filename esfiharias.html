@@ -1,0 +1,31 @@
+<h2>Esfiharias na Mooca</h2>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Esfiharias..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+  <!-- Esfiha Juventus -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.esfihajuventus.com.br/', '_blank')">
+      Esfiha Juventus <br>
+      <small style="font-size: 0.85em; color: #000000;">R. Visc. de Laguna, 152 - Mooca</small>
+    </button>
+  </div>
+</div>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
