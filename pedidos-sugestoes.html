@@ -6,12 +6,12 @@
 </div>
 
 <p style="margin-top:15px; font-size:0.9em; text-align:center; color:#00ffff;">
-  ❤️ Sua opinião e Apoio são muito importantes para melhorar e manter o Mooca Hub! 📩❤️
+  Sua opinião e apoio são muito importantes para melhorar e manter o Mooca Hub! 📩❤️
 </p>
 
 <!-- Seção de Doação com QR Code e Botão Copiar Chave Pix -->
 <div style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff;">
-  <h3 style="color: #00ff00; margin-bottom: 15px;">❤️ Apoie o Mooca Hub via Pix❤️ </h3>
+  <h3 style="color: #00ff00; margin-bottom: 15px;">Apoie o Mooca Hub via Pix</h3>
   
   <!-- QR Code -->
   <img src="https://g6connecti.github.io/mooca-hub-bkp/qrcode-mooca-hub300x300.png" 
@@ -19,79 +19,70 @@
        style="width: 220px; height: 220px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,0,0.3); margin-bottom: 20px;"
        onerror="this.src='https://via.placeholder.com/220x220/333/fff?text=QR+Code+Não+Carregou';">
 
-  <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0;">
+  <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0 20px;">
     Chave Pix: <strong>contato@g6connecti.com.br</strong>
   </p>
 
-  <!-- Botão Copiar Chave Pix -->
+  <!-- Botão Copiar Chave Pix (estilo inspirado no Pizza Meter) -->
   <button id="copiarPixBtn" 
-          style="padding: 14px 35px; background: #00ffff; color: #121212; border: none; border-radius: 12px; font-size: 1.1em; cursor: pointer; box-shadow: 0 0 12px #00ffff; transition: all 0.3s; font-weight: bold;">
-    Copiar Chave Pix
+          style="padding: 14px 35px; background: #00ffff; color: #121212; border: none; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; box-shadow: 0 0 12px #00ffff; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto;">
+    <span id="btnIcon">📋</span>
+    <span id="btnText">Copiar Chave Pix</span>
   </button>
 
-  <!-- Mensagem de feedback (mais visível) -->
-  <div id="feedbackCopiar" style="margin-top: 20px; font-size: 1.2em; color: #00ff00; font-weight: bold; display: none; background: rgba(0,255,0,0.15); padding: 12px; border-radius: 10px; border: 1px solid #00ff00;">
-    Chave copiada com sucesso! 📋
-  </div>
+  <!-- Mensagem de feedback (agora dentro do botão) -->
+  <p id="feedbackCopiar" style="margin-top: 15px; font-size: 1em; color: #00ff00; font-weight: bold; display: none;">
+    Chave copiada! 📋
+  </p>
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
 <script>
-  console.log('Script de doação carregado - aguardando DOM');
-
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM carregado completamente');
-
     const btn = document.getElementById('copiarPixBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
     const feedback = document.getElementById('feedbackCopiar');
 
     if (!btn) {
-      console.error('ERRO: Botão #copiarPixBtn não encontrado no DOM');
+      console.error('Botão #copiarPixBtn não encontrado');
       return;
     }
 
-    if (!feedback) {
-      console.error('ERRO: Elemento #feedbackCopiar não encontrado no DOM');
-      return;
-    }
-
-    console.log('Botão e feedback encontrados! Adicionando evento de clique');
+    console.log('Botão Copiar Pix encontrado e pronto');
 
     btn.addEventListener('click', function() {
-      console.log('Botão Copiar Pix foi clicado!');
+      console.log('Botão clicado! Tentando copiar chave Pix');
 
       const chavePix = 'contato@g6connecti.com.br';
 
-      // Tenta copiar (método moderno)
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(chavePix)
-          .then(() => {
-            console.log('Chave copiada com sucesso via clipboard API');
-            feedback.textContent = 'Chave copiada com sucesso! 📋';
-            feedback.style.display = 'block';
-            setTimeout(() => { 
-              feedback.style.display = 'none'; 
-              console.log('Mensagem de feedback escondida após 5 segundos');
-            }, 5000);
-          })
-          .catch(err => {
-            console.error('Erro ao copiar via clipboard API:', err);
-            mostrarFallback();
-          });
-      } else {
-        console.warn('Clipboard API não suportada neste navegador');
-        mostrarFallback();
-      }
+      navigator.clipboard.writeText(chavePix)
+        .then(() => {
+          console.log('Chave copiada com sucesso!');
+          
+          // Muda o botão temporariamente (como no Pizza Meter)
+          btnText.textContent = 'Copiado!';
+          btnIcon.textContent = '✓';
+          btn.style.background = '#00ff00';
+          btn.style.boxShadow = '0 0 15px #00ff00';
 
-      function mostrarFallback() {
-        console.log('Usando fallback (alert)');
-        alert('Chave Pix copiada manualmente:\n\ncontato@g6connecti.com.br\n\nCole em seu app de Pix!');
-        feedback.textContent = 'Copie manualmente: contato@g6connecti.com.br';
-        feedback.style.color = '#ff9800';
-        feedback.style.display = 'block';
-        setTimeout(() => { feedback.style.display = 'none'; }, 8000);
-      }
+          // Mostra feedback abaixo (opcional, mas reforça)
+          feedback.style.display = 'block';
+
+          // Volta ao normal após 2 segundos
+          setTimeout(() => {
+            btnText.textContent = 'Copiar Chave Pix';
+            btnIcon.textContent = '📋';
+            btn.style.background = '#00ffff';
+            btn.style.boxShadow = '0 0 12px #00ffff';
+            feedback.style.display = 'none';
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Erro ao copiar:', err);
+          alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\ncontato@g6connecti.com.br');
+        });
     });
   });
 </script>
@@ -111,4 +102,3 @@
     color: #ffffff;
   }
 </style>
-
