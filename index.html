@@ -696,7 +696,7 @@
       }
     }
 
-    // Evento de clique nos cards principais (ALTERAÇÃO AQUI)
+    // Evento de clique nos cards principais
     document.querySelectorAll('.card[data-modulo]').forEach(card => {
       card.addEventListener('click', async () => {
         const modulo = card.getAttribute('data-modulo');
@@ -711,31 +711,6 @@
         conteudo.innerHTML = '<p style="text-align:center; color:#00ffff; font-size:1.2em;">Carregando...</p>';
         conteudo.style.display = 'block';
 
-        // Tratamento ESPECIAL para Pizzarias (tela promocional intermediária)
-        if (modulo === 'pizzarias') {
-          try {
-            const response = await fetch('pizzarias-promo.html');
-            if (!response.ok) {
-              throw new Error(`Erro HTTP ${response.status} ao carregar pizzarias-promo.html`);
-            }
-            
-            const html = await response.text();
-            conteudo.innerHTML = html;
-            
-            conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            console.log('Tela promocional de Pizzarias carregada com sucesso');
-          } catch (err) {
-            console.error('Erro ao carregar tela de promoções de Pizzarias:', err);
-            conteudo.innerHTML = `
-              <p style="color:#ff4444; text-align:center; font-size:1.2em; padding:20px;">
-                Erro ao carregar tela promocional.<br>Tente novamente ou clique diretamente no link.
-              </p>
-            `;
-          }
-          return;  // Para aqui e NÃO executa o carregamento padrão
-        }
-
-        // Código padrão para os OUTROS módulos (mantém exatamente como estava)
         try {
           const url = `${modulo}.html`;
           console.log('Buscando módulo:', url);
@@ -762,11 +737,12 @@
       });
     });
 
-    // Bloco de sub-cards (já existente)
+    // Bloco de sub-cards (ALTERAÇÃO AQUI – tratamento especial para Pizzarias)
     document.body.addEventListener('click', async function(e) {
       const subCard = e.target.closest('.estabelecimento-card[data-submodulo]');
       if (subCard) {
-        e.preventDefault();
+        e.preventDefault(); // Impede comportamento padrão (abrir link externo)
+
         const submodulo = subCard.getAttribute('data-submodulo');
         console.log('Sub-card clicado:', submodulo);
 
@@ -774,6 +750,31 @@
         conteudo.innerHTML = '<p style="text-align:center; color:#00ffff; font-size:1.2em;">Carregando...</p>';
         conteudo.style.display = 'block';
 
+        // Tratamento ESPECIAL para o sub-card Pizzarias
+        if (submodulo === 'pizzarias') {
+          try {
+            const response = await fetch('pizzarias-promo.html');
+            if (!response.ok) {
+              throw new Error(`Erro HTTP ${response.status} ao carregar pizzarias-promo.html`);
+            }
+
+            const html = await response.text();
+            conteudo.innerHTML = html;
+
+            conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            console.log('Tela promocional de Pizzarias carregada com sucesso');
+          } catch (err) {
+            console.error('Erro ao carregar tela de promoções de Pizzarias:', err);
+            conteudo.innerHTML = `
+              <p style="color:#ff4444; text-align:center; font-size:1.2em; padding:20px;">
+                Erro ao carregar tela promocional.<br>Tente novamente ou acesse diretamente o Pizza Meter.
+              </p>
+            `;
+          }
+          return;  // Para aqui e NÃO carrega outro .html nem abre link externo
+        }
+
+        // Código padrão para os OUTROS sub-módulos
         try {
           const url = `${submodulo}.html`;
           console.log('Iniciando fetch para sub-módulo:', url);
