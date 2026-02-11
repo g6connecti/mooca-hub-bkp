@@ -1,5 +1,17 @@
 <h2>Hamburguerias da Mooca</h2>
 
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
+
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchInput" placeholder="Pesquisar Hamburguerias..." 
@@ -10,6 +22,7 @@
   document.getElementById('searchInput').addEventListener('input', function() {
     const filter = this.value.toLowerCase();
     const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
     buttons.forEach(btn => {
       const text = btn.innerText.toLowerCase();
       btn.style.display = text.includes(filter) ? '' : 'none';
@@ -18,41 +31,86 @@
 </script>
 
 <div class="lista-estabelecimentos">
-  <button class="hamburguer-btn" onclick="window.open('https://bombeefburgers.com.br/unidades/mooca/', '_blank')">
-    Bom Beef Burgers (Netão)<br><small>Rua Cap. Pacheco e Chaves, 313 (Shopping Mooca Plaza)</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://bombeefburgers.com.br/unidades/mooca/', '_blank')">
+      Bom Beef Burgers (Netão) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Cap. Pacheco e Chaves, 313 (Shopping Mooca Plaza)
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://burmooca-lanches-ltda.menuintegrado.com.br/', '_blank')">
-    Burmooca<br><small>Rua Visconde de Laguna, 193</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://burmooca-lanches-ltda.menuintegrado.com.br/', '_blank')">
+      Burmooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Visconde de Laguna, 193
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://cadillacburger.com/', '_blank')">
-    Cadillac Burger<br><small>Rua Juventus, 296</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://cadillacburger.com/', '_blank')">
+      Cadillac Burger <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Juventus, 296
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://www.ifood.com.br/delivery/sao-paulo-sp/johns-burguer-mooca-alto-da-mooca/212e7c7f-9e7a-4ff1-ab06-d2878ef95315?utm_medium=share', '_blank')">
-    John's Burguer<br><small>Rua Leme da Silva, 297</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.ifood.com.br/delivery/sao-paulo-sp/johns-burguer-mooca-alto-da-mooca/212e7c7f-9e7a-4ff1-ab06-d2878ef95315?utm_medium=share', '_blank')">
+      John's Burguer <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Leme da Silva, 297
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://labrasaburgermooca.saipos.com/home?fbclid=IwY2xjawP1iLZleHRuA2FlbQIxMABicmlkETFJa0Z6ejBFSHVNZ25yVUpuc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpB_jzbarspb4eXWW3F__-BGFCWTgPYdhLkbOA7l_8u0YWgoCXqi8JgjqbsP_aem_-ZkgqDZvUT7Kup1E2DHp-g', '_blank')">
-    La Brasa Burger<br><small>Rua Cassandoca, 555</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://labrasaburgermooca.saipos.com/home?fbclid=IwY2xjawP1iLZleHRuA2FlbQIxMABicmlkETFJa0Z6ejBFSHVNZ25yVUpuc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpB_jzbarspb4eXWW3F__-BGFCWTgPYdhLkbOA7l_8u0YWgoCXqi8JgjqbsP_aem_-ZkgqDZvUT7Kup1E2DHp-g', '_blank')">
+      La Brasa Burger <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Cassandoca, 555
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://maneburger.com.br/', '_blank')">
-    Mané Burger<br><small>Rua Madre de Deus, 526</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maneburger.com.br/', '_blank')">
+      Mané Burger <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Madre de Deus, 526
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://www.ifood.com.br/delivery/sao-paulo-sp/novo-hamburger-mooca-mooca/073ea159-35bd-4726-ac06-3fc350a8e2a1', '_blank')">
-    Novo Hamburger<br><small>Rua Jumana, 334</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.ifood.com.br/delivery/sao-paulo-sp/novo-hamburger-mooca-mooca/073ea159-35bd-4726-ac06-3fc350a8e2a1', '_blank')">
+      Novo Hamburger <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Jumana, 334
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://linkr.es/SixBurgers', '_blank')">
-    Six Burgers<br><small>Rua Fernando Falcão, 1024</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://linkr.es/SixBurgers', '_blank')">
+      Six Burgers <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Fernando Falcão, 1024
+      </small>
+    </button>
+  </div>
 
-  <button class="hamburguer-btn" onclick="window.open('https://www.standardburgeroficial.com.br/', '_blank')">
-    Standard Burger<br><small>Av. Paes de Barros, 1999</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.standardburgeroficial.com.br/', '_blank')">
+      Standard Burger <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 1999
+      </small>
+    </button>
+  </div>
 </div>
 
 <p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
@@ -61,3 +119,27 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+</style>
