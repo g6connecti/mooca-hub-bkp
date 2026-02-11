@@ -1,16 +1,134 @@
-<h2>Notícias & Eventos</h2>
+<h2>Notícias & Eventos na Mooca</h2>
 
-<button class="noticias-btn" onclick="window.open('https://portaldamooca.com.br/', '_blank')">Portal da Mooca</button>
-<button class="noticias-btn" onclick="window.open('https://www.jornalmooca.com.br/', '_blank')">Jornal da Mooca / Revista Mooca Acontece</button>
-<button class="noticias-btn" onclick="window.open('https://moocamix.com.br/', '_blank')">Mooca Mix</button>
-<button class="noticias-btn" onclick="window.open('https://www.instagram.com/amoamooca/', '_blank')">Amo a Mooca</button>
-<button class="noticias-btn" onclick="window.open('https://www.jornalpolicial.com.br/', '_blank')">Portal Policial por Humberto Aliperti</button>
-<button class="noticias-btn" onclick="window.open('https://www.leiasaopaulo.com.br', '_blank')">Leia São Paulo por Humberto Aliperti </button>
-<button class="noticias-btn" onclick="window.open('https://www.instagram.com/portaldamooca/', '_blank')">Instagram Portal da Mooca</button>
-<button class="noticias-btn" onclick="window.open('https://www.instagram.com/vivamooca/', '_blank')">Viva Mooca</button>
-<button class="noticias-btn" onclick="window.open('https://museudaimigracao.org.br/', '_blank')">Museu da Imigração</button>
-<button class="noticias-btn" onclick="window.open('https://www.prefeitura.sp.gov.br/cidade/secretarias/subprefeituras/mooca/', '_blank')">Subprefeitura Mooca</button>
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
 
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar notícia ou evento..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<div class="lista-estabelecimentos">
+
+  <!-- Eventos Próximos -->
+  <p class="section-separator">Eventos Próximos</p>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/explore/tags/eventosmooca/', '_blank')">
+      Festa da Mooca 2025 <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Data: 15 de março - Praça da Mooca
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Festa tradicional com música, comida típica e atrações culturais.
+      </small>
+    </button>
+  </div>
+
+  <!-- Notícias Recentes -->
+  <p class="section-separator">Notícias Recentes</p>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://portaldamooca.com.br/', '_blank')">
+      Portal da Mooca - Últimas Notícias <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Acompanhe o que está acontecendo no bairro em tempo real
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Fonte confiável de informações locais.
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://g1.globo.com/sp/sao-paulo/noticia/2025/02/10/mooca.ghtml', '_blank')">
+      G1 - Notícias da Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Últimas atualizações da região
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Cobertura jornalística completa.
+      </small>
+    </button>
+  </div>
+
+  <!-- Adicione aqui mais notícias ou eventos no mesmo formato -->
+  <!-- Exemplo: -->
+  <!--
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('URL', '_blank')">
+      Título da Notícia/Evento <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Data/Local
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Resumo ou destaque.
+      </small>
+    </button>
+  </div>
+  -->
+
+</div>
+
+<p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
+  Fique por dentro das novidades do bairro! Atualizações constantes.
+</p>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  .section-separator {
+    color: #00ffff !important;
+    border-bottom: 2px solid #00ffff !important;
+    text-shadow: 0 0 8px #00ffff !important;
+    background: #2a2a2a !important;
+    padding: 10px 0 !important;
+    font-weight: bold !important;
+    margin: 30px 0 15px !important;
+    text-align: center !important;
+    font-size: 1.2em !important;
+  }
+</style>
