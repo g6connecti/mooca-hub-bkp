@@ -1,0 +1,43 @@
+<div style="text-align: center; padding: 40px 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff; margin: 20px;">
+  <h2 style="color: #00ff00; margin-bottom: 20px;">Pizzarias da Mooca</h2>
+  
+  <p style="font-size: 1.2em; color: #ffffff; margin-bottom: 15px;">
+    A Pizzaria Tato Marcucci está com promoções imperdíveis:<br>
+    <strong>Segundas e Terças-feiras</strong> – Descontos especiais em pizzas artesanais!
+  </p>
+  
+  <p style="font-size: 1em; color: #cccccc; margin-bottom: 30px;">
+    Apoie o comércio local e garanta o melhor sabor da Mooca!
+  </p>
+
+  <!-- Contato WhatsApp com imagem -->
+  <div style="margin: 25px 0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+    <a href="https://wa.me/5511998032454" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+      <img src="whatsap.png" alt="WhatsApp" style="width: 48px; height: 48px;">
+      <span style="font-size: 1.3em; color: #00ff00; font-weight: bold;">
+        (11) 99803-2454
+      </span>
+    </a>
+  </div>
+
+  <p style="font-size: 0.95em; color: #cccccc; margin-bottom: 40px;">
+    Fale diretamente com a pizzaria e peça sua pizza!
+  </p>
+
+  <button id="continuarBtn" 
+          style="padding: 16px 40px; background: #00ff00; color: #121212; font-size: 1.2em; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 15px #00ff00; transition: all 0.3s;">
+    Continuar para o Pizza Meter →
+  </button>
+
+  <button onclick="fecharModulo()" 
+          style="margin-top: 20px; padding: 12px 30px; background: #ff4444; color: white; border: none; border-radius: 10px; cursor: pointer;">
+    Voltar
+  </button>
+</div>
+
+<script>
+  document.getElementById('continuarBtn').addEventListener('click', function() {
+    window.open('https://pizza-meter.com.br/', '_blank');  // ← substitua pelo link real do Pizza Meter se for diferente
+    fecharModulo();  // Fecha o módulo após abrir o link (opcional)
+  });
+</script>
