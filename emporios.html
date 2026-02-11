@@ -1,7 +1,20 @@
 <h2>Empórios e Laticínios da Mooca</h2>
+
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
+
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
-  <input type="text" id="searchInput" placeholder="Pesquisar Emporio..." 
+  <input type="text" id="searchInput" placeholder="Pesquisar Empório..." 
          style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
 </div>
 
@@ -16,64 +29,144 @@
     });
   });
 </script>
+
 <div class="lista-estabelecimentos">
-  <button class="emporio-btn" onclick="window.open('https://maps.app.goo.gl/qVajJFfnRpKKFdZY9', '_blank')">
-    Casa Sagres (Laticínios e Empório)<br><small>Rua Madre de Deus, 485</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/qVajJFfnRpKKFdZY9', '_blank')">
+      Casa Sagres (Laticínios e Empório) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Madre de Deus, 485
+      </small>
+    </button>
+  </div>
 
-  <button class="emporio-btn" onclick="window.open('https://maps.app.goo.gl/16P42PEUUCbocWqi9', '_blank')">
-    Cerealista da Mooca<br><small>Av. Cassandoca, 800</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/16P42PEUUCbocWqi9', '_blank')">
+      Cerealista da Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Cassandoca, 800
+      </small>
+    </button>
+  </div>
 
-  <button class="emporio-btn" onclick="window.open('https://maps.app.goo.gl/ut512RTK5kVmaTQA6', '_blank')" >
-    Empório Bella Vida<br><small>Av. Cassandoca, 427</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/ut512RTK5kVmaTQA6', '_blank')">
+      Empório Bella Vida <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Cassandoca, 427
+      </small>
+    </button>
+  </div>
 
-<button class="emporio-btn" onclick="window.open('https://maps.app.goo.gl/naALgN5UcvnhdG2z5', '_blank')" >
-    Laticínios Popoio<br><small>A, R. Me. de Deus, 292 - Mooca</small>
-  </button>
-  
-  <button class="emporio-btn"onclick="window.open('https://maps.app.goo.gl/A5sToEid5NUiUZyU7', '_blank')" >
-    Empório Brasa & Arte<br><small>Rua da Mooca, 3143</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/naALgN5UcvnhdG2z5', '_blank')">
+      Laticínios Popoio <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Me. de Deus, 292 - Mooca
+      </small>
+    </button>
+  </div>
 
-  <button class="emporio-btn" onclick="window.open('https://emporiocoisasdeminas.com.br', '_blank')">
-    Empório Coisas de Minas<br><small>Rua Taquari, 81</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/A5sToEid5NUiUZyU7', '_blank')">
+      Empório Brasa & Arte <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3143
+      </small>
+    </button>
+  </div>
 
-  <button class="emporio-btn" onclick="window.open('https://www.emporiosaoluis.com.br/', '_blank')" >
-    Empório Carmignani <br><small>Av. Paes de Barros, 2796 </small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://emporiocoisasdeminas.com.br', '_blank')">
+      Empório Coisas de Minas <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Taquari, 81
+      </small>
+    </button>
+  </div>
 
-  <button class="emporio-btn" onclick="window.open('https://www.emporiostarita.com.br/', '_blank')" >
-    Empório Santa Rita<br><small>Rua da Mooca, 3879</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.emporiosaoluis.com.br/', '_blank')">
+      Empório Carmignani <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 2796
+      </small>
+    </button>
+  </div>
 
-  <button class="emporio-btn" onclick="window.open('https://emporio-saude-e-sabor.lojaintegrada.com.br/', '_blank')" >
-    Empório Saúde e Sabor<br><small>Rua da Mooca, 2028</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.emporiostarita.com.br/', '_blank')">
+      Empório Santa Rita <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3879
+      </small>
+    </button>
+  </div>
 
-<button class="emporio-btn" onclick="window.open('https://maps.app.goo.gl/cxNQjetzRsnFvV2q9', '_blank')" >
-    Laticinios Mooca<br><small>Av. Cassandoca, 812 - Mooca </small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://emporio-saude-e-sabor.lojaintegrada.com.br/', '_blank')">
+      Empório Saúde e Sabor <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 2028
+      </small>
+    </button>
+  </div>
 
-<button class="emporio-btn" onclick="window.open('https://maps.app.goo.gl/72w8VnRD1y3VrAYw5', '_blank')">
-    Laticínios Paes de Barros<br><small>R. Leocádia Cintra, 105 - Mooca/small>
-  </button>
-  
-  <button class="emporio-btn"onclick="window.open('https://maps.app.goo.gl/ymgn4CNXnGwtiE7F8', '_blank')" >
-    FG Laticínios Mooca<br><small>R. da Mooca, 4487 </small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/cxNQjetzRsnFvV2q9', '_blank')">
+      Laticinios Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Cassandoca, 812 - Mooca
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/72w8VnRD1y3VrAYw5', '_blank')">
+      Laticínios Paes de Barros <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Leocádia Cintra, 105 - Mooca
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/ymgn4CNXnGwtiE7F8', '_blank')">
+      FG Laticínios Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. da Mooca, 4487
+      </small>
+    </button>
+  </div>
 </div>
 
 <p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
   Empórios tradicionais e modernos da região. Confira os horários no local.
 </p>
 
-
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
 
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
 
-
-
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+</style>
