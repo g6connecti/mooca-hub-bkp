@@ -696,7 +696,7 @@
       }
     }
 
-    // Evento de clique nos cards principais
+    // Evento de clique nos cards principais (ALTERAÇÃO AQUI)
     document.querySelectorAll('.card[data-modulo]').forEach(card => {
       card.addEventListener('click', async () => {
         const modulo = card.getAttribute('data-modulo');
@@ -711,6 +711,31 @@
         conteudo.innerHTML = '<p style="text-align:center; color:#00ffff; font-size:1.2em;">Carregando...</p>';
         conteudo.style.display = 'block';
 
+        // Tratamento ESPECIAL para Pizzarias (tela promocional intermediária)
+        if (modulo === 'pizzarias') {
+          try {
+            const response = await fetch('pizzarias-promo.html');
+            if (!response.ok) {
+              throw new Error(`Erro HTTP ${response.status} ao carregar pizzarias-promo.html`);
+            }
+            
+            const html = await response.text();
+            conteudo.innerHTML = html;
+            
+            conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            console.log('Tela promocional de Pizzarias carregada com sucesso');
+          } catch (err) {
+            console.error('Erro ao carregar tela de promoções de Pizzarias:', err);
+            conteudo.innerHTML = `
+              <p style="color:#ff4444; text-align:center; font-size:1.2em; padding:20px;">
+                Erro ao carregar tela promocional.<br>Tente novamente ou clique diretamente no link.
+              </p>
+            `;
+          }
+          return;  // Para aqui e NÃO executa o carregamento padrão
+        }
+
+        // Código padrão para os OUTROS módulos (mantém exatamente como estava)
         try {
           const url = `${modulo}.html`;
           console.log('Buscando módulo:', url);
@@ -1116,59 +1141,6 @@
                 .catch(err => console.error('❌ Falha definitiva ao tocar áudio Roselis:', err.message));
             });
         }
-      }
-    });
-
-    // === CÓPIA DA CHAVE PIX NO MÓDULO PEDIDOS/SUGESTÕES (DELEGAÇÃO GLOBAL) ===
-    document.body.addEventListener('click', function(e) {
-      if (e.target && e.target.id === 'copiarPixBtn') {
-        console.log('Clique detectado no botão Copiar Chave Pix (delegação global)');
-
-        const chavePix = 'contato@g6connecti.com.br';
-
-        // Tenta copiar com clipboard API
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(chavePix)
-            .then(() => {
-              console.log('Chave Pix copiada com sucesso via clipboard API');
-              alert('Copiado com sucesso! 📋\n\ncontato@g6connecti.com.br');
-            })
-            .catch(err => {
-              console.error('Erro ao copiar via clipboard API:', err);
-              fallbackCopiar();
-            });
-        } else {
-          console.warn('Clipboard API não disponível - usando fallback');
-          fallbackCopiar();
-        }
-
-        function fallbackCopiar() {
-          const tempInput = document.createElement('textarea');
-          tempInput.value = chavePix;
-          tempInput.style.position = 'fixed';
-          tempInput.style.opacity = '0';
-          document.body.appendChild(tempInput);
-          tempInput.focus();
-          tempInput.select();
-
-          try {
-            const successful = document.execCommand('copy');
-            if (successful) {
-              console.log('Chave Pix copiada via execCommand');
-              alert('Copiado com sucesso! 📋\n\ncontato@g6connecti.com.br');
-            } else {
-              throw new Error('execCommand falhou');
-            }
-          } catch (err) {
-            console.error('Erro no fallback:', err);
-            alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\n' + chavePix);
-          }
-
-          document.body.removeChild(tempInput);
-        }
-
-        // Impede propagação para evitar conflitos
-        e.stopPropagation();
       }
     });
   </script>
