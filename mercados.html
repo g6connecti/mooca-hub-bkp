@@ -1,5 +1,17 @@
 <h2>Mercados e Supermercados da Mooca</h2>
 
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
+
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchInput" placeholder="Pesquisar Mercados..." 
@@ -19,33 +31,86 @@
 </script>
 
 <div class="lista-estabelecimentos">
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Assaí+Atacadista+Mooca+Pari', '_blank')">
-    Assaí Atacadista (Mooca/Pari)<br><small>Av. Alcântara Machado, 3350</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Bella+Mooca+Supermercado', '_blank')">
-    Bella Mooca Supermercado<br><small>Rua Juventus, 203</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Chama+Supermercados+Alto+da+Mooca', '_blank')">
-    Chama Supermercados (Alto da Mooca)<br><small>Rua do Oratório, 1166</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/DIA+Supermercado+Rua+da+Mooca', '_blank')">
-    DIA Supermercado (Rua da Mooca)<br><small>Rua da Mooca, 4444</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Hirota+Food+Supermercados+Mooca', '_blank')">
-    Hirota Food Supermercados (Mooca)<br><small>Rua do Oratório, 1632</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Joanin+Supermercados+Mooca', '_blank')">
-    Joanin Supermercados (Loja 26 - Mooca)<br><small>Rua dos Trilhos, 1422</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Mercado+Ipanema+Mooca', '_blank')">
-    Mercado Ipanema Mooca<br><small>Rua da Mooca, 4287</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Roldão+Atacadista+Mooca', '_blank')">
-    Roldão Atacadista (Mooca)<br><small>Av. Alcântara Machado, 1010</small>
-  </button>
-  <button class="mercado-btn" onclick="window.open('https://www.google.com/maps/search/Supermercado+Yamauchi+Mooca', '_blank')">
-    Supermercado Yamauchi<br><small>Rua Juventus, 235</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Assaí+Atacadista+Mooca+Pari', '_blank')">
+      Assaí Atacadista (Mooca/Pari) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Alcântara Machado, 3350
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Bella+Mooca+Supermercado', '_blank')">
+      Bella Mooca Supermercado <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Juventus, 203
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Chama+Supermercados+Alto+da+Mooca', '_blank')">
+      Chama Supermercados (Alto da Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 1166
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/DIA+Supermercado+Rua+da+Mooca', '_blank')">
+      DIA Supermercado (Rua da Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 4444
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Hirota+Food+Supermercados+Mooca', '_blank')">
+      Hirota Food Supermercados (Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua do Oratório, 1632
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Joanin+Supermercados+Mooca', '_blank')">
+      Joanin Supermercados (Loja 26 - Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua dos Trilhos, 1422
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Mercado+Ipanema+Mooca', '_blank')">
+      Mercado Ipanema Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 4287
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Roldão+Atacadista+Mooca', '_blank')">
+      Roldão Atacadista (Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Alcântara Machado, 1010
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.google.com/maps/search/Supermercado+Yamauchi+Mooca', '_blank')">
+      Supermercado Yamauchi <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Juventus, 235
+      </small>
+    </button>
+  </div>
 </div>
 
 <p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
@@ -53,3 +118,28 @@
 </p>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+</style>
