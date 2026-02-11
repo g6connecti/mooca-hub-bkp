@@ -1,63 +1,34 @@
 <h2>Clínicas e Hospitais Veterinários na Mooca</h2>
 
-<!-- CSS interno para padronizar cores -->
-<style>
-  #conteudo, body {
-    background: #2a2a2a;
-    color: #e0e0e0;
-  }
-  p, small, h2, h3, .section-separator {
-    color: #e0e0e0;
-  }
-  .lista-estabelecimentos button {
-    background: #00ffff;
-    color: #000000 !important; /* texto PRETO dentro do botão */
-    box-shadow: 0 0 8px #00ffff;
-    margin: 8px 0;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    width: 100%;
-    text-align: left;
-    font-size: 1em;
-    transition: all 0.3s;
-  }
-  .lista-estabelecimentos button:hover {
-    background: #00e6e6;
-    box-shadow: 0 0 15px #00ffff;
-    transform: translateY(-2px);
-  }
-  .lista-estabelecimentos button small {
-    color: #111111 !important; /* pequeno ainda mais escuro para contraste */
-  }
-  .close-btn {
-    background: #00ffff;
-    color: #000000 !important; /* texto PRETO */
-    box-shadow: 0 0 10px #00ffff;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: all 0.3s;
-  }
-  .close-btn:hover {
-    background: #00e6e6;
-    box-shadow: 0 0 20px #00ffff;
-  }
-</style>
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
 
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
-  <input type="text" id="searchClinicas" placeholder="Pesquisar clínica ou hospital..." 
+  <input type="text" id="searchInput" placeholder="Pesquisar clínica ou hospital..." 
          style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
 </div>
 
-<!-- Mensagem de nenhum resultado -->
-<p id="noResultClinicas" style="text-align:center; color:#ff4444; font-size:1em; margin:10px 0; display:none;">
-  Nenhuma clínica encontrada.
-</p>
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
 
 <p style="text-align:center; margin-bottom:20px; font-size:1.1em; color:#00ffff;">
   Consultas, emergências 24h, cirurgias e cuidados especializados para o seu pet!
@@ -70,42 +41,105 @@
     Hospitais Veterinários
   </p>
 
-  <button class="seguranca-btn" onclick="window.open('https://animaniacs.com.br', '_blank')">
-    Hospital Veterinário Animaniac's (Unidade Mooca)<br>
-    <small>Rua Juventus, 467</small><br>
-    <small>Destaque: Hospital 24h com internação, cirurgias, exames laboratoriais e UTI.</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://animaniacs.com.br', '_blank')">
+      Hospital Veterinário Animaniac's (Unidade Mooca) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Juventus, 467
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Destaque: Hospital 24h com internação, cirurgias, exames laboratoriais e UTI.
+      </small>
+    </button>
+  </div>
 
-  <button class="seguranca-btn" onclick="window.open('https://petcare.com.br/', '_blank')">
-    Hospital Veterinário Pet Care Mooca<br>
-    <small>Av. Paes de Barros, 2100</small><br>
-    <small>Destaque: Estrutura completa com raio-X, ultrassom, cirurgia e internação.</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://petcare.com.br/', '_blank')">
+      Hospital Veterinário Pet Care Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 2100
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Destaque: Estrutura completa com raio-X, ultrassom, cirurgia e internação.
+      </small>
+    </button>
+  </div>
 
   <!-- Clínicas Veterinárias -->
   <p class="section-separator" style="color:#00ffff; font-weight:bold; margin:30px 0 15px;">
     Clínicas Veterinárias
   </p>
 
-  <button class="seguranca-btn" onclick="window.open('https://wevets.com.br/unidade-mooca/?utm_source=google&utm_medium=cpc&utm_campaign=hospitais_sp&utm_term=unidadesl&utm_content=clinica+de+pet+24+horas&gclid=Cj0KCQiAhaHMBhD2ARIsAPAU_D6189w_wOypMRdJTYiDdi6hWxmZU_NLeNYVOXIqWkvsmZXarBKCFoUaAjRcEALw_wcB', '_blank')">
-    Wevets Mooca<br>
-    <small>Av. Paes de Barros, 629</small><br>
-    <small>Destaque: Clínica popular com consultas, vacinação, castração e farmácia acessível.</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://wevets.com.br/unidade-mooca/?utm_source=google&utm_medium=cpc&utm_campaign=hospitais_sp&utm_term=unidadesl&utm_content=clinica+de+pet+24+horas&gclid=Cj0KCQiAhaHMBhD2ARIsAPAU_D6189w_wOypMRdJTYiDdi6hWxmZU_NLeNYVOXIqWkvsmZXarBKCFoUaAjRcEALw_wcB', '_blank')">
+      Wevets Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 629
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Destaque: Clínica popular com consultas, vacinação, castração e farmácia acessível.
+      </small>
+    </button>
+  </div>
 
-  <button class="seguranca-btn" onclick="window.open('https://cervet.com.br/fisioterapia-veterinaria/?gad_source=1&gad_campaignid=21391569793&gbraid=0AAAAAo2e_VJ9QMbm0E4BoijdigVNV5-Rd&gclid=Cj0KCQiAhaHMBhD2ARIsAPAU_D7heDpPbPXXw6WcLQ5QxctA-ok5L_tQabYEgme_j2p-NRXjM2BOtpwaAkGuEALw_wcB', '_blank')">
-    Cervet<br>
-    <small>R. Visc. de Inhomerim, 717</small><br>
-    <small>Destaque: Atendimento clínico geral, emergência básica e castração.</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://cervet.com.br/fisioterapia-veterinaria/?gad_source=1&gad_campaignid=21391569793&gbraid=0AAAAAo2e_VJ9QMbm0E4BoijdigVNV5-Rd&gclid=Cj0KCQiAhaHMBhD2ARIsAPAU_D7heDpPbPXXw6WcLQ5QxctA-ok5L_tQabYEgme_j2p-NRXjM2BOtpwaAkGuEALw_wcB', '_blank')">
+      Cervet <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Visc. de Inhomerim, 717
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Destaque: Atendimento clínico geral, emergência básica e castração.
+      </small>
+    </button>
+  </div>
 
-  <button class="seguranca-btn" onclick="window.open('https://waycare-vet.com.br/', '_blank')">
-    WayCare Clínica<br>
-    <small>Rua da Mooca, 3184</small><br>
-    <small>Destaque: Atendimento clínico e emergência básica no coração da Mooca.</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://waycare-vet.com.br/', '_blank')">
+      WayCare Clínica <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3184
+      </small>
+      <small style="font-size: 0.8em; color: #cccccc; display: block; margin-top: 4px;">
+        Destaque: Atendimento clínico e emergência básica no coração da Mooca.
+      </small>
+    </button>
+  </div>
 
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  .section-separator {
+    color: #00ffff;
+    font-weight: bold;
+    margin: 30px 0 15px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+  }
+</style>
