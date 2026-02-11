@@ -1,5 +1,17 @@
 <h2>Restaurantes da Mooca</h2>
 
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
+
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchInput" placeholder="Pesquisar restaurante..." 
@@ -21,93 +33,208 @@
 <div class="lista-estabelecimentos">
 
   <p class="section-separator">Italiana (Cantinas e Massas)</p>
-  <button class="restaurante-btn" onclick="window.open('https://dicunto.com.br', '_blank')">
-    Di Cunto (Restaurante e Confeitaria)<br><small>Rua Borges de Figueiredo, 61</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/YOAmIw3IrUX59gn55', '_blank')">
-    Don Carlini<br><small>Rua Dona Ana Neri, 265</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/95fSH1hPmSjuxdZF1', '_blank')">
-    Borgo Mooca<br><small>Rua Comendador Roberto Ugolini, 129</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://maps.app.goo.gl/JSq9xriWYHrXauxX7', '_blank')">
-    Cantina San Marco<br><small>Rua Comendador Rua Orville Derby, 232 - Mooca </small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/ohLeDogXQbCQYPGhn ', '_blank')">
-    Mizzica Famiglia<br><small>Rua Guaimbé, 277</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/T375u8eTkHvjht9Gu', '_blank')">
-    Cantina D'Irene<br><small>Rua Pascoal Moreira, 516</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/zt7axWwyXJH8cwuYf', '_blank')">
-    Florisbela<br><small>R. Dr. João Batista de Lacerda, 796</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://dicunto.com.br', '_blank')">
+      Di Cunto (Restaurante e Confeitaria) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Borges de Figueiredo, 61
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/YOAmIw3IrUX59gn55', '_blank')">
+      Don Carlini <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Dona Ana Neri, 265
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/95fSH1hPmSjuxdZF1', '_blank')">
+      Borgo Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Comendador Roberto Ugolini, 129
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/JSq9xriWYHrXauxX7', '_blank')">
+      Cantina San Marco <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Comendador Orville Derby, 232 - Mooca
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/ohLeDogXQbCQYPGhn', '_blank')">
+      Mizzica Famiglia <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Guaimbé, 277
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/T375u8eTkHvjht9Gu', '_blank')">
+      Cantina D'Irene <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Pascoal Moreira, 516
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/zt7axWwyXJH8cwuYf', '_blank')">
+      Florisbela <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Dr. João Batista de Lacerda, 796
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Churrascarias</p>
-  <button class="restaurante-btn" onclick="window.open('https://nocarvao.com.br/', '_blank')">
-    Churrascaria No Carvão<br><small>Av. Paes de Barros, 2193</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://nocarvao.com.br/', '_blank')">
+      Churrascaria No Carvão <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 2193
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Argentinas</p>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/LdNj31cHu5uRFGJAi', '_blank')">
-    Moocaires Restobar<br><small>Rua da Mooca, 3593</small>
-  </button>
-  
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/LdNj31cHu5uRFGJAi', '_blank')">
+      Moocaires Restobar <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3593
+      </small>
+    </button>
+  </div>
+
   <p class="section-separator">Árabes</p>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/KRoIRDK21GB3ILOTv', '_blank')">
-    Arabiano<br><small>Av. Paes de Barros, 2057</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://maps.app.goo.gl/gvu8HRc6F8KGQh1u9', '_blank')">
-    Sabor do Líbano<br><small>Praça Visconde de Sousa Fontes, 178</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://eleganciaarabe.com.br/', '_blank')">
-    Elegância Árabe<br><small>Rua Teresina, 365</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/KRoIRDK21GB3ILOTv', '_blank')">
+      Arabiano <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 2057
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/gvu8HRc6F8KGQh1u9', '_blank')">
+      Sabor do Líbano <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Praça Visconde de Sousa Fontes, 178
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://eleganciaarabe.com.br/', '_blank')">
+      Elegância Árabe <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Teresina, 365
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Mexicanas</p>
-  <button class="restaurante-btn" onclick="window.open('https://balacotaco.com.br/', '_blank')">
-    Balacotaco Mexican Food<br><small>Rua Guaimbé, 110</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://balacotaco.com.br/', '_blank')">
+      Balacotaco Mexican Food <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Guaimbé, 110
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Peruanas</p>
-  <button class="restaurante-btn" onclick="window.open('https://ranchodosperuanos.com.br/', '_blank')">
-    Rancho dos Peruanos<br><small>Rua da Mooca, 3475</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://ranchodosperuanos.com.br/', '_blank')">
+      Rancho dos Peruanos <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 3475
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Espanholas e Portuguesas</p>
-  <button class="restaurante-btn" onclick="window.open('https://paellaspepe.com.br/', '_blank')">
-    Paellas Pepe<br><small>Rua Dona Ana Neri, 761</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://maps.app.goo.gl/8ErTN49DbvZAunVD6')">
-    Taberna Sagres<br><small>Rua Natal 931 </small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://paellaspepe.com.br/', '_blank')">
+      Paellas Pepe <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Dona Ana Neri, 761
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/8ErTN49DbvZAunVD6', '_blank')">
+      Taberna Sagres <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Natal, 931
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Japonesas</p>
-  <button class="restaurante-btn" onclick="window.open('https://temakistation.com.br/', '_blank')">
-    Temaki Station<br><small>Av. Paes de Barros, 906</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/YZkYyJDGOSsvrskeR', '_blank')">
-    Kenichi Sushi<br><small>Av. Paes de Barros, 906</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/Z1vYyUqSZQu4D0hat', '_blank')">
-    Hojiro Mooca<br><small>Rua Juventus, 230</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/JmGj05XJ4XodRkTmb', '_blank')">
-    Masako Sushi<br><small>Rua Fernando Falcão, 58</small>
-  </button>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/dnSWzCz2sFGToJjJc', '_blank')">
-    Sukiya<br><small>Rua da Mooca, 2558</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://temakistation.com.br/', '_blank')">
+      Temaki Station <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 906
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/YZkYyJDGOSsvrskeR', '_blank')">
+      Kenichi Sushi <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 906
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/Z1vYyUqSZQu4D0hat', '_blank')">
+      Hojiro Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Juventus, 230
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/JmGj05XJ4XodRkTmb', '_blank')">
+      Masako Sushi <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Fernando Falcão, 58
+      </small>
+    </button>
+  </div>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/dnSWzCz2sFGToJjJc', '_blank')">
+      Sukiya <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 2558
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Self-Service / Buffet</p>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/QHgVnpQ3j30eCko3G', '_blank')">
-    Machado Mooca Restaurante <br><small>R. Rui Martins, 453</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/QHgVnpQ3j30eCko3G', '_blank')">
+      Machado Mooca Restaurante <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Rui Martins, 453
+      </small>
+    </button>
+  </div>
 
   <p class="section-separator">Diversos</p>
-  <button class="restaurante-btn" onclick="window.open('https://share.google/aHNwJLiZ0MM3LvIou', '_blank')">
-    Chico Restaurante (Cozinha Contemporânea)<br><small>Rua Fernando Falcão, 1011</small>
-  </button>
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://share.google/aHNwJLiZ0MM3LvIou', '_blank')">
+      Chico Restaurante (Cozinha Contemporânea) <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Fernando Falcão, 1011
+      </small>
+    </button>
+  </div>
 </div>
 
 <p style="margin-top:15px; font-size:0.9em; color:#ff9800; text-align:center;">
@@ -116,10 +243,27 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
 
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
 
-
-
-
-
-
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+</style>
