@@ -10,14 +10,14 @@
 </p>
 
 <!-- Seção de Doação com QR Code e Botão Copiar Chave Pix -->
-<div style="text-align: center; margin: 30px 0;">
+<div style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff;">
   <h3 style="color: #00ff00; margin-bottom: 15px;">Apoie o Mooca Hub via Pix</h3>
   
-  <!-- QR Code com caminho absoluto do GitHub Pages -->
+  <!-- QR Code -->
   <img src="https://g6connecti.github.io/mooca-hub-bkp/qrcode-mooca-hub300x300.png" 
        alt="QR Code Pix - Mooca Hub" 
        style="width: 220px; height: 220px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,0,0.3); margin-bottom: 20px;"
-       onerror="this.src='https://via.placeholder.com/220x220?text=QR+Code+Não+Encontrado'; this.alt='QR Code não carregou - verifique o caminho';">
+       onerror="this.src='https://via.placeholder.com/220x220/333/fff?text=QR+Code+Não+Carregou';">
 
   <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0;">
     Chave Pix: <strong>contato@g6connecti.com.br</strong>
@@ -29,8 +29,8 @@
     Copiar Chave Pix
   </button>
 
-  <!-- Mensagem de feedback -->
-  <p id="feedbackCopiar" style="margin-top: 10px; font-size: 0.9em; color: #00ff00; display: none;">
+  <!-- Mensagem de feedback (agora mais visível) -->
+  <p id="feedbackCopiar" style="margin-top: 15px; font-size: 1.1em; color: #00ff00; font-weight: bold; display: none; background: rgba(0,255,0,0.1); padding: 10px; border-radius: 8px;">
     Chave copiada com sucesso! 📋
   </p>
 </div>
@@ -38,61 +38,76 @@
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
 <script>
-  // Script para copiar a chave Pix com fallback
-  document.getElementById('copiarPixBtn').addEventListener('click', function() {
-    const chavePix = 'contato@g6connecti.com.br';
+  // Aguarda o DOM carregar completamente antes de adicionar o evento
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('copiarPixBtn');
     const feedback = document.getElementById('feedbackCopiar');
 
-    // Tenta copiar para a área de transferência
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(chavePix).then(() => {
-        feedback.textContent = 'Chave copiada com sucesso! 📋';
+    if (!btn || !feedback) {
+      console.error('Botão ou feedback não encontrados no DOM');
+      return;
+    }
+
+    console.log('Botão Copiar Pix encontrado e evento sendo adicionado');
+
+    btn.addEventListener('click', function() {
+      console.log('Botão Copiar Pix clicado!');
+
+      const chavePix = 'contato@g6connecti.com.br';
+
+      // Tenta copiar (método moderno)
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(chavePix)
+          .then(() => {
+            console.log('Chave copiada com sucesso via clipboard API');
+            feedback.textContent = 'Chave copiada com sucesso! 📋';
+            feedback.style.display = 'block';
+            setTimeout(() => { feedback.style.display = 'none'; }, 4000);
+          })
+          .catch(err => {
+            console.error('Erro na clipboard API:', err);
+            fallbackCopiar(feedback, chavePix);
+          });
+      } else {
+        console.warn('Clipboard API não suportada, usando fallback');
+        fallbackCopiar(feedback, chavePix);
+      }
+    });
+
+    function fallbackCopiar(feedback, chave) {
+      const tempInput = document.createElement('input');
+      tempInput.value = chave;
+      tempInput.style.position = 'absolute';
+      tempInput.style.left = '-9999px';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999);
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          console.log('Chave copiada com sucesso via execCommand');
+          feedback.textContent = 'Chave copiada com sucesso! 📋';
+          feedback.style.display = 'block';
+          setTimeout(() => { feedback.style.display = 'none'; }, 4000);
+        } else {
+          throw new Error('execCommand falhou');
+        }
+      } catch (err) {
+        console.error('Erro no fallback:', err);
+        alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\n\n' + chave);
+        feedback.textContent = 'Não foi possível copiar – copie manualmente acima!';
+        feedback.style.color = '#ff9800';
         feedback.style.display = 'block';
-        setTimeout(() => { feedback.style.display = 'none'; }, 3000);
-      }).catch(err => {
-        console.error('Erro ao copiar:', err);
-        // Fallback: mostra alert e seleciona o texto
-        fallbackCopiar(chavePix, feedback);
-      });
-    } else {
-      // Navegadores antigos ou sem suporte
-      fallbackCopiar(chavePix, feedback);
+        setTimeout(() => { feedback.style.display = 'none'; }, 8000);
+      }
+
+      document.body.removeChild(tempInput);
     }
   });
-
-  // Fallback: seleciona o texto e pede para copiar manualmente
-  function fallbackCopiar(texto, feedback) {
-    // Cria um input temporário para selecionar o texto
-    const tempInput = document.createElement('input');
-    tempInput.value = texto;
-    tempInput.style.position = 'absolute';
-    tempInput.style.left = '-9999px';
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999); // Para mobile
-
-    try {
-      const successful = document.execCommand('copy');
-      if (successful) {
-        feedback.textContent = 'Chave copiada com sucesso! 📋';
-        feedback.style.display = 'block';
-        setTimeout(() => { feedback.style.display = 'none'; }, 3000);
-      } else {
-        throw new Error('Cópia manual falhou');
-      }
-    } catch (err) {
-      alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\n\n' + texto);
-      feedback.textContent = 'Não foi possível copiar – copie manualmente acima!';
-      feedback.style.color = '#ff9800';
-      feedback.style.display = 'block';
-    }
-
-    document.body.removeChild(tempInput);
-  }
 </script>
 
 <style>
-  /* Estilos adicionais para a seção de doação */
   .sugestao-text {
     text-align: center;
     font-size: 1.1em;
@@ -107,4 +122,3 @@
     color: #ffffff;
   }
 </style>
-
