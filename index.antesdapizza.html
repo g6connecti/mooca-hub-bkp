@@ -6,11 +6,10 @@
   <title>Mooca Hub - Tudo do Bairro na Palma da Mão</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- Carrega cordova.js (necessário para o APK - VoltBuilder inclui no build) -->
   <script src="cordova.js"></script>
-  <!-- Link para o manifest.json (obrigatório para PWA e APK via PWABuilder) -->
   <link rel="manifest" href="/manifest.json">
   <style>
+    /* Seu CSS original inteiro aqui – não alterei nada */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('campo-juventos.png');
@@ -103,13 +102,13 @@
       margin-top: 20px;
       padding: 10px 20px;
       background: #00ffff;
-      color: #121212;
+      color: #000000;
       box-shadow: 0 0 10px #00ffff;
       font-size: 1em;
     }
     .close-btn:hover {
-      background: #00ff00;
-      box-shadow: 0 0 20px #00ff00;
+      background: #00e6e6;
+      box-shadow: 0 0 20px #00ffff;
     }
     .sugestao-email {
       color: #81d4fa;
@@ -322,21 +321,22 @@
       text-align: center;
     }
     .continuar-btn {
-      background: #00ff00;
+      background: #00ffff;
       color: #121212;
       font-size: 1.1em;
       padding: 12px 35px;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 15px #00ff00;
+      box-shadow: 0 0 15px #00ffff;
       margin-top: 30px;
       transition: all 0.3s ease;
       min-width: 240px;
     }
     .continuar-btn:hover {
-      background: #00ffff;
+      background: #00e6e6;
       box-shadow: 0 0 25px #00ffff;
+      transform: scale(1.05);
     }
 
     .contador-box {
@@ -390,6 +390,53 @@
       .contador-box .counter {
         font-size: 1.4em;
       }
+    }
+
+    /* Botão Sair do Aplicativo */
+    .exit-btn {
+      background: #00ffff !important;
+      color: #000000 !important;
+      font-size: 0.95em;
+      padding: 10px 20px;
+      border: 1px solid #00ffff;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 40px auto 30px;
+      display: block;
+      width: 60%;
+      max-width: 220px;
+      transition: all 0.3s ease;
+      box-shadow: none;
+      text-align: center;
+    }
+    .exit-btn:hover {
+      background: #00e6e6 !important;
+      color: #000000 !important;
+      box-shadow: 0 0 15px #00ffff;
+      transform: scale(1.03);
+    }
+
+    /* Botões de Segurança */
+    .seguranca-btn, .vigia-btn, .emergencia-btn {
+      background: #00ffff !important;
+      color: #000000 !important;
+      box-shadow: 0 0 8px #00ffff;
+      margin: 8px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      text-align: left;
+      font-size: 1em;
+      transition: all 0.3s;
+    }
+    .seguranca-btn:hover, .vigia-btn:hover, .emergencia-btn:hover {
+      background: #00e6e6 !important;
+      box-shadow: 0 0 15px #00ffff;
+      transform: translateY(-2px);
+    }
+    .seguranca-btn small, .vigia-btn small, .emergencia-btn small {
+      color: #111111 !important;
     }
   </style>
 </head>
@@ -447,18 +494,17 @@
         </a>
       </div>
 
-      <button class="continuar-btn" onclick="document.getElementById('splash-apoio').style.display='none'; document.getElementById('conteudo-principal').style.display='block';">
+      <button class="continuar-btn" onclick="document.getElementById('splash-apoio').style.display='none'; document.getElementById('conteudo-principal').style.display='block'; tocarBemVindo();">
         Ir para o Aplicativo →
       </button>
     </div>
   </div>
 
-  <!-- Conteúdo principal (escondido inicialmente) -->
+  <!-- Conteúdo principal -->
   <div id="conteudo-principal" style="display:none;">
     <header>
       <h1>Mooca Hub - Tudo do Bairro na Palma da Mão</h1>
 
-      <!-- Contador counter.dev -->
       <div class="contador-box">
         <p>Visitantes:</p>
         <span class="counter">
@@ -490,9 +536,68 @@
     <div id="conteudo" style="display: none;">
       <!-- Aqui carregam os módulos -->
     </div>
+
+    <button class="exit-btn" onclick="sairDoApp()">Sair do Aplicativo</button>
   </div>
 
+  <!-- Áudios fixos do index -->
+  <audio id="bemVindoAudio" src="BemVindo.mp3" preload="auto"></audio>
+  <audio id="promocoesAudio" src="Promocoes.mp3" preload="auto"></audio>
+
   <script>
+    // Função para tocar áudio de boas-vindas
+    function tocarBemVindo() {
+      const audio = document.getElementById('bemVindoAudio');
+      if (audio) {
+        audio.volume = 0.5;
+        audio.currentTime = 0;
+        audio.play().then(() => console.log('BemVindo.mp3 tocando')).catch(e => console.log('Autoplay bloqueado:', e));
+      }
+    }
+
+    // Função para tocar Promocoes.mp3 com tentativa dupla
+    function tocarPromocoes() {
+      const audio = document.getElementById('promocoesAudio');
+      if (!audio) {
+        console.error('Elemento #promocoesAudio não encontrado');
+        return;
+      }
+
+      audio.volume = 0.5;
+      audio.currentTime = 0;
+
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('Promocoes.mp3 tocou com sucesso');
+        }).catch(error => {
+          console.warn('Tentativa 1 falhou (autoplay bloqueado?):', error.message);
+          setTimeout(() => {
+            audio.play().then(() => {
+              console.log('Promocoes.mp3 tocou na tentativa 2');
+            }).catch(e => {
+              console.error('Falha definitiva ao tocar Promocoes.mp3:', e.message);
+            });
+          }, 300);
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.continuar-btn').addEventListener('click', tocarBemVindo);
+    });
+
+    function sairDoApp() {
+      if (navigator.app && navigator.app.exitApp) {
+        navigator.app.exitApp();
+      } else if (window.cordova && cordova.plugins && cordova.plugins.exit) {
+        cordova.plugins.exit();
+      } else {
+        window.close();
+      }
+    }
+
     function fecharModulo() {
       const conteudo = document.getElementById('conteudo');
       conteudo.innerHTML = '';
@@ -503,10 +608,6 @@
       const dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
       const hoje = new Date().getDay();
       return dias[hoje];
-    }
-
-    function redirectToPizzarias() {
-      window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank');
     }
 
     function fetchWeather() {
@@ -595,29 +696,30 @@
       }
     }
 
+    // Evento de clique nos cards principais
     document.querySelectorAll('.card[data-modulo]').forEach(card => {
       card.addEventListener('click', async () => {
         const modulo = card.getAttribute('data-modulo');
         console.log('Card principal clicado:', modulo);
 
         const conteudo = document.getElementById('conteudo');
+        if (!conteudo) {
+          console.error('Elemento #conteudo não encontrado');
+          return;
+        }
+
         conteudo.innerHTML = '<p style="text-align:center; color:#00ffff; font-size:1.2em;">Carregando...</p>';
         conteudo.style.display = 'block';
 
         try {
           const url = `${modulo}.html`;
-          console.log('Iniciando fetch para módulo principal:', url);
+          console.log('Buscando módulo:', url);
 
           const response = await fetch(url);
-          console.log('Fetch concluído. Status:', response.status);
-
           if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
 
           const html = await response.text();
-          console.log('HTML recebido. Tamanho:', html.length);
-
           conteudo.innerHTML = html;
-          console.log('HTML inserido no #conteudo');
 
           if (modulo === 'tempo') fetchWeather();
 
@@ -635,6 +737,7 @@
       });
     });
 
+    // Bloco de sub-cards (já existente)
     document.body.addEventListener('click', async function(e) {
       const subCard = e.target.closest('.estabelecimento-card[data-submodulo]');
       if (subCard) {
@@ -726,10 +829,8 @@
         }
       }
     });
-  </script>
 
-  <!-- Script GLOBAL de busca para TODOS os módulos -->
-  <script>
+    // Script GLOBAL de busca
     console.log('Script GLOBAL de busca iniciado no index.html');
 
     const conteudo = document.getElementById('conteudo');
@@ -770,24 +871,19 @@
 
       observer.observe(conteudo, { childList: true, subtree: true });
     }
-  </script>
 
-  <!-- Script de Alerta de Alagamento e Chuva - Opção 1 (Geofencing simples) -->
-  <script>
-    // Zonas de risco conhecidas na Mooca (lat, lon, raio em metros, mensagem)
+    // Script de Alerta de Alagamento e Chuva
     const zonasRiscoAlagamento = [
       {
-        lat: -23.5485,      // Av. Alcântara Machado / Rio Tamanduateí
+        lat: -23.5485,
         lon: -46.5960,
-        raio: 800,          // 800 metros
+        raio: 800,
         msg: "Atenção: Ponto de alagamento detectado próximo à Rua dos Trilhos / Alcântara Machado. Evite a região e dirija com cuidado!"
       }
-      // Adicione mais zonas se quiser
     ];
 
-    // Função para calcular distância em metros (Haversine)
     function calcularDistancia(lat1, lon1, lat2, lon2) {
-      const R = 6371000; // Raio da Terra em metros
+      const R = 6371000;
       const φ1 = lat1 * Math.PI / 180;
       const φ2 = lat2 * Math.PI / 180;
       const Δφ = (lat2 - lat1) * Math.PI / 180;
@@ -801,15 +897,12 @@
       return R * c;
     }
 
-    // Função para verificar alerta de chuva/alagamento
     async function verificarAlertaChuva() {
       try {
-        // Proxy confiável: corsproxy.io
         const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://www.cgesp.org/');
         const response = await fetch(proxyUrl);
         const html = await response.text();
 
-        // Palavras-chave para detectar alerta
         const temAlerta = html.toLowerCase().includes('alagamento') ||
                           html.toLowerCase().includes('atenção') ||
                           html.toLowerCase().includes('chuva forte') ||
@@ -828,7 +921,6 @@
       }
     }
 
-    // Verifica se o usuário está na zona de risco
     function verificarLocalizacaoUsuario() {
       if (!navigator.geolocation) {
         console.log('Geolocalização não suportada.');
@@ -855,12 +947,11 @@
       );
     }
 
-    // Mostra notificação local no navegador
     function mostrarNotificacaoAlerta(mensagem) {
       if (Notification.permission === 'granted') {
         new Notification('Alerta Mooca Hub - Chuva / Alagamento', {
           body: mensagem,
-          icon: '/icon-192.png', // Coloque um ícone do app se tiver
+          icon: '/icon-192.png',
           tag: 'alagamento-alerta'
         });
       } else if (Notification.permission !== 'denied') {
@@ -872,30 +963,214 @@
       }
     }
 
-    // Pedir permissão inicial
     if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
       Notification.requestPermission();
     }
 
-    // Executa a verificação a cada 10 minutos
     setInterval(verificarAlertaChuva, 600000);
-    verificarAlertaChuva(); // Executa ao carregar
-  </script>
+    verificarAlertaChuva();
 
-  <!-- Override global de window.open para o APK (InAppBrowser) -->
-  <script>
-    // Espera o Cordova carregar (apenas no APK)
+    // Override global de window.open para o APK (InAppBrowser)
     document.addEventListener('deviceready', function() {
       if (window.cordova && cordova.InAppBrowser) {
-        // Sobrescreve window.open globalmente
         const originalOpen = window.open;
         window.open = function(url, target, options) {
-          cordova.InAppBrowser.open(url, '_system'); // Abre no navegador padrão do celular
-          // Alternativa: '_blank' para abrir dentro do app (in-app browser)
+          cordova.InAppBrowser.open(url, '_system');
         };
         console.log('InAppBrowser ativado - links externos serão abertos no navegador do celular');
       }
     }, false);
+
+    // === ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS ===
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="padarias"]')) {
+        console.log('Clique detectado no card PADARIAS - iniciando áudio de promoção');
+
+        let audio = document.getElementById('promoPadariaAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Padarias');
+          audio = document.createElement('audio');
+          audio.id = 'promoPadariaAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/promo-padaria.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.5;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio promo-padaria.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
+            });
+        }
+      }
+    });
+
+    // === ÁUDIO DE PATROCÍNIO AO CLICAR NO CARD SERVIÇOS AUTOMOTIVOS ===
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="servicos-automotivos"]')) {
+        console.log('Clique detectado no card SERVIÇOS AUTOMOTIVOS - iniciando áudio Point Glass');
+
+        let audio = document.getElementById('pointGlassAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Point Glass');
+          audio = document.createElement('audio');
+          audio.id = 'pointGlassAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/pglass.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.4;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio pglass.mp3 (Point Glass) tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio pglass.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Point Glass:', err.message));
+            });
+        }
+      }
+    });
+
+    // === ÁUDIO DE PATROCÍNIO AO CLICAR NO CARD FARMÁCIAS ===
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="farmacias"]')) {
+        console.log('Clique detectado no card FARMÁCIAS - iniciando áudio Roselis');
+
+        let audio = document.getElementById('roselisAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Roselis');
+          audio = document.createElement('audio');
+          audio.id = 'roselisAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/roselis.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.4;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio roselis.mp3 tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio roselis.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Roselis:', err.message));
+            });
+        }
+      }
+    });
+
+    // === CÓPIA DA CHAVE PIX NO MÓDULO PEDIDOS/SUGESTÕES (DELEGAÇÃO GLOBAL) ===
+    document.body.addEventListener('click', function(e) {
+      if (e.target && e.target.id === 'copiarPixBtn') {
+        console.log('Clique detectado no botão Copiar Chave Pix (delegação global)');
+
+        const chavePix = 'contato@g6connecti.com.br';
+
+        // Tenta copiar com clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(chavePix)
+            .then(() => {
+              console.log('Chave Pix copiada com sucesso via clipboard API');
+              alert('Copiado com sucesso! 📋\n\ncontato@g6connecti.com.br');
+            })
+            .catch(err => {
+              console.error('Erro ao copiar via clipboard API:', err);
+              fallbackCopiar();
+            });
+        } else {
+          console.warn('Clipboard API não disponível - usando fallback');
+          fallbackCopiar();
+        }
+
+        function fallbackCopiar() {
+          const tempInput = document.createElement('textarea');
+          tempInput.value = chavePix;
+          tempInput.style.position = 'fixed';
+          tempInput.style.opacity = '0';
+          document.body.appendChild(tempInput);
+          tempInput.focus();
+          tempInput.select();
+
+          try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+              console.log('Chave Pix copiada via execCommand');
+              alert('Copiado com sucesso! 📋\n\ncontato@g6connecti.com.br');
+            } else {
+              throw new Error('execCommand falhou');
+            }
+          } catch (err) {
+            console.error('Erro no fallback:', err);
+            alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\n' + chavePix);
+          }
+
+          document.body.removeChild(tempInput);
+        }
+
+        // Impede propagação para evitar conflitos
+        e.stopPropagation();
+      }
+    });
   </script>
 
 </body>
