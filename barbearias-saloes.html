@@ -1,8 +1,20 @@
 <h2>Barbearias e Salões de Beleza na Mooca</h2>
 
-<!-- Campo de pesquisa -->
+<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Se tiver patrocinador, substitua o src, href e texto abaixo -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
+</div>
+
+<!-- Campo de pesquisa (idêntico ao servicos-automotivos) -->
 <div style="margin: 15px 0; text-align: center;">
-  <input type="text" id="searchInput" placeholder="Pesquisar Barbearias ou Salões..." 
+  <input type="text" id="searchInput" placeholder="Pesquisar Barbearias e Salões..." 
          style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
 </div>
 
@@ -19,23 +31,62 @@
 </script>
 
 <div class="lista-estabelecimentos">
-  <!-- Barbearia Mr. Gump -->
+  <!-- Aqui vão os estabelecimentos - adicione quantos quiser no mesmo formato -->
   <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://barbeariamrgump.com.br/', '_blank')">
-      Barbearia Mr. Gump Mooca <br>
-      <small style="font-size: 0.85em; color: #000000;">R. do Oratório, 454 - Mooca</small>
+    <button class="padaria-btn" onclick="window.open('https://link-da-barbearia.com', '_blank')">
+      Barbearia Exemplo Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua da Mooca, 1234
+      </small>
     </button>
   </div>
 
-  <p class="section-separator">Salões de Beleza</p>
-  
-  <!-- Espaço Hi -->
   <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/tRZibwKUDucREMp88', '_blank')">
-      Espaço Hi <br>
-      <small style="font-size: 0.85em; color: #000000;">Av. Paes de Barros, 833 - Mooca</small>
+    <button class="padaria-btn" onclick="window.open('https://outro-link.com', '_blank')">
+      Salão de Beleza Top <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Bresser, 567
+      </small>
     </button>
   </div>
+
+  <!-- Adicione mais blocos aqui no mesmo formato -->
+  <!-- Exemplo: -->
+  <!--
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('URL', '_blank')">
+      Nome do Estabelecimento <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Endereço completo
+      </small>
+    </button>
+  </div>
+  -->
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
+    border: 1px solid #00d4ff;           /* Borda verde-água */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+</style>
