@@ -25,33 +25,41 @@
 
   <!-- Botão Copiar Chave Pix -->
   <button id="copiarPixBtn" 
-          style="padding: 12px 30px; background: #00ffff; color: #121212; border: none; border-radius: 10px; font-size: 1em; cursor: pointer; box-shadow: 0 0 10px #00ffff; transition: all 0.3s;">
+          style="padding: 14px 35px; background: #00ffff; color: #121212; border: none; border-radius: 12px; font-size: 1.1em; cursor: pointer; box-shadow: 0 0 12px #00ffff; transition: all 0.3s; font-weight: bold;">
     Copiar Chave Pix
   </button>
 
-  <!-- Mensagem de feedback (agora mais visível) -->
-  <p id="feedbackCopiar" style="margin-top: 15px; font-size: 1.1em; color: #00ff00; font-weight: bold; display: none; background: rgba(0,255,0,0.1); padding: 10px; border-radius: 8px;">
+  <!-- Mensagem de feedback (mais visível) -->
+  <div id="feedbackCopiar" style="margin-top: 20px; font-size: 1.2em; color: #00ff00; font-weight: bold; display: none; background: rgba(0,255,0,0.15); padding: 12px; border-radius: 10px; border: 1px solid #00ff00;">
     Chave copiada com sucesso! 📋
-  </p>
+  </div>
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
 <script>
-  // Aguarda o DOM carregar completamente antes de adicionar o evento
+  console.log('Script de doação carregado - aguardando DOM');
+
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado completamente');
+
     const btn = document.getElementById('copiarPixBtn');
     const feedback = document.getElementById('feedbackCopiar');
 
-    if (!btn || !feedback) {
-      console.error('Botão ou feedback não encontrados no DOM');
+    if (!btn) {
+      console.error('ERRO: Botão #copiarPixBtn não encontrado no DOM');
       return;
     }
 
-    console.log('Botão Copiar Pix encontrado e evento sendo adicionado');
+    if (!feedback) {
+      console.error('ERRO: Elemento #feedbackCopiar não encontrado no DOM');
+      return;
+    }
+
+    console.log('Botão e feedback encontrados! Adicionando evento de clique');
 
     btn.addEventListener('click', function() {
-      console.log('Botão Copiar Pix clicado!');
+      console.log('Botão Copiar Pix foi clicado!');
 
       const chavePix = 'contato@g6connecti.com.br';
 
@@ -62,48 +70,29 @@
             console.log('Chave copiada com sucesso via clipboard API');
             feedback.textContent = 'Chave copiada com sucesso! 📋';
             feedback.style.display = 'block';
-            setTimeout(() => { feedback.style.display = 'none'; }, 4000);
+            setTimeout(() => { 
+              feedback.style.display = 'none'; 
+              console.log('Mensagem de feedback escondida após 5 segundos');
+            }, 5000);
           })
           .catch(err => {
-            console.error('Erro na clipboard API:', err);
-            fallbackCopiar(feedback, chavePix);
+            console.error('Erro ao copiar via clipboard API:', err);
+            mostrarFallback();
           });
       } else {
-        console.warn('Clipboard API não suportada, usando fallback');
-        fallbackCopiar(feedback, chavePix);
+        console.warn('Clipboard API não suportada neste navegador');
+        mostrarFallback();
       }
-    });
 
-    function fallbackCopiar(feedback, chave) {
-      const tempInput = document.createElement('input');
-      tempInput.value = chave;
-      tempInput.style.position = 'absolute';
-      tempInput.style.left = '-9999px';
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      tempInput.setSelectionRange(0, 99999);
-
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          console.log('Chave copiada com sucesso via execCommand');
-          feedback.textContent = 'Chave copiada com sucesso! 📋';
-          feedback.style.display = 'block';
-          setTimeout(() => { feedback.style.display = 'none'; }, 4000);
-        } else {
-          throw new Error('execCommand falhou');
-        }
-      } catch (err) {
-        console.error('Erro no fallback:', err);
-        alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\n\n' + chave);
-        feedback.textContent = 'Não foi possível copiar – copie manualmente acima!';
+      function mostrarFallback() {
+        console.log('Usando fallback (alert)');
+        alert('Chave Pix copiada manualmente:\n\ncontato@g6connecti.com.br\n\nCole em seu app de Pix!');
+        feedback.textContent = 'Copie manualmente: contato@g6connecti.com.br';
         feedback.style.color = '#ff9800';
         feedback.style.display = 'block';
         setTimeout(() => { feedback.style.display = 'none'; }, 8000);
       }
-
-      document.body.removeChild(tempInput);
-    }
+    });
   });
 </script>
 
