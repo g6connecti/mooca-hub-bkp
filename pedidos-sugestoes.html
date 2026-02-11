@@ -13,10 +13,12 @@
 <div style="text-align: center; margin: 30px 0;">
   <h3 style="color: #00ff00; margin-bottom: 15px;">Apoie o Mooca Hub via Pix</h3>
   
-  <!-- QR Code -->
-  <img src="qrcode-mooca-hub300X300.png" alt="QR Code Pix - Mooca Hub" 
-       style="width: 220px; height: 220px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,0,0.3); margin-bottom: 20px;">
-  
+  <!-- QR Code com caminho absoluto do GitHub Pages -->
+  <img src="https://g6connecti.github.io/mooca-hub-bkp/qrcode-mooca-hub300X300.png" 
+       alt="QR Code Pix - Mooca Hub" 
+       style="width: 220px; height: 220px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,0,0.3); margin-bottom: 20px;"
+       onerror="this.src='https://via.placeholder.com/220x220?text=QR+Code+Não+Encontrado'; this.alt='QR Code não carregou - verifique o caminho';">
+
   <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0;">
     Chave Pix: <strong>contato@g6connecti.com.br</strong>
   </p>
@@ -36,24 +38,61 @@
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
 <script>
-  // Script para copiar a chave Pix
+  // Script para copiar a chave Pix com fallback
   document.getElementById('copiarPixBtn').addEventListener('click', function() {
     const chavePix = 'contato@g6connecti.com.br';
-    navigator.clipboard.writeText(chavePix).then(() => {
-      const feedback = document.getElementById('feedbackCopiar');
-      feedback.style.display = 'block';
-      setTimeout(() => {
-        feedback.style.display = 'none';
-      }, 3000); // some após 3 segundos
-    }).catch(err => {
-      console.error('Erro ao copiar:', err);
-      alert('Não foi possível copiar automaticamente. Copie manualmente: contato@g6connecti.com.br');
-    });
+    const feedback = document.getElementById('feedbackCopiar');
+
+    // Tenta copiar para a área de transferência
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(chavePix).then(() => {
+        feedback.textContent = 'Chave copiada com sucesso! 📋';
+        feedback.style.display = 'block';
+        setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+      }).catch(err => {
+        console.error('Erro ao copiar:', err);
+        // Fallback: mostra alert e seleciona o texto
+        fallbackCopiar(chavePix, feedback);
+      });
+    } else {
+      // Navegadores antigos ou sem suporte
+      fallbackCopiar(chavePix, feedback);
+    }
   });
+
+  // Fallback: seleciona o texto e pede para copiar manualmente
+  function fallbackCopiar(texto, feedback) {
+    // Cria um input temporário para selecionar o texto
+    const tempInput = document.createElement('input');
+    tempInput.value = texto;
+    tempInput.style.position = 'absolute';
+    tempInput.style.left = '-9999px';
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // Para mobile
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        feedback.textContent = 'Chave copiada com sucesso! 📋';
+        feedback.style.display = 'block';
+        setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+      } else {
+        throw new Error('Cópia manual falhou');
+      }
+    } catch (err) {
+      alert('Não foi possível copiar automaticamente.\n\nCopie manualmente:\n\n' + texto);
+      feedback.textContent = 'Não foi possível copiar – copie manualmente acima!';
+      feedback.style.color = '#ff9800';
+      feedback.style.display = 'block';
+    }
+
+    document.body.removeChild(tempInput);
+  }
 </script>
 
 <style>
-  /* Estilos adicionais para a seção de doação (opcional, mas melhora o visual) */
+  /* Estilos adicionais para a seção de doação */
   .sugestao-text {
     text-align: center;
     font-size: 1.1em;
