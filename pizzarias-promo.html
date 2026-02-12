@@ -24,7 +24,7 @@
     Fale diretamente com a pizzaria e peça sua pizza!
   </p>
 
-  <!-- Botão Continuar – Ajustado para Tag de Link para garantir funcionamento -->
+  <!-- Botão Continuar -->
   <a href="https://pizzaria-finder-copy-e01ee74b.base44.app" 
      target="_blank" 
      id="continuarBtn" 
@@ -34,17 +34,19 @@
 
   <br>
 
-  <!-- Botão Voltar – padrão close-btn do app -->
-  <button onclick="fecharModulo()" class="close-btn" style="margin-top: 25px; background: transparent; border: 1px solid #cccccc; color: #cccccc; padding: 5px 15px; border-radius: 8px; cursor: pointer;">
+  <!-- Botão Voltar – Agora com o mesmo tamanho (padding e fonte) do botão acima -->
+  <button onclick="fecharModulo()" 
+          style="margin-top: 15px; padding: 6px 15px; background: transparent; border: 1px solid #cccccc; color: #cccccc; font-size: 0.95em; font-weight: bold; border-radius: 10px; cursor: pointer; transition: all 0.3s;">
     Voltar
   </button>
 </div>
 
 <script>
-  // Ao clicar no link, ele abre a página e o script fecha o card logo em seguida
   document.getElementById('continuarBtn').addEventListener('click', function() {
     setTimeout(() => {
       if (typeof fecharModulo === "function") {
         fecharModulo();
       }
-    }, 600); // Delay levemente maior para garantir a ação de clique do sistema
+    }, 600);
+  });
+</script>
