@@ -13,7 +13,7 @@
   <!-- Contato WhatsApp com imagem -->
   <div style="margin: 25px 0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
     <a href="https://wa.me/5511998032454" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-      <img src="./whatsapp.png" alt="WhatsApp" style="width: 48px; height: 48px;">
+      <img src="./whatsap.png" alt="WhatsApp" style="width: 48px; height: 48px;">
       <span style="font-size: 1.3em; color: #00ff00; font-weight: bold;">
         (11) 99803-2454
       </span>
@@ -24,16 +24,14 @@
     Fale diretamente com a pizzaria e peça sua pizza!
   </p>
 
-  <!-- Botão Continuar (menor, mas mesma cor) -->
+  <!-- Botão Continuar – menor, só contornando o texto -->
   <button id="continuarBtn" 
-          style="padding: 12px 30px; background: #00ff00; color: #121212; font-size: 1.1em; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 15px #00ff00; transition: all 0.3s;">
+          style="padding: 10px 24px; background: #00ff00; color: #121212; font-size: 1em; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 12px #00ff00; transition: all 0.3s; margin-bottom: 20px;">
     Continuar para o Pizza Meter →
   </button>
 
-  <!-- Botão Voltar (padrão close-btn do app) -->
-  <button onclick="fecharModulo()" 
-          class="close-btn" 
-          style="margin-top: 25px;">
+  <!-- Botão Voltar – mesmo estilo do "Sair do Aplicativo" -->
+  <button onclick="fecharModulo()" class="close-btn">
     Voltar
   </button>
 </div>
@@ -41,6 +39,6 @@
 <script>
   document.getElementById('continuarBtn').addEventListener('click', function() {
     window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank');
-    fecharModulo();  // Fecha o módulo após abrir (opcional)
+    fecharModulo();  // Fecha o módulo após abrir (opcional – pode remover se quiser)
   });
 </script>
