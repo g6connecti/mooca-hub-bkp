@@ -13,7 +13,7 @@
   <!-- Contato WhatsApp com imagem -->
   <div style="margin: 25px 0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
     <a href="https://wa.me/5511998032454" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-      <img src="whatsap.png" alt="WhatsApp" style="width: 48px; height: 48px;">
+      <img src="./whatsapp.png" alt="WhatsApp" style="width: 48px; height: 48px;">
       <span style="font-size: 1.3em; color: #00ff00; font-weight: bold;">
         (11) 99803-2454
       </span>
@@ -24,20 +24,23 @@
     Fale diretamente com a pizzaria e peça sua pizza!
   </p>
 
+  <!-- Botão Continuar (menor, mas mesma cor) -->
   <button id="continuarBtn" 
-          style="padding: 16px 40px; background: #00ff00; color: #121212; font-size: 1.2em; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 15px #00ff00; transition: all 0.3s;">
+          style="padding: 12px 30px; background: #00ff00; color: #121212; font-size: 1.1em; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 0 15px #00ff00; transition: all 0.3s;">
     Continuar para o Pizza Meter →
   </button>
 
+  <!-- Botão Voltar (padrão close-btn do app) -->
   <button onclick="fecharModulo()" 
-          style="margin-top: 20px; padding: 12px 30px; background: #ff4444; color: white; border: none; border-radius: 10px; cursor: pointer;">
+          class="close-btn" 
+          style="margin-top: 25px;">
     Voltar
   </button>
 </div>
 
 <script>
   document.getElementById('continuarBtn').addEventListener('click', function() {
-    window.open('https://pizza-meter.com.br/', '_blank');  // ← substitua pelo link real do Pizza Meter se for diferente
-    fecharModulo();  // Fecha o módulo após abrir o link (opcional)
+    window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank');
+    fecharModulo();  // Fecha o módulo após abrir (opcional)
   });
 </script>
