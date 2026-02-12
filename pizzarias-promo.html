@@ -10,10 +10,10 @@
     Apoie o comércio local e garanta o melhor sabor da Mooca!
   </p>
 
-  <!-- Contato WhatsApp com imagem -->
+  <!-- Contato WhatsApp -->
   <div style="margin: 25px 0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
     <a href="https://wa.me/5511998032454" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-      <img src="./whatsap.png" alt="WhatsApp" style="width: 48px; height: 48px;">
+      <img src="./whatsapp.png" alt="WhatsApp" style="width: 48px; height: 48px;">
       <span style="font-size: 1.3em; color: #00ff00; font-weight: bold;">
         (11) 99803-2454
       </span>
@@ -24,21 +24,30 @@
     Fale diretamente com a pizzaria e peça sua pizza!
   </p>
 
-  <!-- Botão Continuar – pequeno, só contornando o texto -->
+  <!-- Botão Continuar – pequeno e compacto -->
   <button id="continuarBtn" 
-          style="padding: 8px 20px; background: #00ff00; color: #121212; font-size: 0.95em; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #00ff00; transition: all 0.3s; margin-bottom: 20px;">
+          style="padding: 4px 10px; background: #00ff00; color: #121212; font-size: 0.95em; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #00ff00; transition: all 0.3s;">
     Continuar para o Pizza Meter →
   </button>
 
-  <!-- Botão Voltar – mesmo estilo do "Sair do Aplicativo" -->
-  <button onclick="fecharModulo()" class="close-btn">
+  <!-- Botão Voltar – padrão close-btn do app -->
+  <button onclick="fecharModulo()" class="close-btn" style="margin-top: 20px;">
     Voltar
   </button>
 </div>
 
 <script>
-  document.getElementById('continuarBtn').addEventListener('click', function() {
+  // Botão Continuar – abre o link e fecha o módulo
+  document.getElementById('continuarBtn').addEventListener('click', function(e) {
+    e.preventDefault(); // Evita qualquer comportamento padrão
+    e.stopPropagation(); // Para propagação de eventos
+
+    // Abre o link no navegador externo
     window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank');
-    fecharModulo();  // Fecha o módulo após abrir o link (opcional)
+
+    // Pequeno delay para garantir que o link abra antes de fechar o módulo
+    setTimeout(() => {
+      fecharModulo();
+    }, 300);
   });
 </script>
