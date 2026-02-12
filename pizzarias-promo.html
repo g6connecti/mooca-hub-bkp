@@ -1,20 +1,27 @@
 <div style="font-family: sans-serif; margin: 5px;">
   
-  <!-- Título em BRANCO (#ffffff) e alinhado à ESQUERDA (text-align: left) -->
+  <!-- Título em BRANCO (#ffffff) e alinhado à ESQUERDA -->
   <h2 style="color: #ffffff; margin-bottom: 10px; font-size: 1.5em; text-align: left; padding-left: 5px;">
     Pizzarias da Mooca
   </h2>
 
-  <!-- Contorno JUSTO (Mantido centralizado internamente) -->
-  <div style="text-align: center; padding: 10px 15px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff; margin-bottom: 10px;">
+  <!-- Contorno JUSTO -->
+  <div style="padding: 10px 15px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff; margin-bottom: 10px;">
     
-    <p style="font-size: 1.1em; color: #FF8C00; margin: 0 0 10px 0;">
-      A Pizzaria Tato Marcucci está com Promoções Imperdíveis!!<br>
-      <strong>Segundas e Terças-feiras</strong> – Descontos Especiais, somente pelo Whatsapp Confira!
-    </p>
+    <!-- Container Flex para Logo + Texto -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 12px; text-align: left; margin-bottom: 10px;">
+      <img src="./tato-180X180.png" alt="Logo Tato" style="width: 60px; height: 60px; border-radius: 8px;">
+      
+      <p style="font-size: 1.05em; color: #FF8C00; margin: 0; line-height: 1.2;">
+        A Pizzaria Tato Marcucci está com Promoções Imperdíveis!!<br>
+        <span style="color: #ffffff; font-size: 0.9em;">
+          <strong>Segundas e Terças-feiras</strong> – Descontos Especiais, somente pelo Whatsapp Confira!
+        </span>
+      </p>
+    </div>
     
     <!-- Contato WhatsApp -->
-    <div style="margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
       <a href="https://wa.me" target="_blank" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
         <img src="./whatsapp.png" alt="WhatsApp" style="width: 35px; height: 35px;">
         <span style="font-size: 1.2em; color: #00ff00; font-weight: bold;">
@@ -26,13 +33,13 @@
   </div> 
   <!-- FIM do Contorno -->
 
-  <!-- Botões centralizados e com tamanhos controlados -->
+  <!-- Botões -->
   <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
     
     <a href="https://pizzaria-finder-copy-e01ee74b.base44.app" 
        target="_blank" 
        id="continuarBtn" 
-       style="display: inline-block; text-decoration: none; padding: 6px 15px; background: #00d4ff; color: #121212; font-size: 0.95em; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 8px #00ff00; transition: all 0.3s; width: fit-content;">
+       style="display: inline-block; text-decoration: none; padding: 6px 15px; background: #00ff00; color: #121212; font-size: 0.95em; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 8px #00ff00; transition: all 0.3s; width: fit-content;">
       Continuar para o Pizza Meter →
     </a>
 
