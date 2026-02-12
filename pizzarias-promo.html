@@ -1,4 +1,4 @@
-<div style="text-align: center; padding: 40px 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff; margin: 20px;">
+<div style="text-align: center; padding: 40px 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff; margin: 20px; font-family: sans-serif;">
   <h2 style="color: #00ff00; margin-bottom: 20px;">Pizzarias da Mooca</h2>
   
   <p style="font-size: 1.2em; color: #ffffff; margin-bottom: 15px;">
@@ -12,7 +12,7 @@
 
   <!-- Contato WhatsApp -->
   <div style="margin: 25px 0; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
-    <a href="https://wa.me/5511998032454" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+    <a href="https://wa.me" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
       <img src="./whatsapp.png" alt="WhatsApp" style="width: 48px; height: 48px;">
       <span style="font-size: 1.3em; color: #00ff00; font-weight: bold;">
         (11) 99803-2454
@@ -24,30 +24,27 @@
     Fale diretamente com a pizzaria e peça sua pizza!
   </p>
 
-  <!-- Botão Continuar – pequeno e compacto -->
-  <button id="continuarBtn" 
-          style="padding: 4px 10px; background: #00ff00; color: #121212; font-size: 0.95em; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #00ff00; transition: all 0.3s;">
+  <!-- Botão Continuar – Ajustado para Tag de Link para garantir funcionamento -->
+  <a href="https://pizzaria-finder-copy-e01ee74b.base44.app" 
+     target="_blank" 
+     id="continuarBtn" 
+     style="display: inline-block; text-decoration: none; padding: 6px 15px; background: #00ff00; color: #121212; font-size: 0.95em; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px #00ff00; transition: all 0.3s;">
     Continuar para o Pizza Meter →
-  </button>
+  </a>
+
+  <br>
 
   <!-- Botão Voltar – padrão close-btn do app -->
-  <button onclick="fecharModulo()" class="close-btn" style="margin-top: 20px;">
+  <button onclick="fecharModulo()" class="close-btn" style="margin-top: 25px; background: transparent; border: 1px solid #cccccc; color: #cccccc; padding: 5px 15px; border-radius: 8px; cursor: pointer;">
     Voltar
   </button>
 </div>
 
 <script>
-  // Botão Continuar – abre o link e fecha o módulo
-  document.getElementById('continuarBtn').addEventListener('click', function(e) {
-    e.preventDefault(); // Evita qualquer comportamento padrão
-    e.stopPropagation(); // Para propagação de eventos
-
-    // Abre o link no navegador externo
-    window.open('https://pizzaria-finder-copy-e01ee74b.base44.app/', '_blank');
-
-    // Pequeno delay para garantir que o link abra antes de fechar o módulo
+  // Ao clicar no link, ele abre a página e o script fecha o card logo em seguida
+  document.getElementById('continuarBtn').addEventListener('click', function() {
     setTimeout(() => {
-      fecharModulo();
-    }, 300);
-  });
-</script>
+      if (typeof fecharModulo === "function") {
+        fecharModulo();
+      }
+    }, 600); // Delay levemente maior para garantir a ação de clique do sistema
