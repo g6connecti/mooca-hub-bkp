@@ -1,4 +1,4 @@
-<h2>Varejões na Mooca</h2>
+<h2>Varejões da Mooca</h2>
 
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
@@ -18,38 +18,60 @@
   });
 </script>
 
+<p style="text-align:center; margin-bottom:20px; font-size:1.1em; color:#00ffff;">
+  Os melhores varejões da Mooca para compras em grande quantidade e preços acessíveis!
+</p>
+
 <div class="lista-estabelecimentos">
-  <!-- Oba Hortifuti -->
+
+  <!-- Adicione aqui os varejões que você tem. Exemplo de estrutura: -->
+
   <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://www.obahortifruti.com.br/home-nova', '_blank')">
-      Oba Hortifuti - Alto da Mooca <br>
-      <small style="font-size: 0.85em; color: #000000;">R. Tobias Barreto, 735</small>
+    <button class="padaria-btn" onclick="window.open('LINK_DO_VAREJAO', '_blank')">
+      Nome do Varejão <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Endereço completo - Mooca
+      </small>
     </button>
   </div>
 
-  <!-- Sacolão Mooca -->
+  <!-- Exemplo adicional (substitua pelos reais) -->
   <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://www.lojalocal.com/58811878000197', '_blank')">
-      Sacolão Mooca <br>
-      <small style="font-size: 0.85em; color: #000000;">Av. Cassandoca, 826</small>
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/EXEMPLO', '_blank')">
+      Varejão da Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 1000 - Mooca
+      </small>
     </button>
   </div>
 
-  <!-- Sacolão JG HORTFRUIT -->
-  <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://share.google/4sSca8eVjyW0fmFYL', '_blank')">
-      Sacolão JG HORTFRUIT <br>
-      <small style="font-size: 0.85em; color: #000000;">R. do Oratório, 850 - Mooca</small>
-    </button>
-  </div>
+  <!-- Continue adicionando quantos houver -->
 
-  <!-- Varejão Romera -->
-  <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://share.google/LJJodVn1NHfM6g2es', '_blank')">
-      Varejão Romera <br>
-      <small style="font-size: 0.85em; color: #000000;">R. da Mooca, 621 - Mooca</small>
-    </button>
-  </div>
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid #00d4ff;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+</style>
