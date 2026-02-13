@@ -20,7 +20,7 @@
 <script>
   document.getElementById('searchInput').addEventListener('input', function() {
     const filter = this.value.toLowerCase();
-    const buttons = document.querySelectorAll('.lista-estabelecimentos button, .destaques button');
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
     
     buttons.forEach(btn => {
       const text = btn.innerText.toLowerCase();
@@ -33,15 +33,15 @@
   Os melhores açougues do bairro para carnes de qualidade!
 </p>
 
-<!-- Destaques / Patrocinados (laranja, no topo) -->
-<div class="destaques" style="margin-bottom: 40px;">
-  <h3 style="color: #FF5722; text-align: center; margin-bottom: 15px; font-size: 1.4em; text-shadow: 0 0 8px rgba(255,87,34,0.5);">
+<!-- Destaques / Patrocinados (apenas texto em laranja, sem alterar contornos) -->
+<div style="margin-bottom: 40px;">
+  <h3 style="color: #FF5722; text-align: center; margin-bottom: 15px; font-size: 1.4em;">
     Destaques / Patrocinados
   </h3>
 
   <div class="padaria-bloco">
-    <button class="destaque-btn" onclick="window.open('https://maps.app.goo.gl/A5wkTaSSwrivxRaB6', '_blank')">
-      Guimarães Carnes <br>
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/A5wkTaSSwrivxRaB6', '_blank')">
+      <span style="color: #FF5722; font-weight: bold;">Guimarães Carnes</span> <br>
       <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
         R. Barretos, 251 - Mooca
       </small>
@@ -50,8 +50,8 @@
   </div>
 
   <div class="padaria-bloco">
-    <button class="destaque-btn" onclick="window.open('https://maps.app.goo.gl/ZmBxJkU5wX81Fo4K8', '_blank')">
-      Grupo Farias <br>
+    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/ZmBxJkU5wX81Fo4K8', '_blank')">
+      <span style="color: #FF5722; font-weight: bold;">Grupo Farias</span> <br>
       <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
         R. Fernando Falcão (referência na região)
       </small>
@@ -170,30 +170,5 @@
     background: rgba(0, 212, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
-  }
-
-  /* Estilo para Destaques (laranja) */
-  .destaques .padaria-bloco {
-    margin-bottom: 20px;
-  }
-
-  .destaque-btn {
-    width: 100%;
-    text-align: left;
-    padding: 15px 20px;
-    border-radius: 10px;
-    background: rgba(255, 87, 34, 0.15); /* Fundo laranja sutil */
-    border: 2px solid #FF5722;           /* Borda laranja forte */
-    color: #ffffff;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-size: 1em;
-    box-shadow: 0 0 12px rgba(255, 87, 34, 0.4);
-  }
-
-  .destaque-btn:hover {
-    background: rgba(255, 87, 34, 0.25);
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
   }
 </style>
