@@ -9,7 +9,7 @@
   <script src="cordova.js"></script>
   <link rel="manifest" href="/manifest.json">
   <style>
-    /* Seu CSS original inteiro aqui – não alterei nada além do necessário */
+    /* Seu CSS original inteiro aqui – não alterei nada */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('campo-juventos.png');
@@ -310,7 +310,7 @@
       box-shadow: 0 0 20px #00ff00;
     }
     .apoio-btn img {
-      width: 120px; /* Aumentado para valorizar as novas logos de 300x300 */
+      width: 120px;
       height: auto;
       margin-bottom: 10px;
       border-radius: 8px;
@@ -454,7 +454,6 @@
       </p>
 
       <div class="apoio-grid">
-
         <a href="https://abadeadvogados.com.br/" target="_blank" class="apoio-btn">
           <img src="abad-adv.png">
           <span>ABAD ADV - Advocacia</span>
@@ -495,17 +494,16 @@
           <span>Tecmaq - Seladoras a Vácuo</span>
         </a>
 
-        <!-- Novos apoiadores adicionados -->
+        <!-- Novos apoiadores -->
         <a href="https://pointglass.com.br/" target="_blank" class="apoio-btn">
-          <img src="pointglass330X300.png">
+          <img src="pointglass300X300.png">
           <span>Point Glass</span>
         </a>
 
         <a href="https://maisvalia.com.br/" target="_blank" class="apoio-btn">
-          <img src="maisvalia330X300.png">
+          <img src="maisvalia300X300.png">
           <span>Mais Valia</span>
         </a>
-
       </div>
 
       <button class="continuar-btn" onclick="document.getElementById('splash-apoio').style.display='none'; document.getElementById('conteudo-principal').style.display='block'; tocarBemVindo();">
@@ -796,11 +794,297 @@
       }
     });
 
-    // Resto do seu script (busca global, alertas, áudios, etc.) continua igual
-    // ... (copie o restante do seu script original aqui, se necessário)
+    // Script GLOBAL de busca
+    console.log('Script GLOBAL de busca iniciado no index.html');
+
+    const conteudo = document.getElementById('conteudo');
+
+    if (conteudo) {
+      const observer = new MutationObserver(() => {
+        console.log('Novo conteúdo inserido no #conteudo - verificando busca...');
+
+        const input = conteudo.querySelector('input[id^="search"]');
+        const msg = conteudo.querySelector('p[id^="noResult"]');
+        const botoes = conteudo.querySelectorAll('.lista-estabelecimentos button');
+
+        if (input && botoes.length > 0) {
+          console.log('Campo de busca e botões encontrados! Ativando filtro global...');
+
+          input.addEventListener('input', function() {
+            const termo = this.value.toLowerCase().trim();
+            let encontrou = false;
+
+            botoes.forEach(botao => {
+              const texto = botao.innerText.toLowerCase();
+              if (termo === '' || texto.includes(termo)) {
+                botao.style.display = '';
+                encontrou = true;
+              } else {
+                botao.style.display = 'none';
+              }
+            });
+
+            if (msg) {
+              msg.style.display = encontrou ? 'none' : 'block';
+            }
+          });
+
+          console.log('Busca GLOBAL ATIVADA!');
+        }
+      });
+
+      observer.observe(conteudo, { childList: true, subtree: true });
+    }
+
+    // Script de Alerta de Alagamento e Chuva
+    const zonasRiscoAlagamento = [
+      {
+        lat: -23.5485,
+        lon: -46.5960,
+        raio: 800,
+        msg: "Atenção: Ponto de alagamento detectado próximo à Rua dos Trilhos / Alcântara Machado. Evite a região e dirija com cuidado!"
+      }
+    ];
+
+    function calcularDistancia(lat1, lon1, lat2, lon2) {
+      const R = 6371000;
+      const φ1 = lat1 * Math.PI / 180;
+      const φ2 = lat2 * Math.PI / 180;
+      const Δφ = (lat2 - lat1) * Math.PI / 180;
+      const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+      const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ/2) * Math.sin(Δλ/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+      return R * c;
+    }
+
+    async function verificarAlertaChuva() {
+      try {
+        const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://www.cgesp.org/');
+        const response = await fetch(proxyUrl);
+        const html = await response.text();
+
+        const temAlerta = html.toLowerCase().includes('alagamento') ||
+                          html.toLowerCase().includes('atenção') ||
+                          html.toLowerCase().includes('chuva forte') ||
+                          html.toLowerCase().includes('enchente') ||
+                          html.toLowerCase().includes('transbordamento') ||
+                          html.toLowerCase().includes('ponto de alagamento');
+
+        if (temAlerta) {
+          console.log('Alerta de chuva/alagamento detectado!');
+          verificarLocalizacaoUsuario();
+        } else {
+          console.log('Nenhum alerta de alagamento no momento.');
+        }
+      } catch (err) {
+        console.error('Erro ao verificar CGE:', err);
+      }
+    }
+
+    function verificarLocalizacaoUsuario() {
+      if (!navigator.geolocation) {
+        console.log('Geolocalização não suportada.');
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLat = position.coords.latitude;
+          const userLon = position.coords.longitude;
+          console.log(`Usuário em: ${userLat}, ${userLon}`);
+
+          zonasRiscoAlagamento.forEach(zona => {
+            const distancia = calcularDistancia(userLat, userLon, zona.lat, zona.lon);
+            if (distancia <= zona.raio) {
+              mostrarNotificacaoAlerta(zona.msg);
+            }
+          });
+        },
+        (err) => {
+          console.error('Erro na geolocalização:', err);
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+      );
+    }
+
+    function mostrarNotificacaoAlerta(mensagem) {
+      if (Notification.permission === 'granted') {
+        new Notification('Alerta Mooca Hub - Chuva / Alagamento', {
+          body: mensagem,
+          icon: '/icon-192.png',
+          tag: 'alagamento-alerta'
+        });
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            mostrarNotificacaoAlerta(mensagem);
+          }
+        });
+      }
+    }
+
+    if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+      Notification.requestPermission();
+    }
+
+    setInterval(verificarAlertaChuva, 600000);
+    verificarAlertaChuva();
+
+    // Override global de window.open para o APK (InAppBrowser)
+    document.addEventListener('deviceready', function() {
+      if (window.cordova && cordova.InAppBrowser) {
+        const originalOpen = window.open;
+        window.open = function(url, target, options) {
+          cordova.InAppBrowser.open(url, '_system');
+        };
+        console.log('InAppBrowser ativado - links externos serão abertos no navegador do celular');
+      }
+    }, false);
+
+    // === RESTAURANDO OS ÁUDIOS DE PATROCINADORES ===
+
+    // ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="padarias"]')) {
+        console.log('Clique detectado no card PADARIAS - iniciando áudio de promoção');
+
+        let audio = document.getElementById('promoPadariaAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Padarias');
+          audio = document.createElement('audio');
+          audio.id = 'promoPadariaAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/promo-padaria.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.5;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio promo-padaria.mp3 tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio promo-padaria.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Padarias:', err.message));
+            });
+        }
+      }
+    });
+
+    // ÁUDIO DE PATROCÍNIO AO CLICAR NO CARD SERVIÇOS AUTOMOTIVOS (Point Glass)
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="servicos-automotivos"]')) {
+        console.log('Clique detectado no card SERVIÇOS AUTOMOTIVOS - iniciando áudio Point Glass');
+
+        let audio = document.getElementById('pointGlassAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Point Glass');
+          audio = document.createElement('audio');
+          audio.id = 'pointGlassAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/pglass.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.4;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio pglass.mp3 (Point Glass) tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio pglass.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Point Glass:', err.message));
+            });
+        }
+      }
+    });
+
+    // ÁUDIO DE PATROCÍNIO AO CLICAR NO CARD FARMÁCIAS (Roselis)
+    document.body.addEventListener('click', function(e) {
+      if (e.target.closest('.estabelecimento-card[data-submodulo="farmacias"]')) {
+        console.log('Clique detectado no card FARMÁCIAS - iniciando áudio Roselis');
+
+        let audio = document.getElementById('roselisAudio');
+
+        if (!audio) {
+          console.log('Criando elemento <audio> dinamicamente para Roselis');
+          audio = document.createElement('audio');
+          audio.id = 'roselisAudio';
+          audio.preload = 'auto';
+
+          const source = document.createElement('source');
+          source.src = 'https://g6connecti.github.io/mooca-hub-bkp/roselis.mp3';
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+
+          document.body.appendChild(audio);
+        }
+
+        audio.volume = 0.4;
+        audio.currentTime = 0;
+
+        audio.muted = true;
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setTimeout(() => {
+                audio.muted = false;
+                console.log('✅ Áudio roselis.mp3 tocou com sucesso!');
+              }, 500);
+            })
+            .catch(error => {
+              console.warn('Tentativa 1 falhou:', error.message);
+              audio.muted = false;
+              audio.play()
+                .then(() => console.log('✅ Áudio roselis.mp3 tocou na tentativa 2'))
+                .catch(err => console.error('❌ Falha definitiva ao tocar áudio Roselis:', err.message));
+            });
+        }
+      }
+    });
   </script>
 
 </body>
 </html>
-
-
