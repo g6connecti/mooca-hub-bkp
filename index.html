@@ -9,7 +9,6 @@
   <script src="cordova.js"></script>
   <link rel="manifest" href="/manifest.json">
   <style>
-    /* Seu CSS original inteiro aqui – não alterei nada */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('campo-juventos.png');
@@ -393,7 +392,6 @@
       }
     }
 
-    /* Botão Sair do Aplicativo */
     .exit-btn {
       background: #00ffff !important;
       color: #000000 !important;
@@ -417,7 +415,6 @@
       transform: scale(1.03);
     }
 
-    /* Botões de Segurança */
     .seguranca-btn, .vigia-btn, .emergencia-btn {
       background: #00ffff !important;
       color: #000000 !important;
@@ -494,7 +491,6 @@
           <span>Tecmaq - Seladoras a Vácuo</span>
         </a>
 
-        <!-- Novos apoiadores -->
         <a href="https://pointglass.com.br/" target="_blank" class="apoio-btn">
           <img src="pointglass300X300.png">
           <span>Point Glass</span>
@@ -535,14 +531,14 @@
       <div class="card" data-modulo="wifi"><div class="emoji">📡</div><h2>Wi-Fi Disponíveis</h2></div>
       <div class="card" data-modulo="lazer"><div class="emoji">🌳</div><h2>Lazer</h2></div>
       <div class="card" data-modulo="patrocinadores"><div class="emoji">🤝</div><h2>Nossos Apoiadores</h2></div>
-      <div class="card" data-modulo="pedidos-sugestoes"><div class="emoji">📩</div><h2>Pedidos<br>Sugestões<br>Doação </h2></div>
+      <div class="card" data-modulo="pedidos-sugestoes"><div class="emoji">📩</div><h2>Pedidos /<br>Sugestões</h2></div>
 
       <div class="card" data-modulo="servicos24-alertas">
         <div class="emoji">🛠️</div>
         <h2>Serviços 24Horas</h2>
       </div>
 
-      <div class="card" data-modulo="noticias"><div class="emoji">📰</div><h2>Notícia & Eventos</h2></div>
+      <div class="card" data-modulo="noticias"><div class="emoji">📰</div><h2>Notícias & Eventos</h2></div>
     </div>
 
     <div id="conteudo" style="display: none;">
@@ -749,7 +745,7 @@
       });
     });
 
-    // Bloco de sub-cards (com tratamento especial para Pizzarias)
+    // Bloco de sub-cards (tratamento especial para Pizzarias + restauração de Feiras)
     document.body.addEventListener('click', async function(e) {
       const subCard = e.target.closest('.estabelecimento-card[data-submodulo]');
       if (subCard) {
@@ -785,11 +781,69 @@
           const html = await response.text();
           conteudo.innerHTML = html;
 
+          // Tratamento especial para Feiras Livres
+          if (submodulo === 'feiras') {
+            console.log('=== BLOCO FEIRAS EXECUTANDO ===');
+
+            const diaHoje = getDiaSemana();
+            console.log('Dia atual detectado:', diaHoje);
+
+            const feiras = [
+              { dia: 'Terça-feira', nome: 'Feira Moraes Barros', endereco: 'Rua Firmiano Pinto' },
+              { dia: 'Terça-feira', nome: 'Feira Parque da Mooca', endereco: 'Rua Conde de Prates' },
+              { dia: 'Terça-feira', nome: 'Feira Décio Abrahão', endereco: 'Rua Décio Ábramo, nº 412' },
+              { dia: 'Terça-feira', nome: 'Feira Pires de Campos', endereco: 'Rua Pires de Campos' },
+              { dia: 'Terça-feira', nome: 'Feira Dom Bosco', endereco: 'Rua Dom Bosco' },
+              { dia: 'Quarta-feira', nome: 'Feira Madre de Deus', endereco: 'Rua Madre de Deus, nº 604' },
+              { dia: 'Quarta-feira', nome: 'Feira Mooca Moderna', endereco: 'Rua dos Trilhos, nº 869' },
+              { dia: 'Quinta-feira', nome: 'Feira Alto da Mooca', endereco: 'Rua Itanhaém' },
+              { dia: 'Quinta-feira', nome: 'Feira Vila Oratório', endereco: 'Rua Silva Coutinho, S/N' },
+              { dia: 'Quinta-feira', nome: 'Feira Mãe do Céu', endereco: 'Rua Visconde de Itaboraí, nº 233' },
+              { dia: 'Quinta-feira', nome: 'Feira Machado Tolosa', endereco: 'Rua Machado Tolosa' },
+              { dia: 'Sexta-feira', nome: 'Feira Jaibarás', endereco: 'Rua Jaibarás' },
+              { dia: 'Sexta-feira', nome: 'Feira Bom Jesus', endereco: 'Rua Bom Jesus' },
+              { dia: 'Sábado', nome: 'Feira Mooca (Tabajaras)', endereco: 'Rua Tabajaras, entre 227 e 366' },
+              { dia: 'Sábado', nome: 'Feira Serra de Jairé', endereco: 'Rua Serra de Jairé, entre 760 e 908' },
+              { dia: 'Domingo', nome: 'Feira Mooca Moderna (Bresser)', endereco: 'Rua Bresser, nº 2701' }
+            ];
+
+            let tabelaHTML = '<table><thead><tr><th>Dia da Semana</th><th>Nome da Feira / Localização</th><th>Endereço</th></tr></thead><tbody>';
+
+            feiras.forEach(feira => {
+              const isHoje = feira.dia.includes(diaHoje);
+              const classeBolinha = isHoje ? 'bolinha ativa' : 'bolinha inativa';
+              tabelaHTML += `<tr><td><span class="${classeBolinha}"></span> ${feira.dia}</td><td>${feira.nome}</td><td>${feira.endereco}</td></tr>`;
+            });
+
+            tabelaHTML += '</tbody></table>';
+
+            const tabelaDiv = document.getElementById('feiras-tabela');
+            if (tabelaDiv) {
+              tabelaDiv.innerHTML = tabelaHTML;
+              console.log('Tabela de feiras inserida com sucesso');
+            } else {
+              console.error('ERRO: #feiras-tabela não encontrado');
+            }
+
+            const diaAtualEl = document.getElementById('dia-atual');
+            if (diaAtualEl) {
+              diaAtualEl.textContent = diaHoje;
+              console.log('Dia atual atualizado para:', diaHoje);
+            } else {
+              console.error('ERRO: #dia-atual não encontrado');
+            }
+          }
+
           setTimeout(initMap, 600);
+
           conteudo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } catch (err) {
-          console.error(err);
-          conteudo.innerHTML = `<p style="color:#ff4444; text-align:center;">Erro ao carregar ${submodulo}.</p>`;
+          console.error('Erro no sub-módulo:', err);
+          conteudo.innerHTML = `
+            <p style="color:#ff4444; text-align:center; font-size:1.2em; padding:20px;">
+              Erro ao carregar ${submodulo}.html<br>${err.message}
+            </p>
+          `;
         }
       }
     });
@@ -945,7 +999,7 @@
       }
     }, false);
 
-    // === RESTAURANDO OS ÁUDIOS DE PATROCINADORES ===
+    // === ÁUDIOS DE PATROCINADORES RESTAURADOS ===
 
     // ÁUDIO DE PROMOÇÃO AO CLICAR NO CARD PADARIAS
     document.body.addEventListener('click', function(e) {
