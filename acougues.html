@@ -1,14 +1,13 @@
 <h2>Açougues da Mooca</h2>
 
-<!-- Patrocínio no topo (logo à esquerda + texto) -->
-<!-- Se tiver patrocinador, substitua src, href e texto abaixo -->
+<!-- Patrocínio no topo (Tecmaq Seladoras a Vácuo) -->
 <div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
-  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
-    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
-         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  <a href="https://tecmaq.com.br/" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="./tecmaq180X180.png" alt="Tecmaq Seladoras a Vácuo" 
+         style="width: 180px; height: 180px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3); object-fit: contain;">
   </a>
   <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
-    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+    Esse Módulo é Patrocinado pela<br><strong>Tecmaq Seladoras a Vácuo</strong>
   </p>
 </div>
 
@@ -21,7 +20,7 @@
 <script>
   document.getElementById('searchInput').addEventListener('input', function() {
     const filter = this.value.toLowerCase();
-    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button, .destaques button');
     
     buttons.forEach(btn => {
       const text = btn.innerText.toLowerCase();
@@ -34,6 +33,34 @@
   Os melhores açougues do bairro para carnes de qualidade!
 </p>
 
+<!-- Destaques / Patrocinados (laranja, no topo) -->
+<div class="destaques" style="margin-bottom: 40px;">
+  <h3 style="color: #FF5722; text-align: center; margin-bottom: 15px; font-size: 1.4em; text-shadow: 0 0 8px rgba(255,87,34,0.5);">
+    Destaques / Patrocinados
+  </h3>
+
+  <div class="padaria-bloco">
+    <button class="destaque-btn" onclick="window.open('https://maps.app.goo.gl/A5wkTaSSwrivxRaB6', '_blank')">
+      Guimarães Carnes <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Barretos, 251 - Mooca
+      </small>
+      <span style="display: block; font-size: 0.8em; color: #FF5722; margin-top: 4px;">★ Destaque</span>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="destaque-btn" onclick="window.open('https://maps.app.goo.gl/ZmBxJkU5wX81Fo4K8', '_blank')">
+      Grupo Farias <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Fernando Falcão (referência na região)
+      </small>
+      <span style="display: block; font-size: 0.8em; color: #FF5722; margin-top: 4px;">★ Destaque</span>
+    </button>
+  </div>
+</div>
+
+<!-- Lista normal (gratuitos) -->
 <div class="lista-estabelecimentos">
 
   <div class="padaria-bloco">
@@ -73,15 +100,6 @@
   </div>
 
   <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/ZmBxJkU5wX81Fo4K8', '_blank')">
-      Grupo Farias <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        R. Fernando Falcão (referência na região)
-      </small>
-    </button>
-  </div>
-
-  <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://www.mecboi.com.br/', '_blank')">
       Mec Boi <br>
       <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
@@ -104,15 +122,6 @@
       Swift - Alto da Mooca <br>
       <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
         Av. Cassandoca, 738
-      </small>
-    </button>
-  </div>
-
-  <div class="padaria-bloco">
-    <button class="padaria-btn" onclick="window.open('https://maps.app.goo.gl/A5wkTaSSwrivxRaB6', '_blank')">
-      Guimarães Carnes <br>
-      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
-        R. Barretos, 251 - Mooca
       </small>
     </button>
   </div>
@@ -149,8 +158,8 @@
     text-align: left;
     padding: 15px 20px;
     border-radius: 10px;
-    background: rgba(0, 212, 255, 0.08); /* Fundo sutil verde-água */
-    border: 1px solid #00d4ff;           /* Borda verde-água */
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid #00d4ff;
     color: #ffffff;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -161,5 +170,30 @@
     background: rgba(0, 212, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  /* Estilo para Destaques (laranja) */
+  .destaques .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .destaque-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(255, 87, 34, 0.15); /* Fundo laranja sutil */
+    border: 2px solid #FF5722;           /* Borda laranja forte */
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 0 12px rgba(255, 87, 34, 0.4);
+  }
+
+  .destaque-btn:hover {
+    background: rgba(255, 87, 34, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
   }
 </style>
