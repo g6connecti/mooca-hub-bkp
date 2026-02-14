@@ -18,7 +18,7 @@
        style="width: 220px; height: 220px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,0,0.3); margin-bottom: 20px;">
 
   <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0 20px;">
-    Chave Pix: <strong>contato@g6connecti.com.br</strong>
+    Chave Pix: <strong id="chavePix">contato@g6connecti.com.br</strong>
   </p>
 
   <button id="copiarPixBtn" 
@@ -28,3 +28,29 @@
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<script>
+  // Script de cópia da chave Pix
+  document.getElementById('copiarPixBtn').addEventListener('click', async function() {
+    const chaveElement = document.getElementById('chavePix');
+    const chave = chaveElement.innerText.trim();
+
+    try {
+      await navigator.clipboard.writeText(chave);
+      
+      // Feedback visual
+      this.innerText = 'Copiado! ✅';
+      this.style.background = '#00cc00'; // Verde mais escuro
+      this.style.boxShadow = '0 0 20px #00ff00';
+
+      setTimeout(() => {
+        this.innerText = 'Copiar Chave Pix';
+        this.style.background = '#00ffff';
+        this.style.boxShadow = '0 0 15px #00ffff';
+      }, 3000);
+    } catch (err) {
+      console.error('Erro ao copiar chave Pix:', err);
+      alert('Não foi possível copiar automaticamente.\nToque e segure no texto da chave para copiar manualmente.');
+    }
+  });
+</script>
