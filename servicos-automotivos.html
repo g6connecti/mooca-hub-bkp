@@ -1,10 +1,10 @@
 <h2>Serviços Automotivos na Mooca</h2>
 
-<!-- Patrocínio no topo (logo à esquerda + texto) -->
+<!-- Patrocínio no topo (Point Glass) - tamanho 120px -->
 <div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
   <a href="https://pointglass.com.br/" target="_blank" style="margin-right: 15px; display: block;">
-    <img src="pointglass160x50.png" alt="Point Glass Vidros Automotivos" 
-         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+    <img src="pointglass300X300.png" alt="Point Glass Vidros Automotivos" 
+         style="width: 120px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3); object-fit: contain;">
   </a>
   <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
     Esse Módulo é Patrocinado pela<br><strong>Point Glass Vidros Automotivos</strong>
@@ -29,9 +29,36 @@
   });
 </script>
 
+<p style="text-align:center; margin-bottom:20px; font-size:1.1em; color:#00ffff;">
+  Os melhores serviços automotivos do bairro para cuidar do seu carro com qualidade!
+</p>
+
+<!-- Destaques / Patrocinados (em laranja) -->
+<div style="margin-bottom: 20px;">
+  <h3 style="color: #FF5722; text-align: center; margin-bottom: 15px; font-size: 1.4em;">
+    Destaques / Patrocinados
+  </h3>
+
+  <!-- Destaque principal: Point Glass -->
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://pointglass.com.br/', '_blank')">
+      <span style="color: #FF5722; font-weight: bold;">Point Glass Vidros Automotivos</span> <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Rua Campo Largo, 110 - Mooca (especialista em vidros automotivos)
+      </small>
+      <span style="display: block; font-size: 0.8em; color: #FF5722; margin-top: 4px;">★ Destaque</span>
+    </button>
+  </div>
+
+  <!-- Adicione mais destaques aqui se quiser (ex: oficinas parceiras) -->
+</div>
+
+<!-- Linha separadora laranja -->
+<div style="height: 2px; background: #FF5722; margin: 20px 0 30px 0; border-radius: 2px; box-shadow: 0 0 8px rgba(255,87,34,0.4);"></div>
+
 <div class="lista-estabelecimentos">
 
- <!-- Point Glass Vidros Automotivos -->
+  <!-- Point Glass Vidros Automotivos (mantido na lista normal também) -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://www.pointglass.com.br/', '_blank')">
       Point Glass Vidros Automotivos <br>
@@ -100,6 +127,7 @@
       </small>
     </button>
   </div>
+
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
