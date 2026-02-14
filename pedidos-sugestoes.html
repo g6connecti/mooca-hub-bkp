@@ -9,7 +9,7 @@
  ❤️ Sua Opinião e Apoio são muito importantes para melhorar e manter o Mooca Hub! 📩❤️
 </p>
 
-<!-- Seção de Doação -->
+<!-- Seção de Doação com botão de copiar funcionando -->
 <div style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff;">
   <h3 style="color: #00ff00; margin-bottom: 15px;">❤️ Apoie o Mooca Hub via Pix ❤️ </h3>
   
@@ -17,75 +17,76 @@
        alt="QR Code Pix - Mooca Hub" 
        style="width: 220px; height: 220px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,0,0.3); margin-bottom: 20px;">
 
-  <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0 10px;">
-    Chave Pix:
-  </p>
-
-  <p id="chavePixContainer" style="font-size: 1.2em; word-break: break-all; background: #2a2a2a; padding: 12px; border-radius: 8px; border: 1px solid #00ffff; margin: 0 auto 20px; max-width: 320px;">
-    <span id="chavePix">contato@g6connecti.com.br</span>
+  <p style="font-size: 1.1em; color: #ffffff; margin: 10px 0 20px;">
+    Chave Pix: <strong id="chavePix">contato@g6connecti.com.br</strong>
   </p>
 
   <button id="copiarPixBtn" 
-          style="padding: 14px 40px; background: #00ffff; color: #121212; border: none; border-radius: 12px; font-size: 1.2em; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px #00ffff; transition: all 0.3s;">
-    Copiar Chave Pix
+          style="padding: 14px 40px; background: #00ffff; color: #121212; border: none; border-radius: 12px; font-size: 1.2em; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px #00ffff; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto;">
+    <span id="btnIcon">📋</span>
+    <span id="btnText">Copiar Chave Pix</span>
   </button>
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
 <script>
-// Função de cópia robusta com dois métodos
-document.getElementById('copiarPixBtn').addEventListener('click', function() {
-  const chaveElement = document.getElementById('chavePix');
-  const chave = chaveElement.innerText.trim();
-  const btn = this;
+// Script de cópia da chave Pix (adaptado do que funciona no Pizza Meter)
+document.getElementById('copiarPixBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
 
-  // Método 1: Clipboard API moderna (preferida)
+  const chave = document.getElementById('chavePix').innerText.trim();
+  const btn = this;
+  const btnText = document.getElementById('btnText');
+  const btnIcon = document.getElementById('btnIcon');
+
+  // Tenta copiar com clipboard API
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(chave)
       .then(() => {
-        sucessoCopiar(btn);
+        sucessoCopiar();
       })
-      .catch(err => {
-        console.warn('Clipboard API falhou, tentando método antigo:', err);
-        tentarMetodoAntigo();
+      .catch(() => {
+        tentarFallback();
       });
   } else {
-    tentarMetodoAntigo();
+    tentarFallback();
   }
 
-  function tentarMetodoAntigo() {
-    // Método 2: Selecionar texto e execCommand (fallback)
+  function sucessoCopiar() {
+    btnText.innerText = 'Copiado!';
+    btnIcon.innerText = '✅';
+    btn.style.background = '#00cc00';
+    btn.style.boxShadow = '0 0 20px #00ff00';
+
+    setTimeout(() => {
+      btnText.innerText = 'Copiar Chave Pix';
+      btnIcon.innerText = '📋';
+      btn.style.background = '#00ffff';
+      btn.style.boxShadow = '0 0 15px #00ffff';
+    }, 2000);
+  }
+
+  function tentarFallback() {
+    // Fallback: seleciona texto e usa execCommand
     const range = document.createRange();
-    range.selectNode(chaveElement);
+    range.selectNode(document.getElementById('chavePix'));
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
 
     try {
       const copiado = document.execCommand('copy');
       if (copiado) {
-        sucessoCopiar(btn);
+        sucessoCopiar();
       } else {
         falhaCopiar();
       }
     } catch (err) {
-      console.error('execCommand falhou:', err);
       falhaCopiar();
     }
 
     window.getSelection().removeAllRanges();
-  }
-
-  function sucessoCopiar(botao) {
-    botao.innerText = 'Copiado! ✅';
-    botao.style.background = '#00cc00';
-    botao.style.boxShadow = '0 0 20px #00ff00';
-
-    setTimeout(() => {
-      botao.innerText = 'Copiar Chave Pix';
-      botao.style.background = '#00ffff';
-      botao.style.boxShadow = '0 0 15px #00ffff';
-    }, 3000);
   }
 
   function falhaCopiar() {
