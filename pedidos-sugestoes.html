@@ -9,7 +9,7 @@
  ❤️ Sua Opinião e Apoio são muito importantes para melhorar e manter o Mooca Hub! 📩❤️
 </p>
 
-<!-- Seção de Doação -->
+<!-- Seção de Doação com botão de copiar funcionando -->
 <div style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(0, 212, 255, 0.08); border-radius: 12px; border: 1px solid #00d4ff;">
   <h3 style="color: #00ff00; margin-bottom: 15px;">❤️ Apoie o Mooca Hub via Pix ❤️ </h3>
   
@@ -29,8 +29,8 @@
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
+<!-- Script de cópia da chave Pix (o que já tinha resolvido antes) -->
 <script>
-  // Script de cópia da chave Pix
   document.getElementById('copiarPixBtn').addEventListener('click', async function() {
     const chaveElement = document.getElementById('chavePix');
     const chave = chaveElement.innerText.trim();
@@ -38,11 +38,12 @@
     try {
       await navigator.clipboard.writeText(chave);
       
-      // Feedback visual
+      // Feedback visual de sucesso
       this.innerText = 'Copiado! ✅';
       this.style.background = '#00cc00'; // Verde mais escuro
       this.style.boxShadow = '0 0 20px #00ff00';
 
+      // Volta ao normal após 3 segundos
       setTimeout(() => {
         this.innerText = 'Copiar Chave Pix';
         this.style.background = '#00ffff';
