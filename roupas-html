@@ -1,1 +1,263 @@
+<h2>Lojas de Roupas, Boutiques e Acessórios na Mooca</h2>
 
+<!-- Bloco de patrocínio com ícone do Mooca Hub (130×90) à esquerda -->
+<div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="moocahub180.png" alt="Mooca Hub" 
+         style="width: 130px; height: 90px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3); object-fit: contain;">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>Mooca Hub</strong>
+  </p>
+</div>
+
+<!-- Campo de pesquisa -->
+<div style="margin: 15px 0; text-align: center;">
+  <input type="text" id="searchInput" placeholder="Pesquisar Lojas de Roupas..." 
+         style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    
+    buttons.forEach(btn => {
+      const text = btn.innerText.toLowerCase();
+      btn.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<p style="text-align:center; margin-bottom:20px; font-size:1.1em; color:#00ffff;">
+  As melhores lojas de roupas, boutiques, acessórios e calçados da Mooca para renovar o guarda-roupa com estilo!
+</p>
+
+<div class="lista-estabelecimentos">
+
+  <!-- Categoria: Lojas de Roupas e Boutiques -->
+  <p class="section-separator">Lojas de Roupas e Boutiques</p>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://aramis.com.br', '_blank')">
+      Aramis Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Cap. Pacheco e Chaves, 313 - Mooca (moda masculina sofisticada)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/canalconcept', '_blank')">
+      Canal Concept <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Madre de Deus, 1159 - Mooca (moda feminina contemporânea)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/casavisconde', '_blank')">
+      Casa Visconde <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Visconde de Laguna, 58 - Mooca (roupas e uniformes)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/estilomodasmooca', '_blank')">
+      Estilo Modas Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. da Mooca, 4509 - Mooca (moda masculina e feminina multimarcas)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/lindaloboboutique', '_blank')">
+      Linda Lobo Boutique <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. da Mooca, 4564 - Mooca (moda feminina elegante)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/mamooficial', '_blank')">
+      MAMÔ <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Mooca - Moda feminina com design autoral
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/megostoassim', '_blank')">
+      Me Gosto Assim <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. do Oratório, 265 A - Mooca (moda feminina inclusiva P ao G3)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/mg23multimarcas', '_blank')">
+      MG23 Multimarcas <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Visc. de Inhomerim, 709 - Mooca (vestuário masculino de grandes marcas)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/outletmoocaofficial', '_blank')">
+      Outlet Mooca Oficial <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Teresina, 372 - Mooca (multimarcas com preços reduzidos)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/sallusmodafeminina', '_blank')">
+      Sallus Moda Feminina <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Mooca - Moda feminina
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://tiptop.com.br', '_blank')">
+      Tip Top Mooca <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Cap. Pacheco e Chaves, 313 (Loja 1119) - Mooca (moda infantil 0 a 10 anos)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/zinzane', '_blank')">
+      Zinzane <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Cap. Pacheco e Chaves, 313 - Mooca (moda feminina com estampas exclusivas)
+      </small>
+    </button>
+  </div>
+
+  <!-- Categoria: Acessórios e Calçados -->
+  <p class="section-separator">Acessórios e Calçados</p>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/carlotaacessorios', '_blank')">
+      Carlota Acessórios <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Juventus, 97 A - Mooca (bijuterias, semijoias e acessórios femininos)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.cloviscalcados.com.br', '_blank')">
+      Clovis Calçados <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Diversas unidades na Mooca - Calçados populares e multimarcas
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://digaspi.com.br', '_blank')">
+      Di Gaspi <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. da Mooca, 2480 - Mooca (loja de departamentos com calçados, roupas e acessórios)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/mariaflorcalcados', '_blank')">
+      Maria Flor Calçados <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Fernando Falcão, 1176 - Mooca (calçados femininos com tendências)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.martinezoutlet.com.br', '_blank')">
+      Martinez Outlet <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Paes de Barros, 39 - Mooca (outlet de calçados de couro e marcas diversas)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.instagram.com/taukuau', '_blank')">
+      Tau Kuau Moda <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Cuiabá, 701 - Mooca (calçados artesanais femininos focados em conforto)
+      </small>
+    </button>
+  </div>
+
+  <!-- Categoria: Centros Comerciais (Moda e Beleza) -->
+  <p class="section-separator">Centros Comerciais (Moda e Beleza)</p>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://www.fabbricamooca.com.br', '_blank')">
+      Fabbrica Mooca Mall <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        Av. Cassandoca, 98 - Mooca (lojas de roupas femininas e cosméticos)
+      </small>
+    </button>
+  </div>
+
+  <div class="padaria-bloco">
+    <button class="padaria-btn" onclick="window.open('https://moocaplaza.com.br', '_blank')">
+      Mooca Plaza Shopping <br>
+      <small style="font-size: 0.85em; color: #ffffff; display: block; margin-top: 6px;">
+        R. Cap. Pacheco e Chaves, 313 - Mooca (grandes marcas globais e boutiques)
+      </small>
+    </button>
+  </div>
+
+</div>
+
+<button class="close-btn" onclick="fecharModulo()">Fechar</button>
+
+<style>
+  .padaria-bloco {
+    margin-bottom: 20px;
+  }
+
+  .padaria-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid #00d4ff;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .padaria-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  }
+
+  .section-separator {
+    font-size: 1.2em;
+    color: #00ffff;
+    margin: 30px 0 15px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+  }
+</style>
