@@ -492,12 +492,12 @@
         </a>
 
         <a href="https://pointglass.com.br/" target="_blank" class="apoio-btn">
-          <img src="pointglass330X300.png">
+          <img src="pointglass300X300.png">
           <span>Point Glass</span>
         </a>
 
         <a href="https://maisvalia.com.br/" target="_blank" class="apoio-btn">
-          <img src="maisvalia330X300.png">
+          <img src="maisvalia300X300.png">
           <span>Mais Valia</span>
         </a>
       </div>
@@ -1138,10 +1138,76 @@
         }
       }
     });
+
+    // DELEGAÇÃO GLOBAL PARA BOTÃO COPIAR CHAVE PIX (funciona em módulos carregados dinamicamente)
+    document.body.addEventListener('click', function(e) {
+      if (e.target && e.target.id === 'copiarPixBtn') {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Encontra a chave no mesmo container
+        const chaveElement = e.target.closest('div').querySelector('#chavePix');
+        if (!chaveElement) {
+          console.error('Elemento #chavePix não encontrado');
+          alert('Chave não encontrada. Copie manualmente.');
+          return;
+        }
+
+        const chave = chaveElement.innerText.trim();
+        const btn = e.target;
+
+        // Tenta copiar com clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(chave)
+            .then(() => {
+              sucessoCopiar(btn);
+            })
+            .catch(err => {
+              console.warn('Clipboard API falhou:', err);
+              tentarFallback();
+            });
+        } else {
+          tentarFallback();
+        }
+
+        function sucessoCopiar(botao) {
+          botao.innerText = 'Copiado! ✅';
+          botao.style.background = '#00cc00';
+          botao.style.boxShadow = '0 0 20px #00ff00';
+
+          setTimeout(() => {
+            botao.innerText = 'Copiar Chave Pix';
+            botao.style.background = '#00ffff';
+            botao.style.boxShadow = '0 0 15px #00ffff';
+          }, 3000);
+        }
+
+        function tentarFallback() {
+          const range = document.createRange();
+          range.selectNode(chaveElement);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+
+          try {
+            const copiado = document.execCommand('copy');
+            if (copiado) {
+              sucessoCopiar(btn);
+            } else {
+              falhaCopiar();
+            }
+          } catch (err) {
+            falhaCopiar();
+          }
+
+          window.getSelection().removeAllRanges();
+        }
+
+        function falhaCopiar() {
+          alert('Não foi possível copiar automaticamente.\nToque e segure na chave Pix para selecionar e copiar manualmente.');
+        }
+      }
+    });
   </script>
 
 </body>
 </html>
-
-
-
