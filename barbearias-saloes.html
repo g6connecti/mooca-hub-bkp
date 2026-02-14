@@ -1,25 +1,17 @@
 <h2>Barbearias e Salões de Beleza na Mooca</h2>
 
-<!-- Bloco de patrocínio com ícone do Mooca Hub discreto à esquerda (igual serviços automotivos) -->
+<!-- Bloco de patrocínio exatamente igual ao de serviços automotivos -->
 <div style="display: flex; align-items: center; justify-content: center; margin: 15px 0 25px 0; background: rgba(0, 212, 255, 0.08); padding: 12px; border-radius: 12px; border: 1px solid #00d4ff;">
-  <!-- Ícone Mooca Hub discreto à esquerda -->
-  <img src="./moocahub180.png" alt="Mooca Hub" 
-       style="width: 80px; height: auto; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,255,255,0.2); object-fit: contain; margin-right: 15px;">
-
-  <!-- Texto de patrocínio + logo placeholder -->
-  <div style="text-align: center;">
-    <p style="font-size: 1em; color: #00ffff; margin: 0;">
-      Esse Módulo é Patrocinado pela<br>
-      <strong>[Nome do Patrocinador]</strong>
-    </p>
-    <a href="#" target="_blank" style="margin-top: 10px; display: block;">
-      <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
-           style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
-    </a>
-  </div>
+  <a href="#" target="_blank" style="margin-right: 15px; display: block;">
+    <img src="seu-logo-patrocinador160x50.png" alt="Patrocinador" 
+         style="width: 160px; height: 50px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,212,255,0.3);">
+  </a>
+  <p style="font-size: 1em; color: #00ffff; margin: 0; text-align: center;">
+    Esse Módulo é Patrocinado pela<br><strong>[Nome do Patrocinador]</strong>
+  </p>
 </div>
 
-<!-- Campo de pesquisa (idêntico a serviços automotivos) -->
+<!-- Campo de pesquisa (igual serviços automotivos) -->
 <div style="margin: 15px 0; text-align: center;">
   <input type="text" id="searchInput" placeholder="Pesquisar Barbearias e Salões..." 
          style="width: 90%; max-width: 400px; padding: 12px; border-radius: 10px; border: 1px solid #00ffff; background: #2a2a2a; color: #f0f0f0; font-size: 1em;">
@@ -42,7 +34,7 @@
 </p>
 
 <div class="lista-estabelecimentos">
-  <!-- Lista de estabelecimentos - adicione os reais aqui no mesmo formato -->
+  <!-- Lista de estabelecimentos - adicione os reais aqui -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://link-da-barbearia.com', '_blank')">
       Barbearia Exemplo Mooca <br>
@@ -61,7 +53,7 @@
     </button>
   </div>
 
-  <!-- Adicione mais itens aqui -->
+  <!-- Adicione mais itens aqui no mesmo formato -->
 </div>
 
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
