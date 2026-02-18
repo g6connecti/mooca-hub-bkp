@@ -1,4 +1,4 @@
-<h2>Padarias na Mooca V-2b</h2>
+<h2>Padarias na Mooca V-3</h2>
 
 <!-- Campo de pesquisa -->
 <div style="margin: 15px 0; text-align: center;">
@@ -9,24 +9,26 @@
 <script>
   document.getElementById('searchInput').addEventListener('input', function() {
     const filter = this.value.toLowerCase();
-    const buttons = document.querySelectorAll('.lista-estabelecimentos button');
+    const buttons = document.querySelectorAll('.padaria-btn');
     
     buttons.forEach(btn => {
       const text = btn.innerText.toLowerCase();
-      btn.style.display = text.includes(filter) ? '' : 'none';
+      btn.style.display = text.includes(filter) ? 'flex' : 'none';
     });
   });
 </script>
 
 <div class="lista-estabelecimentos">
-  <!-- Carillo - com destaque sutil (apenas glow pulsante) -->
+  <!-- Carillo - Destaque com texto interno -->
   <div class="padaria-bloco destaque">
     <button class="padaria-btn destaque" onclick="window.open('https://padariacarillo.com.br/cardapio/', '_blank')">
-      Padaria Carillo <span class="promo-tag">Promoção</span>
+      <div class="btn-linha-topo">
+        <strong>Padaria Carillo</strong> <span class="promo-tag">Promoção</span>
+      </div>
+      <span class="promo-texto-interno">
+        Menu del Giorno seg-sex: almoço completo (entrada + principal + acompanhamento) R$ 35,00
+      </span>
     </button>
-    <p class="promo-texto">
-      Menu del Giorno seg-sex: almoço completo (entrada + principal + acompanhamento) R$ 35,00
-    </p>
   </div>
   
   <button class="padaria-btn" onclick="window.open('https://montelibanopaes.com', '_blank')">
@@ -41,14 +43,16 @@
     Grano Mooca
   </button>
   
-  <!-- Santa Branca -->
+  <!-- Santa Branca - Destaque com texto interno -->
   <div class="padaria-bloco">
     <button class="padaria-btn" onclick="window.open('https://padariasantabranca.com.br', '_blank')">
-      Padaria Santa Branca <span class="promo-tag">Promoção</span>
+      <div class="btn-linha-topo">
+        <strong>Padaria Santa Branca</strong> <span class="promo-tag">Promoção</span>
+      </div>
+      <span class="promo-texto-interno">
+        Diversas ofertas diárias em pães e lanches – verifique no local ou Instagram
+      </span>
     </button>
-    <p class="promo-texto">
-      Diversas ofertas diárias em pães e lanches – verifique no local ou Instagram
-    </p>
   </div>
 
   <button class="padaria-btn" onclick="window.open('https://share.google/ox1FXGpCZpDIXC27Q', '_blank')">
@@ -79,9 +83,15 @@
 <button class="close-btn" onclick="fecharModulo()">Fechar</button>
 
 <style>
+  .lista-estabelecimentos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .padaria-bloco {
-    margin-bottom: 20px;
     position: relative;
+    width: 100%;
   }
 
   .padaria-btn {
@@ -95,7 +105,15 @@
     transition: all 0.3s ease;
     cursor: pointer;
     font-size: 1em;
-    position: relative;
+    display: flex; /* Altera para flex para empilhar textos */
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn-linha-topo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .padaria-btn:hover {
@@ -107,52 +125,37 @@
   .promo-tag {
     background: #ff9800;
     color: #121212;
-    padding: 3px 8px;
+    padding: 2px 8px;
     border-radius: 12px;
-    font-size: 0.78em;
+    font-size: 0.7em;
     font-weight: bold;
     margin-left: 10px;
-    vertical-align: middle;
     box-shadow: 0 1px 6px rgba(255, 152, 0, 0.5);
-    display: inline-block;
   }
 
-  .padaria-btn:hover .promo-tag {
-    background: #ffb74d;
-    transform: scale(1.05);
-    transition: all 0.2s ease;
-  }
-
-  .promo-texto {
+  /* Novo estilo para o texto laranja dentro do botão */
+  .promo-texto-interno {
     font-size: 0.85em;
     color: #ff9800;
-    margin: 6px 0 0 15px;
-    line-height: 1.4;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-top: 2px;
   }
 
-  /* Destaque sutil para Padaria Carillo: apenas glow pulsante (sem borda sólida) */
+  /* Destaque sutil com glow pulsante */
   .padaria-bloco.destaque {
     border-radius: 14px;
-    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
     animation: glow-suave 4s infinite ease-in-out;
-    padding: 10px;
-    margin: -10px; /* compensa o padding para não mudar o espaçamento */
   }
 
   @keyframes glow-suave {
-    0% { box-shadow: 0 0 12px rgba(0, 212, 255, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
-    100% { box-shadow: 0 0 12px rgba(0, 212, 255, 0.3); }
+    0% { box-shadow: 0 0 8px rgba(0, 212, 255, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(0, 212, 255, 0.2); }
   }
 
-  /* Reforço no botão destaque (para combinar com o glow) */
   .padaria-btn.destaque {
     background: rgba(0, 212, 255, 0.12) !important;
     border: 2px solid #00d4ff !important;
-  }
-
-  .padaria-btn.destaque:hover {
-    background: rgba(0, 212, 255, 0.22) !important;
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6) !important;
   }
 </style>
